@@ -10,10 +10,21 @@
     <h3>Task</h3>
     <p>
         @item.GetTask()<br>
-        <h4>Answers</h4>
-        @for (var i = 0; i < item.Answer.Length; i++)
+        @if (item.HasImage())
         {
-            @String.Format("{0}: {1}", i + 1, item.Answer[i])<br>
+            <img src="@Url.Action("GetImage", new { id = @item.ImageId })" style="width:150px;height:200px;" />
+        }
+        <h4>Answers</h4>
+        @if (item.Answer.Length > 1)
+        {
+            @for (var i = 0; i < item.Answer.Length; i++)
+            {
+                @String.Format("{0}) {1}", i + 1, item.Answer[i])<br>
+            }
+        }
+        else
+        {
+            <p>@item.Answer[0]</p>
         }
     </p>
 }

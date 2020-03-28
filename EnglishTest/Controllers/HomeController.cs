@@ -19,11 +19,23 @@ namespace EnglishTest.Controllers
             var tasks = new List<ITask>();
             var sentenceTasks = await db.GetTasks<SentenceTask>("sentences");
             var textTasks = await db.GetTasks<TextTask>("texts");
+            var imageTasks = await db.GetTasks<ImageTask>("imageTasks");
+            tasks.AddRange(imageTasks);
             tasks.AddRange(sentenceTasks);
             tasks.AddRange(textTasks);
 
             var model = new IndexViewModel { Tasks = tasks };
             return View(model);
+        }
+
+        public async Task<ActionResult> GetImage(string id)
+        {
+            var image = await db.GetImage(id);
+            if (image == null)
+            {
+                return NotFound();
+            }
+            return File(image, "image/jpg");
         }
 
         public IActionResult About()

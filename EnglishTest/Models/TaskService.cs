@@ -24,5 +24,10 @@ namespace EnglishTest.Models
         {
             return await database.GetCollection<T>(taskType).Find(new BsonDocument()).ToListAsync();
         }
+
+        public async Task<byte[]> GetImage(string id)
+        {
+            return await gridFS.DownloadAsBytesAsync(new ObjectId(id));
+        }
     }
 }

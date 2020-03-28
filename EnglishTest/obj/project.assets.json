@@ -12841,11 +12841,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\111\\Documents\\Курсовая\\EnglishTest\\EnglishTest\\EnglishTest.csproj",
+      "projectUniqueName": "C:\\Users\\111\\Documents\\EnglishTest\\Getting-ready-to-exams\\EnglishTest\\EnglishTest.csproj",
       "projectName": "EnglishTest",
-      "projectPath": "C:\\Users\\111\\Documents\\Курсовая\\EnglishTest\\EnglishTest\\EnglishTest.csproj",
+      "projectPath": "C:\\Users\\111\\Documents\\EnglishTest\\Getting-ready-to-exams\\EnglishTest\\EnglishTest.csproj",
       "packagesPath": "C:\\Users\\111\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\111\\Documents\\Курсовая\\EnglishTest\\EnglishTest\\obj\\",
+      "outputPath": "C:\\Users\\111\\Documents\\EnglishTest\\Getting-ready-to-exams\\EnglishTest\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
