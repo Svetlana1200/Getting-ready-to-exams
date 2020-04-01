@@ -62,3 +62,7 @@ C:\Users\111\Documents\EnglishTest\Getting-ready-to-exams\EnglishTest\obj\Debug\
 C:\Users\111\Documents\EnglishTest\Getting-ready-to-exams\EnglishTest\obj\Debug\netcoreapp2.1\EnglishTest.dll
 C:\Users\111\Documents\EnglishTest\Getting-ready-to-exams\EnglishTest\obj\Debug\netcoreapp2.1\EnglishTest.pdb
 C:\Users\111\Documents\EnglishTest\Getting-ready-to-exams\EnglishTest\obj\Debug\netcoreapp2.1\EnglishTest.csproj.CopyComplete
+C:\Users\111\Documents\EnglishTest\Getting-ready-to-exams\EnglishTest\obj\Debug\netcoreapp2.1\Razor\Views\Home\ImageTaskView.g.cshtml.cs
+C:\Users\111\Documents\EnglishTest\Getting-ready-to-exams\EnglishTest\obj\Debug\netcoreapp2.1\Razor\Views\Home\SentenceTaskView.g.cshtml.cs
+C:\Users\111\Documents\EnglishTest\Getting-ready-to-exams\EnglishTest\obj\Debug\netcoreapp2.1\Razor\Views\Home\TextTaskView.g.cshtml.cs
+C:\Users\111\Documents\EnglishTest\Getting-ready-to-exams\EnglishTest\obj\Debug\netcoreapp2.1\Razor\Views\Home\TestView.g.cshtml.cs

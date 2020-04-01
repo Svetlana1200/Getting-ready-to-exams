@@ -1,0 +1,18 @@
+﻿@model ImageTask
+
+<h4>Look at the text. What does it say? Choose the correct answer.</h4>
+<div>
+    <img src="@Url.Action("GetImage", new { id = @Model.ImageId })" style="width:150px;height:200px;" /><br>
+
+    <input type="radio" id="radioButton1">
+    <label for="radioButton1">@Model.First</label><br>
+
+    <input type="radio" id="radioButton2">
+    <label for="radioButton2">@Model.Second</label><br>
+
+    <input type="radio" id="radioButton3">
+    <label for="radioButton3">@Model.Third</label><br>
+</div>
+<div>
+    <button>Check</button>
+</div>

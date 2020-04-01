@@ -9,12 +9,18 @@ namespace EnglishTest.Controllers
     public class HomeController : Controller
     {
         private readonly TaskService db;
+
         public HomeController(TaskService context)
         {
             db = context;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> StartTest()
         {
             var tasks = new List<ITask>();
             var sentenceTasks = await db.GetTasks<SentenceTask>("sentences");
@@ -24,8 +30,8 @@ namespace EnglishTest.Controllers
             tasks.AddRange(sentenceTasks);
             tasks.AddRange(textTasks);
 
-            var model = new IndexViewModel { Tasks = tasks };
-            return View(model);
+            var training = new Training(tasks);
+            return ShowNextTask(training);
         }
 
         public async Task<ActionResult> GetImage(string id)
@@ -38,17 +44,21 @@ namespace EnglishTest.Controllers
             return File(image, "image/jpg");
         }
 
+        public IActionResult ShowNextTask(Training training)
+        {
+            training.Tasks.MoveNext();
+            return View("TestView", training);
+        }
+
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
-
             return View();
         }
 
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
-
             return View();
         }
 
