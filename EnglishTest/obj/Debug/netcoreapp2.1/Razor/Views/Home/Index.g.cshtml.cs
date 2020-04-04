@@ -54,7 +54,7 @@ using EnglishTest.Models;
             WriteLiteral("<h2>");
             EndContext();
             BeginContext(4, 50, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "91abd4bcf3624b2db90f2f9b6baa8456", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "08425214ec9c4c7cbb9a0366b43e8201", async() => {
                 BeginContext(31, 19, true);
                 WriteLiteral("Начать тестирование");
                 EndContext();

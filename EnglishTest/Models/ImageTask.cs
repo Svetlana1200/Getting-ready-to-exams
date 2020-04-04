@@ -12,12 +12,16 @@ namespace EnglishTest.Models
         public string Second { get; set; }
         public string Third { get; set; }
         public string[] Answer { get; set; }
-        public int Points { get; set; }
         public string ImageId { get; set; }
 
         public ImageTask()
         {
             View = "ImageTaskView";
+        }
+
+        public bool UserAnswerIsRight(string[] userAnswer)
+        {
+            return userAnswer[0] == Answer[0];
         }
     }
 }

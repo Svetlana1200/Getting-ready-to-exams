@@ -10,11 +10,15 @@ namespace EnglishTest.Models
         public string View { get; set; }
         public string Text { get; set; }
         public string[] Answer { get; set; }
-        public int Points { get; set; }
 
         public TextTask()
         {
             View = "TextTaskView";
+        }
+
+        public bool UserAnswerIsRight(string[] userAnswer)
+        {
+            return userAnswer == Answer;
         }
     }
 }

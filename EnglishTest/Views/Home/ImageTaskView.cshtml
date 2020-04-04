@@ -2,17 +2,19 @@
 
 <h4>Look at the text. What does it say? Choose the correct answer.</h4>
 <div>
-    <img src="@Url.Action("GetImage", new { id = @Model.ImageId })" style="width:150px;height:200px;" /><br>
-
-    <input type="radio" id="radioButton1">
-    <label for="radioButton1">@Model.First</label><br>
-
-    <input type="radio" id="radioButton2">
-    <label for="radioButton2">@Model.Second</label><br>
-
-    <input type="radio" id="radioButton3">
-    <label for="radioButton3">@Model.Third</label><br>
+    <img src="@Url.Action("GetImage", new { id = Model.ImageId })" style="width:150px;height:200px;" /><br>
 </div>
-<div>
-    <button>Check</button>
-</div>
+
+@using (Html.BeginForm("CheckAnswer", "Home", FormMethod.Post))
+{
+    <input checked="checked" name="answer" type="radio" value="1" />
+    <span>1. @Model.First</span> <br />
+    <input name="answer" type="radio" value="2" />
+    <span>2. @Model.Second</span> <br />
+    <input name="answer" type="radio" value="3" />
+    <span>3. @Model.Third</span>
+
+    <p>
+        <input type="submit" value="Check" />
+    </p>
+}

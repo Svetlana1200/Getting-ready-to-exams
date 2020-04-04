@@ -1,7 +1,24 @@
-﻿@model Training
+﻿@model ITask
 
-<h4>EnglishTest</h4>
+<h4>Task @ViewBag.TaskNumber/@ViewBag.TotalNumber</h4>
 
-@await Html.PartialAsync(Model.Tasks.Current.View, Model.Tasks.Current)
-
-@*<p><a href="~/Home/ShowNextTask">Next task</a></p>*@
+@await Html.PartialAsync(Model.View, Model)
+@{
+    if (ViewBag.Result != null)
+    {
+        if (ViewBag.Result)
+        {
+            <span style="color:green;">Correct!</span>
+        }
+        else
+        {
+            <span style="color:red;">Incorrect! Right answer: @Model.Answer[0]</span>
+        }
+    }
+}
+@{
+    if (ViewBag.TaskNumber < ViewBag.TotalNumber)
+    {
+        <p><a href="~/Home/ShowNextTask">Next task</a></p>
+    }
+}

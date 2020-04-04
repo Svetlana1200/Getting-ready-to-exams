@@ -20,6 +20,8 @@ namespace EnglishTest
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<TaskService>();
+            services.AddSession();
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 options.CheckConsentNeeded = context => true;
@@ -43,6 +45,7 @@ namespace EnglishTest
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseMvc(routes =>
             {

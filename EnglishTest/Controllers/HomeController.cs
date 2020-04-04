@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using EnglishTest.Models;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace EnglishTest.Controllers
 {
@@ -31,7 +33,8 @@ namespace EnglishTest.Controllers
             tasks.AddRange(textTasks);
 
             var training = new Training(tasks);
-            return ShowNextTask(training);
+            HttpContext.Session.Set("training", training);
+            return ShowNextTask();
         }
 
         public async Task<ActionResult> GetImage(string id)
@@ -44,10 +47,26 @@ namespace EnglishTest.Controllers
             return File(image, "image/jpg");
         }
 
-        public IActionResult ShowNextTask(Training training)
+        public IActionResult ShowNextTask()
         {
-            training.Tasks.MoveNext();
-            return View("TestView", training);
+            var training = HttpContext.Session.Get<Training>("training");
+            training.MoveToNextTask();
+            var task = JsonConvert.DeserializeObject(training.CurrentTask, training.CurrentTaskType);
+            ViewBag.TaskNumber = training.СurrentIndex + 1;
+            ViewBag.TotalNumber = training.Tasks.Count;
+            HttpContext.Session.Set("training", training);
+            return View("TestView", task);
+        }
+
+        [HttpPost]
+        public IActionResult CheckAnswer(IFormCollection answer)
+        {
+            var training = HttpContext.Session.Get<Training>("training");
+            var task = (ITask)JsonConvert.DeserializeObject(training.CurrentTask, training.CurrentTaskType);
+            ViewBag.Result = task.UserAnswerIsRight(new string[] { answer["answer"] });
+            ViewBag.TaskNumber = training.СurrentIndex + 1;
+            ViewBag.TotalNumber = training.Tasks.Count;
+            return View("TestView", task);
         }
 
         public IActionResult About()
