@@ -1,20 +1,27 @@
 ﻿@model ImageTask
 
-<h4>Look at the text. What does it say? Choose the correct answer.</h4>
-<div>
-    <img src="@Url.Action("GetImage", new { id = Model.ImageId })" style="width:150px;height:200px;" /><br>
-</div>
+<markdown>
 
+    ##### **Look at the text. What does it say? Choose the correct answer.** #####
+
+</markdown>
+
+<img src="@Url.Action("GetImage", new { id = Model.ImageId })" style="width:150px;height:200px;" /><br>
+
+@if (ViewBag.Answer is null)
+{
+    ViewBag.Answer = "1";
+}
 @using (Html.BeginForm("CheckAnswer", "Home", FormMethod.Post))
 {
-    <input checked="checked" name="answer" type="radio" value="1" />
+    @Html.RadioButton("answer", "1", (bool)(ViewBag.Answer == "1"))
     <span>1. @Model.First</span> <br />
-    <input name="answer" type="radio" value="2" />
+    @Html.RadioButton("answer", "2", (bool)(ViewBag.Answer == "2"))
     <span>2. @Model.Second</span> <br />
-    <input name="answer" type="radio" value="3" />
-    <span>3. @Model.Third</span>
+    @Html.RadioButton("answer", "3", (bool)(ViewBag.Answer == "3"))
+    <span>3. @Model.Third</span> <br />
 
     <p>
         <input type="submit" value="Check" />
-    </p>
+    </p><br />
 }

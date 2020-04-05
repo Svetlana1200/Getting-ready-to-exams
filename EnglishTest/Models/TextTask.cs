@@ -18,7 +18,12 @@ namespace EnglishTest.Models
 
         public bool UserAnswerIsRight(string[] userAnswer)
         {
-            return userAnswer == Answer;
+            for (var i = 0; i < userAnswer.Length; i++)
+            {
+                if (userAnswer[i] != Answer[i])
+                    return false;
+            }
+            return true;
         }
     }
 }

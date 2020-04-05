@@ -14,6 +14,15 @@
           "lib/netstandard2.0/DnsClient.dll": {}
         }
       },
+      "Markdig/0.18.1": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp2.1/Markdig.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.1/Markdig.dll": {}
+        }
+      },
       "Microsoft.AspNet.WebApi.Client/5.2.6": {
         "type": "package",
         "dependencies": {
@@ -5022,6 +5031,19 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
+      },
+      "Westwind.AspNetCore.Markdown/3.3.6": {
+        "type": "package",
+        "dependencies": {
+          "Markdig": "0.18.1",
+          "Microsoft.AspNetCore.Mvc": "2.1.0"
+        },
+        "compile": {
+          "lib/netcoreapp2.1/Westwind.AspNetCore.Markdown.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.1/Westwind.AspNetCore.Markdown.dll": {}
+        }
       }
     }
   },
@@ -5043,6 +5065,33 @@
         "lib/netstandard1.3/DnsClient.xml",
         "lib/netstandard2.0/DnsClient.dll",
         "lib/netstandard2.0/DnsClient.xml"
+      ]
+    },
+    "Markdig/0.18.1": {
+      "sha512": "xCxTVEMi0WISjP1I7XCISCzCZ9eNzlUpK2OQdNTXx0ajstMbSPFX/KvXQVWN1irwFkm7VxsX7PekYJCbZwk8mw==",
+      "type": "package",
+      "path": "markdig/0.18.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net35/Markdig.dll",
+        "lib/net35/Markdig.pdb",
+        "lib/net35/Markdig.xml",
+        "lib/net40/Markdig.dll",
+        "lib/net40/Markdig.pdb",
+        "lib/net40/Markdig.xml",
+        "lib/netcoreapp2.1/Markdig.dll",
+        "lib/netcoreapp2.1/Markdig.pdb",
+        "lib/netcoreapp2.1/Markdig.xml",
+        "lib/netstandard2.0/Markdig.dll",
+        "lib/netstandard2.0/Markdig.pdb",
+        "lib/netstandard2.0/Markdig.xml",
+        "lib/uap10.0/Markdig.dll",
+        "lib/uap10.0/Markdig.pdb",
+        "lib/uap10.0/Markdig.pri",
+        "lib/uap10.0/Markdig.xml",
+        "markdig.0.18.1.nupkg.sha512",
+        "markdig.nuspec"
       ]
     },
     "Microsoft.AspNet.WebApi.Client/5.2.6": {
@@ -13557,6 +13606,19 @@
         "system.xml.xpath.xdocument.4.3.0.nupkg.sha512",
         "system.xml.xpath.xdocument.nuspec"
       ]
+    },
+    "Westwind.AspNetCore.Markdown/3.3.6": {
+      "sha512": "wW2WAOxCEbHBlg4PyK3bA9jESMo6rwiAAVKyfiuQ9ZLw6o0xgD+4KThOp30QQ1IIWDiMaX/CoKzTZakq3F7SqA==",
+      "type": "package",
+      "path": "westwind.aspnetcore.markdown/3.3.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netcoreapp2.1/Westwind.AspNetCore.Markdown.dll",
+        "lib/netcoreapp3.0/Westwind.AspNetCore.Markdown.dll",
+        "westwind.aspnetcore.markdown.3.3.6.nupkg.sha512",
+        "westwind.aspnetcore.markdown.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -13566,7 +13628,8 @@
       "Microsoft.NETCore.App >= 2.1.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 2.1.9",
       "MongoDB.Driver >= 2.10.2",
-      "MongoDB.Driver.GridFS >= 2.10.2"
+      "MongoDB.Driver.GridFS >= 2.10.2",
+      "Westwind.AspNetCore.Markdown >= 3.3.6"
     ]
   },
   "packageFolders": {
@@ -13637,6 +13700,10 @@
           "MongoDB.Driver.GridFS": {
             "target": "Package",
             "version": "[2.10.2, )"
+          },
+          "Westwind.AspNetCore.Markdown": {
+            "target": "Package",
+            "version": "[3.3.6, )"
           }
         },
         "imports": [

@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "23dcbe1fb9aa4d28fcaee60473153cc3faa72b45"
+    "signature": "050d0040762b9f28e34b5b6678e90ff3ce6f27f9"
   },
   "compilationOptions": {
     "defines": [
@@ -29,7 +29,8 @@
           "Microsoft.NETCore.App": "2.1.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.1.9",
           "MongoDB.Driver": "2.10.2",
-          "MongoDB.Driver.GridFS": "2.10.2"
+          "MongoDB.Driver.GridFS": "2.10.2",
+          "Westwind.AspNetCore.Markdown": "3.3.6"
         },
         "runtime": {
           "EnglishTest.dll": {}
@@ -50,6 +51,17 @@
         },
         "compile": {
           "lib/netstandard2.0/DnsClient.dll": {}
+        }
+      },
+      "Markdig/0.18.1": {
+        "runtime": {
+          "lib/netcoreapp2.1/Markdig.dll": {
+            "assemblyVersion": "0.18.1.0",
+            "fileVersion": "0.18.1.0"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp2.1/Markdig.dll": {}
         }
       },
       "Microsoft.AspNetCore.Razor.Design/2.1.2": {},
@@ -987,6 +999,21 @@
         "dependencies": {
           "System.Runtime": "4.3.0",
           "System.Runtime.Handles": "4.3.0"
+        }
+      },
+      "Westwind.AspNetCore.Markdown/3.3.6": {
+        "dependencies": {
+          "Markdig": "0.18.1",
+          "Microsoft.AspNetCore.Mvc": "2.1.1"
+        },
+        "runtime": {
+          "lib/netcoreapp2.1/Westwind.AspNetCore.Markdown.dll": {
+            "assemblyVersion": "3.3.6.0",
+            "fileVersion": "3.3.6.0"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp2.1/Westwind.AspNetCore.Markdown.dll": {}
         }
       },
       "Microsoft.AspNet.WebApi.Client/5.2.6": {
@@ -3886,6 +3913,13 @@
       "path": "dnsclient/1.2.0",
       "hashPath": "dnsclient.1.2.0.nupkg.sha512"
     },
+    "Markdig/0.18.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-xCxTVEMi0WISjP1I7XCISCzCZ9eNzlUpK2OQdNTXx0ajstMbSPFX/KvXQVWN1irwFkm7VxsX7PekYJCbZwk8mw==",
+      "path": "markdig/0.18.1",
+      "hashPath": "markdig.0.18.1.nupkg.sha512"
+    },
     "Microsoft.AspNetCore.Razor.Design/2.1.2": {
       "type": "package",
       "serviceable": true,
@@ -4291,6 +4325,13 @@
       "sha512": "sha512-k/+g4b7vjdd4aix83sTgC9VG6oXYKAktSfNIJUNGxPEj7ryEOfzHHhfnmsZvjxawwcD9HyWXKCXmPjX8U4zeSw==",
       "path": "system.threading.threadpool/4.3.0",
       "hashPath": "system.threading.threadpool.4.3.0.nupkg.sha512"
+    },
+    "Westwind.AspNetCore.Markdown/3.3.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wW2WAOxCEbHBlg4PyK3bA9jESMo6rwiAAVKyfiuQ9ZLw6o0xgD+4KThOp30QQ1IIWDiMaX/CoKzTZakq3F7SqA==",
+      "path": "westwind.aspnetcore.markdown/3.3.6",
+      "hashPath": "westwind.aspnetcore.markdown.3.3.6.nupkg.sha512"
     },
     "Microsoft.AspNet.WebApi.Client/5.2.6": {
       "type": "package",

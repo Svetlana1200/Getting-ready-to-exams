@@ -1,13 +1,25 @@
 ﻿@model SentenceTask
 
-<h4>Complete the second sentence so that it has a similar meaning to the first sentence, using the word given. 
-    Do not change the word given. You must use between two and five words, including the word given.</h4>
-<div>
-    <p>@Model.First</p>
-    <p>@Model.Word</p>
-    <p>@Model.Second</p><br>
-</div>
-<div>
-    <button>Check</button>
-</div>
+@{
+    var parts = Model.Second.Split("_");
+}
+<markdown>
+
+    ##### **Complete the second sentence so that it has a similar meaning to the first sentence, using the word given.** #####
+    ##### **Do not change the word given. You must use between two and five words, including the word given.** #####
+
+    ##### @Model.First #####
+    ##### *@Model.Word* #####
+
+</markdown>
+
+@using (Html.BeginForm("CheckAnswer", "Home", FormMethod.Post))
+{
+    @parts[0]
+    @Html.TextBox("answer", (string)ViewBag.Answer)
+    @parts[1]<br />
+    <p>
+        <input type="submit" value="Check" />
+    </p><br />
+}
 

@@ -3,6 +3,7 @@
 <h4>Task @ViewBag.TaskNumber/@ViewBag.TotalNumber</h4>
 
 @await Html.PartialAsync(Model.View, Model)
+
 @{
     if (ViewBag.Result != null)
     {
@@ -12,7 +13,20 @@
         }
         else
         {
-            <span style="color:red;">Incorrect! Right answer: @Model.Answer[0]</span>
+            <span style="color:red;">Incorrect!</span>
+            <text>Right answer: </text>
+            if (Model.Answer.Length == 1)
+            {
+                <text>@Model.Answer[0]</text>
+            }
+            else
+            {
+                <br />
+                for (var i = 0; i < Model.Answer.Length; i++)
+                {
+                    <text>@String.Format("{0}. {1}", i + 1, Model.Answer[i])</text><br>
+                }
+            }
         }
     }
 }
