@@ -5,9 +5,9 @@
 @await Html.PartialAsync(Model.View, Model)
 
 @{
-    if (ViewBag.Result != null)
+    if (ViewBag.UserAnswerIsRight != null)
     {
-        if (ViewBag.Result)
+        if (ViewBag.UserAnswerIsRight)
         {
             <span style="color:green;">Correct!</span>
         }

@@ -13,7 +13,7 @@
     for (var i = 0; i < parts.Length - 1; i++)
     {
         @parts[i]
-        @Html.TextBox("answer", (string)ViewBag.Answer?[i])
+        @Html.TextBox("userAnswer", (string)ViewBag.Answer?[i])
     }
     @parts[parts.Length - 1]<br />
     <p>

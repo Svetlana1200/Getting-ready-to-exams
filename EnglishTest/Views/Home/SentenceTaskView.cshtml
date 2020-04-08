@@ -16,7 +16,7 @@
 @using (Html.BeginForm("CheckAnswer", "Home", FormMethod.Post))
 {
     @parts[0]
-    @Html.TextBox("answer", (string)ViewBag.Answer)
+    @Html.TextBox("userAnswer", (string)ViewBag.Answer)
     @parts[1]<br />
     <p>
         <input type="submit" value="Check" />

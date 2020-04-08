@@ -6,7 +6,7 @@
 
 </markdown>
 
-<img src="@Url.Action("GetImage", new { id = Model.ImageId })" style="width:150px;height:200px;" /><br>
+<img src="@Url.Action("GetImage", new { id = Model.ImageId })" ><br>
 
 @if (ViewBag.Answer is null)
 {
@@ -14,11 +14,11 @@
 }
 @using (Html.BeginForm("CheckAnswer", "Home", FormMethod.Post))
 {
-    @Html.RadioButton("answer", "1", (bool)(ViewBag.Answer == "1"))
+    @Html.RadioButton("userAnswer", "1", (bool)(ViewBag.Answer == "1"))
     <span>1. @Model.First</span> <br />
-    @Html.RadioButton("answer", "2", (bool)(ViewBag.Answer == "2"))
+    @Html.RadioButton("userAnswer", "2", (bool)(ViewBag.Answer == "2"))
     <span>2. @Model.Second</span> <br />
-    @Html.RadioButton("answer", "3", (bool)(ViewBag.Answer == "3"))
+    @Html.RadioButton("userAnswer", "3", (bool)(ViewBag.Answer == "3"))
     <span>3. @Model.Third</span> <br />
 
     <p>

@@ -44,7 +44,7 @@ namespace EnglishTest.Controllers
             {
                 return NotFound();
             }
-            return File(image, "image/jpg");
+            return File(image, "image/png");
         }
 
         public IActionResult ShowNextTask()
@@ -63,8 +63,8 @@ namespace EnglishTest.Controllers
         {
             var training = HttpContext.Session.Get<Training>("training");
             var task = (ITask)JsonConvert.DeserializeObject(training.CurrentTask, training.CurrentTaskType);
-            ViewBag.Answer = answer["answer"];
-            ViewBag.Result = task.UserAnswerIsRight(answer["answer"]);
+            ViewBag.Answer = answer["userAnswer"];
+            ViewBag.UserAnswerIsRight = task.UserAnswerIsRight(answer["userAnswer"]);
             ViewBag.TaskNumber = training.СurrentIndex + 1;
             ViewBag.TotalNumber = training.Tasks.Count;
             return View("TestView", task);
