@@ -4,6 +4,8 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.GridFS;
 
+using System;
+
 namespace EnglishTest.Models
 {
     public class TaskService
@@ -13,7 +15,11 @@ namespace EnglishTest.Models
 
         public TaskService()
         {
-            var connectionString = "mongodb://localhost:27017/englishTest";
+            var user = Environment.GetEnvironmentVariable("MONGODB_USERNAME");
+            var password = Environment.GetEnvironmentVariable("MONGODB_PASSWORD");
+            var connectionString = $"mongodb+srv://{user}:{password}@englishtasks-n4smy.gcp.mongodb.net/" +
+                "englishTest?retryWrites=true&w=majority";
+
             var connection = new MongoUrlBuilder(connectionString);
             var client = new MongoClient(connectionString);
             database = client.GetDatabase(connection.DatabaseName);
