@@ -1,1 +1,49 @@
-﻿<h2><a href="~/Home/StartTest">Start test</a></h2>
+﻿@model Training
+
+<h2>Settting test</h2>
+@using (Html.BeginForm("StartTest", "Home", FormMethod.Post))
+{
+
+    <markdown>
+
+        ##### **Chouse level** #####
+
+    </markdown>
+
+
+    @if (ViewBag.Answer is null)
+    {
+        ViewBag.Answer = "1";
+    }
+
+    @Html.RadioButton("userLevel", "1", (bool)(ViewBag.Answer == "1"))
+    <span>1. B1</span> <br />
+    @Html.RadioButton("userLevel", "2", (bool)(ViewBag.Answer == "2"))
+    <span>2. B2</span> <br />
+
+
+    <markdown>
+
+        ##### **Chouse training** #####
+
+    </markdown>
+
+    @if (ViewBag.Answer is null)
+    {
+        ViewBag.Answer = "1";
+    }
+
+    @Html.RadioButton("userTrainig", "all", (bool)(ViewBag.Answer == "1"))
+    <span>1. All tasks</span> <br />
+    @Html.RadioButton("userTrainig", "sentences", (bool)(ViewBag.Answer == "2"))
+    <span>2. Sentences tasks</span> <br />
+    @Html.RadioButton("userTrainig", "texts", (bool)(ViewBag.Answer == "3"))
+    <span>3. Text tasks</span> <br />
+    @Html.RadioButton("userTrainig", "imageTasks", (bool)(ViewBag.Answer == "4"))
+    <span>4. Image tasks</span> <br />
+
+    <p>
+        <input type="submit" value="Start Test" />
+    </p><br />
+}
+

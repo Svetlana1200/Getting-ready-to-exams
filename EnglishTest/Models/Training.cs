@@ -6,6 +6,7 @@ namespace EnglishTest.Models
 {
     public class Training
     {
+        public string Level { get; set; }
         public readonly List<(string, Type)> Tasks = new List<(string, Type)>();
         public int СurrentIndex { get; set; }
         public string CurrentTask { get; set; }

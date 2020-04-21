@@ -22,16 +22,22 @@ namespace EnglishTest.Controllers
             return View();
         }
 
-        public async Task<IActionResult> StartTest()
+        public async Task<IActionResult> StartTest(IFormCollection answer)
         {
             var tasks = new List<ITask>();
-            var sentenceTasks = await db.GetTasks<SentenceTask>("sentences");
-            var textTasks = await db.GetTasks<TextTask>("texts");
-            var imageTasks = await db.GetTasks<ImageTask>("imageTasks");
-            tasks.AddRange(imageTasks);
-            tasks.AddRange(sentenceTasks);
-            tasks.AddRange(textTasks);
-
+            var userTrainig = answer["userTrainig"];
+            if (userTrainig == "all" || userTrainig == "sentences")
+            {
+                tasks.AddRange(await db.GetTasks<SentenceTask>("sentences"));
+            }
+            if (userTrainig == "all" || userTrainig == "texts")
+            {
+                tasks.AddRange(await db.GetTasks<TextTask>("texts"));
+            }
+            if (userTrainig == "all" || userTrainig == "imageTasks" )
+            {
+                tasks.AddRange(await db.GetTasks<ImageTask>("imageTasks"));
+            }
             var training = new Training(tasks);
             HttpContext.Session.Set("training", training);
             return ShowNextTask();
