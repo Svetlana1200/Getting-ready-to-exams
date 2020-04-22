@@ -70,7 +70,7 @@ namespace EnglishTest.Controllers
             var training = HttpContext.Session.Get<Training>("training");
             var task = (ITask)JsonConvert.DeserializeObject(training.CurrentTask, training.CurrentTaskType);
             ViewBag.Answer = answer["userAnswer"];
-            ViewBag.UserAnswerIsRight = task.UserAnswerIsRight(answer["userAnswer"]);
+            ViewBag.UserAnswerIsRight = task.CheckUserAnswer(answer["userAnswer"]);
             ViewBag.TaskNumber = training.СurrentIndex + 1;
             ViewBag.TotalNumber = training.Tasks.Count;
             return View("TestView", task);

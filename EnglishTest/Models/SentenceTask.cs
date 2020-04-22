@@ -11,16 +11,16 @@ namespace EnglishTest.Models
         public string First { get; set; }
         public string Second { get; set; }
         public string Word { get; set; }
-        public string[] Answer { get; set; }
+        public string Answer { get; set; }
 
         public SentenceTask()
         {
             View = "SentenceTaskView";
         }
 
-        public bool UserAnswerIsRight(string[] userAnswer)
+        public bool CheckUserAnswer(string userAnswer)
         {
-            return userAnswer[0] == Answer[0];
+            return userAnswer == Answer;
         }
     }
 }

@@ -16,11 +16,12 @@ namespace EnglishTest.Models
             View = "TextTaskView";
         }
 
-        public bool UserAnswerIsRight(string[] userAnswer)
+        public bool CheckUserAnswer(string UserAnswer)
         {
-            for (var i = 0; i < userAnswer.Length; i++)
+            var answer = UserAnswer.Split(',');
+            for (var i = 0; i < answer.Length; i++)
             {
-                if (userAnswer[i] != Answer[i])
+                if (answer[i] != Answer[i])
                     return false;
             }
             return true;
