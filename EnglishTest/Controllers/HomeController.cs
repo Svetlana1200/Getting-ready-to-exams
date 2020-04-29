@@ -6,6 +6,7 @@ using EnglishTest.Models;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using MongoDB.Bson.Serialization;
+using Newtonsoft.Json;
 
 namespace EnglishTest.Controllers
 {
@@ -31,19 +32,32 @@ namespace EnglishTest.Controllers
 
         public async Task<IActionResult> StartTest(IFormCollection answer)
         {
-
-            ITraning training = null;
+            ITraining training = null;
+            Type trainingType = null;
             var userTrainig = answer["userTrainig"];
             if (userTrainig == "all")
+            {
                 training = new AllTasksTraining(db, new OneMistakeCondition());
+                trainingType = typeof(AllTasksTraining);
+            }
             else if (userTrainig == "sentences")
+            {
                 training = new SentencesTraining(db, new OneMistakeCondition());
+                trainingType = typeof(SentencesTraining);
+            }
             else if (userTrainig == "texts")
+            {
                 training = new TextsTraining(db, new OneMistakeCondition());
+                trainingType = typeof(TextsTraining);
+            }
             else if (userTrainig == "images")
+            {
                 training = new ImageTraining(db, new OneMistakeCondition());
+                trainingType = typeof(ImageTraining);
+            }
             await training.CreateTasks();
             HttpContext.Session.Set("training", training);
+            HttpContext.Session.Set("trainingType", trainingType);
 
             return ShowNextTask();
         }
@@ -69,7 +83,9 @@ namespace EnglishTest.Controllers
 
         public IActionResult ShowNextTask()
         {
-            var training = HttpContext.Session.Get<Training>("training");
+            var trainingType = HttpContext.Session.Get<Type>("trainingType");
+            var value = HttpContext.Session.GetString("training");
+            ITraining training = (ITraining)JsonConvert.DeserializeObject(value, trainingType);
             training.MoveToNextTask();
             var task = GetCurrentTask(training);
 
@@ -82,7 +98,9 @@ namespace EnglishTest.Controllers
         [HttpPost]
         public IActionResult CheckAnswer(IFormCollection answer)
         {
-            var training = HttpContext.Session.Get<Training>("training");
+            var trainingType = HttpContext.Session.Get<Type>("trainingType");
+            var value = HttpContext.Session.GetString("training");
+            ITraining training = (ITraining)JsonConvert.DeserializeObject(value, trainingType);
             var task = GetCurrentTask(training);
 
             ViewBag.Answer = answer["userAnswer"];
@@ -92,7 +110,7 @@ namespace EnglishTest.Controllers
             return View("TestView", task);
         }
 
-        private ITask GetCurrentTask(Training training)
+        private ITask GetCurrentTask(ITraining training)
         {
             var taskBSON = db.GetTaskById(training.CurrentTaskCollection, training.CurrentTaskId).Result;
             return (ITask)BsonSerializer.Deserialize(taskBSON, taskTypes[training.CurrentTaskCollection]);

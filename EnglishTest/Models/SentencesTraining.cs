@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace EnglishTest.Models
 {
-    public class SentencesTraining : ITraning
+    public class SentencesTraining : ITraining
     {
-        public SentencesTraining(TaskService db, ICondition condition) : base(db, condition)
+        public SentencesTraining(TaskService db, OneMistakeCondition condition) : base(db, condition)
         {
         }
 

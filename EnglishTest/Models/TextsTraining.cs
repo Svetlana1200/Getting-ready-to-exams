@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace EnglishTest.Models
 {
-    public class TextsTraining: ITraning
+    public class TextsTraining: ITraining
     {
-        public TextsTraining(TaskService db, ICondition condition) : base(db, condition)
+        public TextsTraining(TaskService db, OneMistakeCondition condition) : base(db, condition)
         {
         }
 

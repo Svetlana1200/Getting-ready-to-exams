@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace EnglishTest.Models
 {
-    public class AllTasksTraining : ITraning
+    public class AllTasksTraining : ITraining
     {
-
-        public AllTasksTraining(TaskService db, ICondition condition) : base(db, condition) 
+        public AllTasksTraining(TaskService db, OneMistakeCondition condition) : base(db, condition) 
         {
+
         }
 
         async public override Task CreateTasks()
