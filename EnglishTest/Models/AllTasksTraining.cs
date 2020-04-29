@@ -7,9 +7,8 @@ namespace EnglishTest.Models
 {
     public class AllTasksTraining : ITraining
     {
-        public AllTasksTraining(TaskService db, OneMistakeCondition condition) : base(db, condition) 
+        public AllTasksTraining(TaskService db, ICondition condition) : base(db, condition) 
         {
-
         }
 
         async public override Task CreateTasks()
@@ -30,20 +29,6 @@ namespace EnglishTest.Models
                 Tasks[taskId] = "images";
             }
             TasksId = new List<string>(Tasks.Keys);
-        }
-        public new bool IsFinish(bool isCorrectLastTask)
-        {
-            return condition.isFinish(isCorrectLastTask, DateTime.Now);
-        }
-
-        public new void MoveToNextTask()
-        {
-            if (СurrentIndex < Tasks.Count && !IsFinish(isCorrectLastTask))
-            {
-                CurrentTaskId = TasksId[СurrentIndex];
-                CurrentTaskCollection = Tasks[CurrentTaskId];
-                СurrentIndex++;
-            }
         }
     }
 }

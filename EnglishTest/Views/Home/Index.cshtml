@@ -1,4 +1,4 @@
-﻿@model Training
+﻿@model ITraining
 
 <h2>Test settings</h2>
 @using (Html.BeginForm("StartTest", "Home", FormMethod.Post))
@@ -56,9 +56,7 @@
     @Html.RadioButton("userCondition", "oneMistake", (bool)(ViewBag.Answer == "1"))
     <span>1. To first mistake</span> <br />
     @Html.RadioButton("userCondition", "timer", (bool)(ViewBag.Answer == "2"))
-    <span>2. 15 minutes</span> <br />
-    @Html.RadioButton("userCondition", "timeReduction", (bool)(ViewBag.Answer == "3"))
-    <span>3. Time reduction</span> <br />
+    <span>2. 15 minutes(сейчас 20 секунд)</span> <br />
 
     <p>
         <input type="submit" value="Start Test" />

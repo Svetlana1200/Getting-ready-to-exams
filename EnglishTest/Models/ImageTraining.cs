@@ -7,7 +7,7 @@ namespace EnglishTest.Models
 {
     public class ImageTraining : ITraining
     {
-        public ImageTraining(TaskService db, OneMistakeCondition condition) : base(db, condition)
+        public ImageTraining(TaskService db, ICondition condition) : base(db, condition)
         {
         }
 

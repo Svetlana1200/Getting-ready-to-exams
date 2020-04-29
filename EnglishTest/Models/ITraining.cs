@@ -8,7 +8,7 @@ namespace EnglishTest.Models
     public abstract class ITraining
     {
         public readonly TaskService db;
-        public readonly OneMistakeCondition condition;
+        [NonSerialized] public ICondition condition;
         public string Level { get; set; }
         public Dictionary<string, string> Tasks = new Dictionary<string, string>();
         public List<string> TasksId;
@@ -17,7 +17,7 @@ namespace EnglishTest.Models
         public string CurrentTaskCollection { get; set; }
         public bool isCorrectLastTask = true;
 
-        public ITraining(TaskService db, OneMistakeCondition condition)
+        public ITraining(TaskService db, ICondition condition)
         {
             this.db = db;
             this.condition = condition;

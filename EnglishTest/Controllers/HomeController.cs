@@ -20,6 +20,20 @@ namespace EnglishTest.Controllers
             { "images", typeof(ImageTask) }
         };
 
+        private readonly Dictionary<string, Type> userTraining = new Dictionary<string, Type>
+        {
+            { "all", typeof(AllTasksTraining) },
+            { "sentences", typeof(SentencesTraining) },
+            { "texts", typeof(TextsTraining) },
+            { "images", typeof(ImageTraining) }
+        };
+
+        private readonly Dictionary<string, Type> userContition = new Dictionary<string, Type>
+        {
+            { "oneMistake", typeof(OneMistakeCondition) },
+            { "timer", typeof(TimerCondition) }
+        };
+
         public HomeController(TaskService context)
         {
             db = context;
@@ -33,31 +47,33 @@ namespace EnglishTest.Controllers
         public async Task<IActionResult> StartTest(IFormCollection answer)
         {
             ITraining training = null;
-            Type trainingType = null;
             var userTrainig = answer["userTrainig"];
-            if (userTrainig == "all")
-            {
-                training = new AllTasksTraining(db, new OneMistakeCondition());
-                trainingType = typeof(AllTasksTraining);
-            }
-            else if (userTrainig == "sentences")
-            {
-                training = new SentencesTraining(db, new OneMistakeCondition());
-                trainingType = typeof(SentencesTraining);
-            }
-            else if (userTrainig == "texts")
-            {
-                training = new TextsTraining(db, new OneMistakeCondition());
-                trainingType = typeof(TextsTraining);
-            }
-            else if (userTrainig == "images")
-            {
-                training = new ImageTraining(db, new OneMistakeCondition());
-                trainingType = typeof(ImageTraining);
-            }
+            var trainingType = userTraining[userTrainig];
+            var conditionType = userContition[answer["userCondition"]];
+            //if (userTrainig == "all")
+            //{
+            training = (ITraining)Activator.CreateInstance(trainingType, db, 
+                            (ICondition)Activator.CreateInstance(conditionType));
+
+                //training = new AllTasksTraining(db, new TimerCondition());
+            //}
+            //else if (userTrainig == "sentences")
+            //{
+            //    training = new SentencesTraining(db, new OneMistakeCondition());
+            //}
+            //else if (userTrainig == "texts")
+            //{
+            //    training = new TextsTraining(db, new OneMistakeCondition());
+            //}
+            //else if (userTrainig == "images")
+            //{
+            //    training = new ImageTraining(db, new OneMistakeCondition());
+            //}
             await training.CreateTasks();
             HttpContext.Session.Set("training", training);
             HttpContext.Session.Set("trainingType", trainingType);
+            HttpContext.Session.Set("condition", training.condition);
+            HttpContext.Session.Set("conditionType", conditionType);
 
             return ShowNextTask();
         }
@@ -83,27 +99,42 @@ namespace EnglishTest.Controllers
 
         public IActionResult ShowNextTask()
         {
+            var conditionType = HttpContext.Session.Get<Type>("conditionType");
+            var condition = HttpContext.Session.Get<ICondition>("condition", conditionType);
             var trainingType = HttpContext.Session.Get<Type>("trainingType");
             var training = HttpContext.Session.Get<ITraining>("training", trainingType);
+            training.condition = condition;
             training.MoveToNextTask();
             var task = GetCurrentTask(training);
 
             ViewBag.TaskNumber = training.СurrentIndex;
             ViewBag.TotalNumber = training.Tasks.Count;
+
+            HttpContext.Session.Set("condition", condition);
             HttpContext.Session.Set("training", training);
+            
             return View("TestView", task);
         }
 
         [HttpPost]
         public IActionResult CheckAnswer(IFormCollection answer)
         {
+            var conditionType = HttpContext.Session.Get<Type>("conditionType");
+            var condition = HttpContext.Session.Get<ICondition>("condition", conditionType);
             var trainingType = HttpContext.Session.Get<Type>("trainingType");
             var training = HttpContext.Session.Get<ITraining>("training", trainingType);
+            training.condition = condition;
             var task = GetCurrentTask(training);
 
             ViewBag.Answer = answer["userAnswer"];
             ViewBag.UserAnswerIsRight = task.CheckUserAnswer(answer["userAnswer"]);
+            if (training.isCorrectLastTask)
+                training.isCorrectLastTask = ViewBag.UserAnswerIsRight;
             ViewBag.TaskNumber = training.СurrentIndex;
+
+            HttpContext.Session.Set("condition", condition);
+            HttpContext.Session.Set("training", training);
+
             ViewBag.TotalNumber = training.Tasks.Count;
             return View("TestView", task);
         }
