@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
 namespace EnglishTest.Controllers
@@ -14,6 +15,12 @@ namespace EnglishTest.Controllers
         {
             var value = session.GetString(key);
             return value == null ? default(T) : JsonConvert.DeserializeObject<T>(value);
+        }
+
+        public static T Get<T>(this ISession session, string key, Type type)
+        {
+            var value = session.GetString(key);
+            return (T)(value == null ? default(T) : JsonConvert.DeserializeObject(value, type));
         }
     }
 }

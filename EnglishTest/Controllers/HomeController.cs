@@ -84,8 +84,7 @@ namespace EnglishTest.Controllers
         public IActionResult ShowNextTask()
         {
             var trainingType = HttpContext.Session.Get<Type>("trainingType");
-            var value = HttpContext.Session.GetString("training");
-            ITraining training = (ITraining)JsonConvert.DeserializeObject(value, trainingType);
+            var training = HttpContext.Session.Get<ITraining>("training", trainingType);
             training.MoveToNextTask();
             var task = GetCurrentTask(training);
 
@@ -99,8 +98,7 @@ namespace EnglishTest.Controllers
         public IActionResult CheckAnswer(IFormCollection answer)
         {
             var trainingType = HttpContext.Session.Get<Type>("trainingType");
-            var value = HttpContext.Session.GetString("training");
-            ITraining training = (ITraining)JsonConvert.DeserializeObject(value, trainingType);
+            var training = HttpContext.Session.Get<ITraining>("training", trainingType);
             var task = GetCurrentTask(training);
 
             ViewBag.Answer = answer["userAnswer"];
