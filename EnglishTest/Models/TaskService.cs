@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.GridFS;
-
-using System;
 
 namespace EnglishTest.Models
 {
@@ -26,9 +25,25 @@ namespace EnglishTest.Models
             gridFS = new GridFSBucket(database);
         }
 
-        public async Task<List<T>> GetTasks<T>(string taskType)
+        public async Task<List<string>> GetTasksId(string taskType)
         {
-            return await database.GetCollection<T>(taskType).Find(new BsonDocument()).ToListAsync();
+            var tasksId = new List<string>();
+            var collection = await database
+                .GetCollection<BsonDocument>(taskType)
+                .Find(new BsonDocument())
+                .ToListAsync();
+
+            foreach (var task in collection)
+            {
+                tasksId.Add(task["_id"].ToString());
+            }
+            return tasksId;
+        }
+
+        public async Task<BsonDocument> GetTaskById(string collection, string taskId)
+        {
+            var filter = Builders<BsonDocument>.Filter.Eq("_id", new ObjectId(taskId));
+            return await database.GetCollection<BsonDocument>(collection).Find(filter).SingleAsync();
         }
 
         public async Task<byte[]> GetImage(string id)

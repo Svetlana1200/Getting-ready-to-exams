@@ -1,40 +1,30 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace EnglishTest.Models
 {
     public class Training
     {
         public string Level { get; set; }
-        public readonly List<(string, Type)> Tasks = new List<(string, Type)>();
+        public readonly Dictionary<string, string> Tasks;
+        public readonly List<string> TasksId;
         public int СurrentIndex { get; set; }
-        public string CurrentTask { get; set; }
-        public Type CurrentTaskType { get; set; }
+        public string CurrentTaskId { get; set; }
+        public string CurrentTaskCollection { get; set; }
 
-        public Training(List<ITask> tasks)
+        public Training(Dictionary<string, string> tasks)
         {
-            foreach (var task in tasks)
-            {
-                var stringTask = JsonConvert.SerializeObject(task);
-                Tasks.Add((stringTask, task.GetType()));
-            }
-            СurrentIndex = -1;
-        }
-
-        [JsonConstructor]
-        public Training(List<(string, Type)> tasks)
-        {
+            СurrentIndex = 0;
             Tasks = tasks;
+            TasksId = new List<string>(tasks.Keys);
         }
 
         public void MoveToNextTask()
         {
             if (СurrentIndex < Tasks.Count)
             {
+                CurrentTaskId = TasksId[СurrentIndex];
+                CurrentTaskCollection = Tasks[CurrentTaskId];
                 СurrentIndex++;
-                CurrentTask = Tasks[СurrentIndex].Item1;
-                CurrentTaskType = Tasks[СurrentIndex].Item2;
             }
         }
     }
