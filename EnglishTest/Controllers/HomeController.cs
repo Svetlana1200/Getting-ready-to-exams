@@ -31,33 +31,18 @@ namespace EnglishTest.Controllers
 
         public async Task<IActionResult> StartTest(IFormCollection answer)
         {
-            var tasks = new Dictionary<string, string>();
+
+            ITraning training = null;
             var userTrainig = answer["userTrainig"];
-            if (userTrainig == "all" || userTrainig == "sentences")
-            {
-                var tasksGroup = await db.GetTasksId("sentences");
-                foreach (var taskId in tasksGroup)
-                {
-                    tasks[taskId] = "sentences";
-                }
-            }
-            if (userTrainig == "all" || userTrainig == "texts")
-            {
-                var tasksGroup = await db.GetTasksId("texts");
-                foreach (var taskId in tasksGroup)
-                {
-                    tasks[taskId] = "texts";
-                }
-            }
-            if (userTrainig == "all" || userTrainig == "images")
-            {
-                var tasksGroup = await db.GetTasksId("images");
-                foreach (var taskId in tasksGroup)
-                {
-                    tasks[taskId] = "images";
-                }
-            }
-            var training = new Training(tasks);
+            if (userTrainig == "all")
+                training = new AllTasksTraining(db, new OneMistakeCondition());
+            else if (userTrainig == "sentences")
+                training = new SentencesTraining(db, new OneMistakeCondition());
+            else if (userTrainig == "texts")
+                training = new TextsTraining(db, new OneMistakeCondition());
+            else if (userTrainig == "images")
+                training = new ImageTraining(db, new OneMistakeCondition());
+            await training.CreateTasks();
             HttpContext.Session.Set("training", training);
 
             return ShowNextTask();
