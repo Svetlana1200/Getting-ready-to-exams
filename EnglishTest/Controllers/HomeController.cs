@@ -47,28 +47,10 @@ namespace EnglishTest.Controllers
         public async Task<IActionResult> StartTest(IFormCollection answer)
         {
             ITraining training = null;
-            var userTrainig = answer["userTrainig"];
-            var trainingType = userTraining[userTrainig];
+            var trainingType = userTraining[answer["userTrainig"]];
             var conditionType = userContition[answer["userCondition"]];
-            //if (userTrainig == "all")
-            //{
             training = (ITraining)Activator.CreateInstance(trainingType, db, 
                             (ICondition)Activator.CreateInstance(conditionType));
-
-                //training = new AllTasksTraining(db, new TimerCondition());
-            //}
-            //else if (userTrainig == "sentences")
-            //{
-            //    training = new SentencesTraining(db, new OneMistakeCondition());
-            //}
-            //else if (userTrainig == "texts")
-            //{
-            //    training = new TextsTraining(db, new OneMistakeCondition());
-            //}
-            //else if (userTrainig == "images")
-            //{
-            //    training = new ImageTraining(db, new OneMistakeCondition());
-            //}
             await training.CreateTasks();
             HttpContext.Session.Set("training", training);
             HttpContext.Session.Set("trainingType", trainingType);
