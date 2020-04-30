@@ -29,6 +29,7 @@ namespace EnglishTest.Models
                 Tasks[taskId] = "images";
             }
             TasksId = new List<string>(Tasks.Keys);
+            results = new Results(Tasks);
         }
     }
 }

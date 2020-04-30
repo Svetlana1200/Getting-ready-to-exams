@@ -19,6 +19,7 @@ namespace EnglishTest.Models
                 Tasks[taskId] = "texts";
             }
             TasksId = new List<string>(Tasks.Keys);
+            results = new Results(Tasks);
         }
     }
 }

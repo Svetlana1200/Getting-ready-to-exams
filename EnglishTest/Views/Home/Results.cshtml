@@ -1,0 +1,19 @@
+﻿@model Results
+
+<markdown>
+
+    ##### **Your Results** #####
+
+</markdown>
+
+<text>Correct Ansers:</text><br>
+@foreach (var typeTask in Model.CorrectTasks.Keys)
+{
+    <text>@typeTask: @Model.CorrectTasks[typeTask].ToString()</text><br>
+}
+<br>
+<text>Incorrect Ansers:</text><br>
+@foreach (var typeTask in Model.IncorrectTasks.Keys)
+{
+    <text>@typeTask: @Model.IncorrectTasks[typeTask].ToString()</text><br>
+}

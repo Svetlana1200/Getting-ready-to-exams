@@ -30,7 +30,8 @@ namespace EnglishTest.Controllers
         private readonly Dictionary<string, Type> userContition = new Dictionary<string, Type>
         {
             { "oneMistake", typeof(OneMistakeCondition) },
-            { "timer", typeof(TimerCondition) }
+            { "timer", typeof(TimerCondition) },
+            { "end", typeof(EndTasksCondition) }
         };
 
         private readonly Dictionary<Type, string> taskViews = new Dictionary<Type, string>
@@ -98,6 +99,14 @@ namespace EnglishTest.Controllers
             return View("TaskView", task);
         }
 
+        public IActionResult ShowResults()
+        {
+            var training = GetCurrentTraining();
+            training.CreateResults();
+
+            return View("Results", training.results);
+        }
+
         [HttpPost]
         public IActionResult CheckAnswer(IFormCollection answer)
         {
@@ -106,8 +115,7 @@ namespace EnglishTest.Controllers
 
             ViewBag.Answer = answer["userAnswer"];
             var answerModel = task.CheckUserAnswer(answer["userAnswer"]);
-            if (training.isCorrectLastTask)
-                training.isCorrectLastTask = answerModel.IsRight();
+            training.ChangeCountCorrectOrIncorrectTasks(answerModel.IsRight());
 
             SetSessionParameters(training);
 

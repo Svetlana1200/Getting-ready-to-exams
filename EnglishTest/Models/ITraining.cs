@@ -16,6 +16,7 @@ namespace EnglishTest.Models
         public string CurrentTaskId { get; set; }
         public string CurrentTaskCollection { get; set; }
         public bool isCorrectLastTask = true;
+        public Results results;
 
         public ITraining(TaskService db, ICondition condition)
         {
@@ -24,11 +25,21 @@ namespace EnglishTest.Models
             СurrentIndex = 0;
         }
 
+        public void CreateResults()
+        {
+            results.CreateResults();
+        }
+
         public abstract Task CreateTasks();
 
         public bool IsFinish(bool isCorrectLastTask)
         {
             return condition.isFinish(isCorrectLastTask, DateTime.Now);
+        }
+
+        public void ChangeCountCorrectOrIncorrectTasks(bool isCorrect)
+        {
+            results.ChangeCountCorrectOrIncorrectTasks(isCorrect, CurrentTaskId);
         }
 
         public void MoveToNextTask()

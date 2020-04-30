@@ -53,10 +53,13 @@
         ViewBag.Answer = "1";
     }
 
-    @Html.RadioButton("userCondition", "oneMistake", (bool)(ViewBag.Answer == "1"))
-    <span>1. To first mistake</span> <br />
-    @Html.RadioButton("userCondition", "timer", (bool)(ViewBag.Answer == "2"))
-    <span>2. 15 minutes(сейчас 20 секунд)</span> <br />
+    @Html.RadioButton("userCondition", "end", (bool)(ViewBag.Answer == "1"))
+    <span>1. To end of tasks </span> <br />
+    @Html.RadioButton("userCondition", "oneMistake", (bool)(ViewBag.Answer == "2"))
+    <span>2. To first mistake</span> <br />
+    @Html.RadioButton("userCondition", "timer", (bool)(ViewBag.Answer == "3"))
+    <span>3. 15 minutes</span> <br />
+
 
     <p>
         <input type="submit" value="Start Test" />
