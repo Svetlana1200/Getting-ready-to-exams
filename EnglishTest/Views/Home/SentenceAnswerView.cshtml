@@ -1,0 +1,27 @@
+﻿@model SentenceAnswer
+
+<markdown>
+
+    ##### **Complete the second sentence so that it has a similar meaning to the first sentence, using the word given.** #####
+    ##### **Do not change the word given. You must use between two and five words, including the word given.** #####
+
+    ##### @Model.First #####
+    ##### *@Model.Word* #####
+
+</markdown>
+
+@Model.Second[0]
+@Html.TextBox("userAnswer", (string)ViewBag.Answer)
+@Model.Second[1]<br />
+
+@{
+    if (Model.IsRight())
+    {
+        <span style="color:green;">Correct!</span>
+    }
+    else
+    {
+        <span style="color:red;">Incorrect!</span><br>
+        <text>Right answer: @Model.Answer</text>
+    }
+}

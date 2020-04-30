@@ -6,19 +6,15 @@
 
 </markdown>
 
-<img src="@Url.Action("GetImage", new { id = Model.ImageId })" ><br>
+<img src="@Url.Action("GetImage", new { id = Model.ImageId })"><br>
 
-@if (ViewBag.Answer is null)
-{
-    ViewBag.Answer = "1";
-}
 @using (Html.BeginForm("CheckAnswer", "Home", FormMethod.Post))
 {
-    @Html.RadioButton("userAnswer", "1", (bool)(ViewBag.Answer == "1"))
+    @Html.RadioButton("userAnswer", "1", true)
     <span>1. @Model.First</span> <br />
-    @Html.RadioButton("userAnswer", "2", (bool)(ViewBag.Answer == "2"))
+    @Html.RadioButton("userAnswer", "2")
     <span>2. @Model.Second</span> <br />
-    @Html.RadioButton("userAnswer", "3", (bool)(ViewBag.Answer == "3"))
+    @Html.RadioButton("userAnswer", "3")
     <span>3. @Model.Third</span> <br />
 
     <p>

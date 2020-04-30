@@ -1,6 +1,5 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-using Newtonsoft.Json;
 
 namespace EnglishTest.Models
 {
@@ -8,21 +7,15 @@ namespace EnglishTest.Models
     {
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
-        public string View { get; set; }
         public string First { get; set; }
         public string Second { get; set; }
         public string Third { get; set; }
         public string Answer { get; set; }
         public string ImageId { get; set; }
 
-        public ImageTask()
+        public IAnswer CheckUserAnswer(string userAnswer)
         {
-            View = "ImageTaskView";
-        }
-
-        public bool CheckUserAnswer(string userAnswer)
-        {
-            return userAnswer == Answer;
+            return new ImageAnswer(First, Second, Third, ImageId, Answer, userAnswer);
         }
     }
 }

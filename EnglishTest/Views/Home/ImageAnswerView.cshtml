@@ -1,0 +1,27 @@
+﻿@model ImageAnswer
+
+<markdown>
+
+    ##### **Look at the text. What does it say? Choose the correct answer.** #####
+
+</markdown>
+
+<img src="@Url.Action("GetImage", new { id = Model.ImageId })"><br>
+
+@Html.RadioButton("userAnswer", "1", (bool)(Model.UserAnswer == "1"))
+<span>1. @Model.First</span>  <br />
+@Html.RadioButton("userAnswer", "2", (bool)(Model.UserAnswer == "2"))
+<span>2. @Model.Second</span>  <br />
+@Html.RadioButton("userAnswer", "3", (bool)(Model.UserAnswer == "3"))
+<span>3. @Model.Third</span>  <br />
+
+@{
+    if (Model.IsRight())
+    {
+    <span style="color:green;">Correct!</span>
+    }
+    else {
+    <span style="color:red;">Incorrect!</span><br>
+    <text>Right answer: @Model.Answer</text>
+    }
+}

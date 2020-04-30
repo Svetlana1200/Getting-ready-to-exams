@@ -7,20 +7,14 @@ namespace EnglishTest.Models
     {
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
-        public string View { get; set; }
         public string First { get; set; }
         public string Second { get; set; }
         public string Word { get; set; }
         public string Answer { get; set; }
 
-        public SentenceTask()
+        public IAnswer CheckUserAnswer(string userAnswer)
         {
-            View = "SentenceTaskView";
-        }
-
-        public bool CheckUserAnswer(string userAnswer)
-        {
-            return userAnswer == Answer;
+            return new SentenceAnswer(First, Second, Word, Answer, userAnswer);
         }
     }
 }

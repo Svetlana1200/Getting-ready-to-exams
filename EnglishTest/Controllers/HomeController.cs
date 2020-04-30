@@ -6,7 +6,6 @@ using EnglishTest.Models;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using MongoDB.Bson.Serialization;
-using Newtonsoft.Json;
 
 namespace EnglishTest.Controllers
 {
@@ -34,6 +33,16 @@ namespace EnglishTest.Controllers
             { "timer", typeof(TimerCondition) }
         };
 
+        private readonly Dictionary<Type, string> taskViews = new Dictionary<Type, string>
+        {
+            { typeof(SentenceTask), "SentenceTaskView" },
+            { typeof(TextTask), "TextTaskView" },
+            { typeof(ImageTask), "ImageTaskView" },
+            { typeof(SentenceAnswer), "SentenceAnswerView" },
+            { typeof(TextAnswer), "TextAnswerView" },
+            { typeof(ImageAnswer), "ImageAnswerView" }
+        };
+
         public HomeController(TaskService context)
         {
             db = context;
@@ -46,12 +55,12 @@ namespace EnglishTest.Controllers
 
         public async Task<IActionResult> StartTest(IFormCollection answer)
         {
-            ITraining training = null;
             var trainingType = userTraining[answer["userTrainig"]];
             var conditionType = userContition[answer["userCondition"]];
-            training = (ITraining)Activator.CreateInstance(trainingType, db, 
+            var training = (ITraining)Activator.CreateInstance(trainingType, db, 
                             (ICondition)Activator.CreateInstance(conditionType));
             await training.CreateTasks();
+
             HttpContext.Session.Set("training", training);
             HttpContext.Session.Set("trainingType", trainingType);
             HttpContext.Session.Set("condition", training.condition);
@@ -81,44 +90,47 @@ namespace EnglishTest.Controllers
 
         public IActionResult ShowNextTask()
         {
-            var conditionType = HttpContext.Session.Get<Type>("conditionType");
-            var condition = HttpContext.Session.Get<ICondition>("condition", conditionType);
-            var trainingType = HttpContext.Session.Get<Type>("trainingType");
-            var training = HttpContext.Session.Get<ITraining>("training", trainingType);
-            training.condition = condition;
+            var training = GetCurrentTraining();
             training.MoveToNextTask();
             var task = GetCurrentTask(training);
-
-            ViewBag.TaskNumber = training.СurrentIndex;
-            ViewBag.TotalNumber = training.Tasks.Count;
-
-            HttpContext.Session.Set("condition", condition);
-            HttpContext.Session.Set("training", training);
+            SetSessionParameters(training);
             
-            return View("TestView", task);
+            return View("TaskView", task);
         }
 
         [HttpPost]
         public IActionResult CheckAnswer(IFormCollection answer)
+        {
+            var training = GetCurrentTraining();
+            var task = GetCurrentTask(training);
+
+            ViewBag.Answer = answer["userAnswer"];
+            var answerModel = task.CheckUserAnswer(answer["userAnswer"]);
+            if (training.isCorrectLastTask)
+                training.isCorrectLastTask = answerModel.IsRight();
+
+            SetSessionParameters(training);
+
+            return View("AnswerView", answerModel);
+        }
+
+        private ITraining GetCurrentTraining()
         {
             var conditionType = HttpContext.Session.Get<Type>("conditionType");
             var condition = HttpContext.Session.Get<ICondition>("condition", conditionType);
             var trainingType = HttpContext.Session.Get<Type>("trainingType");
             var training = HttpContext.Session.Get<ITraining>("training", trainingType);
             training.condition = condition;
-            var task = GetCurrentTask(training);
+            return training;
+        }
 
-            ViewBag.Answer = answer["userAnswer"];
-            ViewBag.UserAnswerIsRight = task.CheckUserAnswer(answer["userAnswer"]);
-            if (training.isCorrectLastTask)
-                training.isCorrectLastTask = ViewBag.UserAnswerIsRight;
+        private void SetSessionParameters(ITraining training)
+        {
             ViewBag.TaskNumber = training.СurrentIndex;
-
-            HttpContext.Session.Set("condition", condition);
-            HttpContext.Session.Set("training", training);
-
             ViewBag.TotalNumber = training.Tasks.Count;
-            return View("TestView", task);
+            ViewBag.TaskViews = taskViews;
+            HttpContext.Session.Set("condition", training.condition);
+            HttpContext.Session.Set("training", training);
         }
 
         private ITask GetCurrentTask(ITraining training)
