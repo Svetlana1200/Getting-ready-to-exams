@@ -14,12 +14,14 @@ namespace EnglishTest.Models
         async public override Task CreateTasks()
         {
             var tasksId = await db.GetTasksId("sentences");
+            var maxCount = 0;
             foreach (var taskId in tasksId)
             {
                 Tasks[taskId] = "sentences";
+                maxCount += SentenceTask.MaxCount;
             }
             TasksId = new List<string>(Tasks.Keys);
-            results = new Results(Tasks);
+            results = new Results(Tasks, maxCount);
         }
     }
 }

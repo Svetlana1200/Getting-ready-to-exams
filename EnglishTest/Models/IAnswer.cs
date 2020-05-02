@@ -2,6 +2,7 @@
 {
     public interface IAnswer
     {
+        int Count { get; }
         bool IsRight();
     }
 }

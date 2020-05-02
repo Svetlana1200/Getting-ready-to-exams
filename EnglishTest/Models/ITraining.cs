@@ -37,9 +37,9 @@ namespace EnglishTest.Models
             return condition.isFinish(isCorrectLastTask, DateTime.Now);
         }
 
-        public void ChangeCountCorrectOrIncorrectTasks(bool isCorrect)
+        public void ChangeCountCorrectOrIncorrectTasks(bool isCorrect, int count)
         {
-            results.ChangeCountCorrectOrIncorrectTasks(isCorrect, CurrentTaskId);
+            results.ChangeCountCorrectOrIncorrectTasks(isCorrect, CurrentTaskId, count);
         }
 
         public void MoveToNextTask()

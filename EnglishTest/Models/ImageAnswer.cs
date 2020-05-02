@@ -8,9 +8,11 @@
         public readonly string ImageId;
         public readonly string Answer;
         public readonly string UserAnswer;
+        public readonly int MaxCount;
+        public int Count { get; private set; }
 
         public ImageAnswer(string first, string second, string third, string imageId,
-            string answer, string userAnswer)
+            string answer, int maxCount, string userAnswer)
         {
             First = first;
             Second = second;
@@ -18,11 +20,18 @@
             ImageId = imageId;
             Answer = answer;
             UserAnswer = userAnswer;
+            MaxCount = maxCount;
         }
 
         public bool IsRight()
         {
-            return Answer == UserAnswer;
+            Count = 0;
+            if (Answer == UserAnswer)
+            {
+                Count = MaxCount;
+                return true;
+            }
+            return false;
         }
     }
 }

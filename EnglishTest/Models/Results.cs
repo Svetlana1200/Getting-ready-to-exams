@@ -11,13 +11,18 @@ namespace EnglishTest.Models
         public Dictionary<string, bool> IsCorrectTasksID = new Dictionary<string, bool>();
         public Dictionary<string, int> CorrectTasks = new Dictionary<string, int>();
         public Dictionary<string, int> IncorrectTasks = new Dictionary<string, int>();
+        public int ResultCount = 0;
+        public readonly int MaxCount;
+        public double Procent { get; private set; }
 
-        public Results(Dictionary<string, string> tasks)
+        public Results(Dictionary<string, string> tasks, int maxCount)
         {
             Tasks = tasks;
+            MaxCount = maxCount;
         }
-        public void ChangeCountCorrectOrIncorrectTasks(bool isCorrect, string taskId)
+        public void ChangeCountCorrectOrIncorrectTasks(bool isCorrect, string taskId, int count)
         {
+            ResultCount += count;
             if (isCorrect)
             {
                 IsCorrectTasksID[taskId] = true;
@@ -30,6 +35,7 @@ namespace EnglishTest.Models
 
         public void CreateResults()
         {
+            Procent = Math.Round((double)ResultCount / MaxCount * 100, 2);
             foreach (var taskId in IsCorrectTasksID.Keys)
             {
                 var type = Tasks[taskId];
@@ -41,7 +47,6 @@ namespace EnglishTest.Models
                     CorrectTasks[type] += 1;
                 else
                     IncorrectTasks[type] += 1;
-
             }
         }
     }

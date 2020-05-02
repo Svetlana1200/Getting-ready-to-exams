@@ -115,7 +115,7 @@ namespace EnglishTest.Controllers
 
             ViewBag.Answer = answer["userAnswer"];
             var answerModel = task.CheckUserAnswer(answer["userAnswer"]);
-            training.ChangeCountCorrectOrIncorrectTasks(answerModel.IsRight());
+            training.ChangeCountCorrectOrIncorrectTasks(answerModel.IsRight(), answerModel.Count);
 
             SetSessionParameters(training);
 
