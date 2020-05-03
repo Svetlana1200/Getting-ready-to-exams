@@ -6,18 +6,18 @@
 
 </markdown>
 
-<text>Correct Ansers:</text><br>
+<text>Correct Answers:</text><br>
 @foreach (var typeTask in Model.CorrectTasks.Keys)
 {
     <text>@typeTask: @Model.CorrectTasks[typeTask].ToString()</text><br>
 }
 <br>
-<text>Incorrect Ansers:</text><br>
+<text>Incorrect Answers:</text><br>
 @foreach (var typeTask in Model.IncorrectTasks.Keys)
 {
     <text>@typeTask: @Model.IncorrectTasks[typeTask].ToString()</text><br>
 }
 <br>
-<text>Max Count: @Model.MaxCount</text><br>
-<text>Your Count: @Model.ResultCount</text><br>
+<text>Max count: @Model.MaxCount</text><br>
+<text>Your count: @Model.ResultCount</text><br>
 <text>Result: @Model.Procent%</text><br>

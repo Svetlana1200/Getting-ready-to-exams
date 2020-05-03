@@ -15,6 +15,7 @@ namespace EnglishTest.Controllers
         private readonly Dictionary<string, Type> taskTypes = new Dictionary<string, Type>
         {
             { "sentences", typeof(SentenceTask) },
+            { "sentences2", typeof(SentenceTask)},
             { "texts", typeof(TextTask) },
             { "images", typeof(ImageTask) }
         };
@@ -58,25 +59,17 @@ namespace EnglishTest.Controllers
         {
             var trainingType = userTraining[answer["userTrainig"]];
             var conditionType = userContition[answer["userCondition"]];
-            var training = (ITraining)Activator.CreateInstance(trainingType, db, 
+            var level = answer["userLevel"].ToString();
+            var training = (ITraining)Activator.CreateInstance(trainingType, db, level,
                             (ICondition)Activator.CreateInstance(conditionType));
             await training.CreateTasks();
 
             HttpContext.Session.Set("training", training);
             HttpContext.Session.Set("trainingType", trainingType);
-            HttpContext.Session.Set("condition", training.condition);
+            HttpContext.Session.Set("condition", training.Condition);
             HttpContext.Session.Set("conditionType", conditionType);
 
             return ShowNextTask();
-        }
-
-        private async void AddTasks<T>(string collection, Dictionary<string, string> tasks)
-        {
-            var tasksGroup = await db.GetTasksId(collection);
-            foreach (var taskId in tasksGroup)
-            {
-                tasks[taskId] = collection;
-            }
         }
 
         public async Task<ActionResult> GetImage(string id)
@@ -128,7 +121,7 @@ namespace EnglishTest.Controllers
             var condition = HttpContext.Session.Get<ICondition>("condition", conditionType);
             var trainingType = HttpContext.Session.Get<Type>("trainingType");
             var training = HttpContext.Session.Get<ITraining>("training", trainingType);
-            training.condition = condition;
+            training.Condition = condition;
             return training;
         }
 
@@ -137,7 +130,7 @@ namespace EnglishTest.Controllers
             ViewBag.TaskNumber = training.СurrentIndex;
             ViewBag.TotalNumber = training.Tasks.Count;
             ViewBag.TaskViews = taskViews;
-            HttpContext.Session.Set("condition", training.condition);
+            HttpContext.Session.Set("condition", training.Condition);
             HttpContext.Session.Set("training", training);
         }
 

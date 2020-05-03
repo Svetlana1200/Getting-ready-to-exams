@@ -10,15 +10,9 @@
 
     </markdown>
 
-
-    @if (ViewBag.Answer is null)
-    {
-        ViewBag.Answer = "1";
-    }
-
-    @Html.RadioButton("userLevel", "1", (bool)(ViewBag.Answer == "1"))
+    @Html.RadioButton("userLevel", "B1", true)
     <span>1. B1</span> <br />
-    @Html.RadioButton("userLevel", "2", (bool)(ViewBag.Answer == "2"))
+    @Html.RadioButton("userLevel", "B2")
     <span>2. B2</span> <br />
 
 
@@ -28,18 +22,13 @@
 
     </markdown>
 
-    @if (ViewBag.Answer is null)
-    {
-        ViewBag.Answer = "1";
-    }
-
-    @Html.RadioButton("userTrainig", "all", (bool)(ViewBag.Answer == "1"))
+    @Html.RadioButton("userTrainig", "all", true)
     <span>1. All tasks</span> <br />
-    @Html.RadioButton("userTrainig", "sentences", (bool)(ViewBag.Answer == "2"))
+    @Html.RadioButton("userTrainig", "sentences")
     <span>2. Sentences tasks</span> <br />
-    @Html.RadioButton("userTrainig", "texts", (bool)(ViewBag.Answer == "3"))
+    @Html.RadioButton("userTrainig", "texts")
     <span>3. Text tasks</span> <br />
-    @Html.RadioButton("userTrainig", "images", (bool)(ViewBag.Answer == "4"))
+    @Html.RadioButton("userTrainig", "images")
     <span>4. Image tasks</span> <br />
 
     <markdown>
@@ -48,16 +37,11 @@
 
     </markdown>
 
-    @if (ViewBag.Answer is null)
-    {
-        ViewBag.Answer = "1";
-    }
-
-    @Html.RadioButton("userCondition", "end", (bool)(ViewBag.Answer == "1"))
+    @Html.RadioButton("userCondition", "end", true)
     <span>1. To end of tasks </span> <br />
-    @Html.RadioButton("userCondition", "oneMistake", (bool)(ViewBag.Answer == "2"))
+    @Html.RadioButton("userCondition", "oneMistake")
     <span>2. To first mistake</span> <br />
-    @Html.RadioButton("userCondition", "timer", (bool)(ViewBag.Answer == "3"))
+    @Html.RadioButton("userCondition", "timer")
     <span>3. 15 minutes</span> <br />
 
 

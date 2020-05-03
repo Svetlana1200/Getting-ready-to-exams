@@ -7,8 +7,8 @@ namespace EnglishTest.Models
 {
     public abstract class ITraining
     {
-        public readonly TaskService db;
-        [NonSerialized] public ICondition condition;
+        public readonly TaskService Database;
+        [NonSerialized] public ICondition Condition;
         public string Level { get; set; }
         public Dictionary<string, string> Tasks = new Dictionary<string, string>();
         public List<string> TasksId;
@@ -18,10 +18,11 @@ namespace EnglishTest.Models
         public bool isCorrectLastTask = true;
         public Results results;
 
-        public ITraining(TaskService db, ICondition condition)
+        public ITraining(TaskService db, string level, ICondition condition)
         {
-            this.db = db;
-            this.condition = condition;
+            Database = db;
+            Condition = condition;
+            Level = level;
             СurrentIndex = 0;
         }
 
@@ -34,7 +35,7 @@ namespace EnglishTest.Models
 
         public bool IsFinish(bool isCorrectLastTask)
         {
-            return condition.isFinish(isCorrectLastTask, DateTime.Now);
+            return Condition.isFinish(isCorrectLastTask, DateTime.Now);
         }
 
         public void ChangeCountCorrectOrIncorrectTasks(bool isCorrect, int count)
