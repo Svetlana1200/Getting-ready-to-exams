@@ -97,7 +97,7 @@ namespace EnglishTest.Controllers
             var training = GetCurrentTraining();
             training.CreateResults();
 
-            return View("Results", training.results);
+            return View("Results", training.Results);
         }
 
         [HttpPost]
@@ -109,7 +109,8 @@ namespace EnglishTest.Controllers
             ViewBag.Answer = answer["userAnswer"];
             var answerModel = task.CheckUserAnswer(answer["userAnswer"]);
             training.ChangeCountCorrectOrIncorrectTasks(answerModel.IsRight(), answerModel.Count);
-
+            training.IsCorrectLastTask = answerModel.IsRight();
+            
             SetSessionParameters(training);
 
             return View("AnswerView", answerModel);

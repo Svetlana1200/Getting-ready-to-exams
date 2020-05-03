@@ -11,22 +11,13 @@ namespace EnglishTest.Models
             { "B2", "sentences2" }
         };
 
-        public SentencesTraining(TaskService db, string level, ICondition condition) : base(db, level, condition)
-        {
-        }
+        public SentencesTraining(TaskService db, string level, ICondition condition) : base(db, level, condition) {}
 
         async public override Task CreateTasks()
         {
-            var collection = collections[Level];
-            var tasksId = await Database.GetTasksId(collection);
-            var maxCount = 0;
-            foreach (var taskId in tasksId)
-            {
-                Tasks[taskId] = collection;
-                maxCount += SentenceTask.MaxCount;
-            }
+            await AddTasks(collections[Level], SentenceAnswer.MaxCount);
             TasksId = new List<string>(Tasks.Keys);
-            results = new Results(Tasks, maxCount);
+            Results = new Results(Tasks, MaxCount);
         }
     }
 }

@@ -5,7 +5,6 @@ namespace EnglishTest.Models
 {
     public class ImageTask : ITask
     {
-        public const int MaxCount = 1;
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
         public string First { get; set; }
@@ -16,7 +15,7 @@ namespace EnglishTest.Models
 
         public IAnswer CheckUserAnswer(string userAnswer)
         {
-            return new ImageAnswer(First, Second, Third, ImageId, Answer, MaxCount, userAnswer);
+            return new ImageAnswer(First, Second, Third, ImageId, Answer, userAnswer);
         }
     }
 }

@@ -15,8 +15,9 @@ namespace EnglishTest.Models
         public int СurrentIndex { get; set; }
         public string CurrentTaskId { get; set; }
         public string CurrentTaskCollection { get; set; }
-        public bool isCorrectLastTask = true;
-        public Results results;
+        public bool IsCorrectLastTask = true;
+        public Results Results;
+        public int MaxCount;
 
         public ITraining(TaskService db, string level, ICondition condition)
         {
@@ -28,10 +29,20 @@ namespace EnglishTest.Models
 
         public void CreateResults()
         {
-            results.CreateResults();
+            Results.CreateResults();
         }
 
         public abstract Task CreateTasks();
+
+        async public Task AddTasks(string collection, int taskMaxCount)
+        {
+            var tasksId = await Database.GetTasksId(collection);
+            foreach (var taskId in tasksId)
+            {
+                Tasks[taskId] = collection;
+                MaxCount += taskMaxCount;
+            }
+        }
 
         public bool IsFinish(bool isCorrectLastTask)
         {
@@ -40,12 +51,12 @@ namespace EnglishTest.Models
 
         public void ChangeCountCorrectOrIncorrectTasks(bool isCorrect, int count)
         {
-            results.ChangeCountCorrectOrIncorrectTasks(isCorrect, CurrentTaskId, count);
+            Results.ChangeCountCorrectOrIncorrectTasks(isCorrect, CurrentTaskId, count);
         }
 
         public void MoveToNextTask()
         {
-            if (СurrentIndex < Tasks.Count && !IsFinish(isCorrectLastTask))
+            if (СurrentIndex < Tasks.Count && !IsFinish(IsCorrectLastTask))
             {
                 CurrentTaskId = TasksId[СurrentIndex];
                 CurrentTaskCollection = Tasks[CurrentTaskId];
