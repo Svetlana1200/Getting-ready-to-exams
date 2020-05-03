@@ -17,11 +17,11 @@
             Word = word;
             Answer = answer;
             UserAnswer = userAnswer;
-            Count = 0;
         }
 
         public bool IsRight()
         {
+            Count = 0;
             if (Answer == UserAnswer)
             {
                 Count = MaxCount;
