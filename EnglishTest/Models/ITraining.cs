@@ -18,6 +18,7 @@ namespace EnglishTest.Models
         public bool IsCorrectLastTask = true;
         public Results Results;
         public int MaxCount;
+        public bool isFinish = false;
 
         public ITraining(TaskService db, string level, ICondition condition)
         {
@@ -44,19 +45,17 @@ namespace EnglishTest.Models
             }
         }
 
-        public bool IsFinish(bool isCorrectLastTask)
-        {
-            return Condition.isFinish(isCorrectLastTask, DateTime.Now);
-        }
-
         public void ChangeCountCorrectOrIncorrectTasks(bool isCorrect, int count)
         {
+            IsCorrectLastTask = isCorrect;
             Results.ChangeCountCorrectOrIncorrectTasks(isCorrect, CurrentTaskId, count);
+            if (!isFinish)
+                isFinish = Condition.isFinish(IsCorrectLastTask, DateTime.Now);
         }
 
         public void MoveToNextTask()
         {
-            if (СurrentIndex < Tasks.Count && !IsFinish(IsCorrectLastTask))
+            if (СurrentIndex < Tasks.Count && !isFinish)
             {
                 CurrentTaskId = TasksId[СurrentIndex];
                 CurrentTaskCollection = Tasks[CurrentTaskId];

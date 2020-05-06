@@ -109,8 +109,6 @@ namespace EnglishTest.Controllers
             ViewBag.Answer = answer["userAnswer"];
             var answerModel = task.CheckUserAnswer(answer["userAnswer"]);
             training.ChangeCountCorrectOrIncorrectTasks(answerModel.IsRight(), answerModel.Count);
-            training.IsCorrectLastTask = answerModel.IsRight();
-            
             SetSessionParameters(training);
 
             return View("AnswerView", answerModel);
@@ -131,6 +129,7 @@ namespace EnglishTest.Controllers
             ViewBag.TaskNumber = training.СurrentIndex;
             ViewBag.TotalNumber = training.Tasks.Count;
             ViewBag.TaskViews = taskViews;
+            ViewBag.IsTrainingFinish = training.isFinish;
             HttpContext.Session.Set("condition", training.Condition);
             HttpContext.Session.Set("training", training);
         }
