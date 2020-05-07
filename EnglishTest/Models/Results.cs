@@ -8,12 +8,18 @@ namespace EnglishTest.Models
     public class Results
     {
         public readonly Dictionary<string, string> Tasks;
-        public Dictionary<string, bool> IsCorrectTasksID = new Dictionary<string, bool>();
+        public List<string> AnsweredTaskIDs = new List<string>();
         public Dictionary<string, int> CorrectTasks = new Dictionary<string, int>();
         public Dictionary<string, int> IncorrectTasks = new Dictionary<string, int>();
         public int ResultCount = 0;
         public readonly int MaxCount;
-        public double Procent { get; private set; }
+        public double Procent {
+            get
+            {
+                return Math.Round((double)ResultCount / MaxCount * 100, 2);
+            }
+        }
+       
 
         public Results(Dictionary<string, string> tasks, int maxCount)
         {
@@ -22,32 +28,21 @@ namespace EnglishTest.Models
         }
         public void ChangeCountCorrectOrIncorrectTasks(bool isCorrect, string taskId, int count)
         {
-            ResultCount += count;
-            if (isCorrect)
+            if (!AnsweredTaskIDs.Contains(taskId))
             {
-                IsCorrectTasksID[taskId] = true;
-            }
-            else
-            {
-                IsCorrectTasksID[taskId] = false;
-            }
-        }
-
-        public void CreateResults()
-        {
-            Procent = Math.Round((double)ResultCount / MaxCount * 100, 2);
-            foreach (var taskId in IsCorrectTasksID.Keys)
-            {
+                AnsweredTaskIDs.Add(taskId);
+                ResultCount += count;
                 var type = Tasks[taskId];
                 if (!CorrectTasks.ContainsKey(type))
                     CorrectTasks[type] = 0;
                 if (!IncorrectTasks.ContainsKey(type))
                     IncorrectTasks[type] = 0;
-                if (IsCorrectTasksID[taskId])
+
+                if (isCorrect)
                     CorrectTasks[type] += 1;
                 else
                     IncorrectTasks[type] += 1;
-            }
+    }   
         }
     }
 }

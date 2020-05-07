@@ -15,6 +15,7 @@ namespace EnglishTest.Models
 
             TasksId = new List<string>(Tasks.Keys);
             Results = new Results(Tasks, MaxCount);
+            isFinish = Condition.isFinish(Results);
         }
     }
 }

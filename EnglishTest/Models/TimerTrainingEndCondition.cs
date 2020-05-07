@@ -5,13 +5,14 @@ using System.Threading.Tasks;
 
 namespace EnglishTest.Models
 {
-    public class TimerCondition : ITrainingEndCondition
+    public class TimerTrainingEndCondition : ITrainingEndCondition
     {
         public DateTime startTime;
         public bool wasStart = false;
 
-        public bool isFinish(bool isRightAnswer, DateTime currentTime)
+        public bool isFinish(Results results)
         {
+            var currentTime = DateTime.Now;
             if (!wasStart)
             {
                 wasStart = true;

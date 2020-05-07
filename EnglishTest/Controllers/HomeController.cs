@@ -30,9 +30,9 @@ namespace EnglishTest.Controllers
 
         private readonly Dictionary<string, Type> userContition = new Dictionary<string, Type>
         {
-            { "oneMistake", typeof(OneMistakeCondition) },
-            { "timer", typeof(TimerCondition) },
-            { "end", typeof(EndTasksCondition) }
+            { "oneMistake", typeof(OneMistakeTrainingEndCondition) },
+            { "timer", typeof(TimerTrainingEndCondition) },
+            { "end", typeof(EndTasksTrainingEndCondition) }
         };
 
         private readonly Dictionary<Type, string> taskViews = new Dictionary<Type, string>
@@ -95,8 +95,6 @@ namespace EnglishTest.Controllers
         public IActionResult ShowResults()
         {
             var training = GetCurrentTraining();
-            training.CreateResults();
-
             return View("Results", training.Results);
         }
 

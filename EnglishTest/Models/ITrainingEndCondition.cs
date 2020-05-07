@@ -7,6 +7,6 @@ namespace EnglishTest.Models
 {
     public interface ITrainingEndCondition
     {
-        bool isFinish(bool isRightAnswer, DateTime currentTime);
+        bool isFinish(Results results);
     }
 }
