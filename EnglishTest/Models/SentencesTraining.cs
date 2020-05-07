@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace EnglishTest.Models
 {
-    public class SentencesTraining : ITraining
+    public class SentencesTraining : Training
     {
         private readonly Dictionary<string, string> collections = new Dictionary<string, string>
         {
@@ -11,7 +11,7 @@ namespace EnglishTest.Models
             { "B2", "sentences2" }
         };
 
-        public SentencesTraining(TaskService db, string level, ICondition condition) : base(db, level, condition) {}
+        public SentencesTraining(TaskService db, string level, ITrainingEndCondition condition) : base(db, level, condition) {}
 
         async public override Task CreateTasks()
         {

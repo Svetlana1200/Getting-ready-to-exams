@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 
 namespace EnglishTest.Models
 {
-    public class TextsTraining: ITraining
+    public class TextsTraining: Training
     {
-        public TextsTraining(TaskService db, string level, ICondition condition) : base(db, level, condition) {}
+        public TextsTraining(TaskService db, string level, ITrainingEndCondition condition) : base(db, level, condition) {}
 
         async public override Task CreateTasks()
         {

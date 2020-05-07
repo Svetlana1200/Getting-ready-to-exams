@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 
 namespace EnglishTest.Models
 {
-    public class ImageTraining : ITraining
+    public class ImageTraining : Training
     {
-        public ImageTraining(TaskService db, string level, ICondition condition) : base(db, level, condition) {}
+        public ImageTraining(TaskService db, string level, ITrainingEndCondition condition) : base(db, level, condition) {}
 
         async public override Task CreateTasks()
         {

@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace EnglishTest.Models
 {
-    public abstract class ITraining
+    public abstract class Training
     {
         public readonly TaskService Database;
-        [NonSerialized] public ICondition Condition;
+        [NonSerialized] public ITrainingEndCondition Condition;
         public string Level { get; set; }
         public Dictionary<string, string> Tasks = new Dictionary<string, string>();
         public List<string> TasksId;
@@ -20,7 +20,7 @@ namespace EnglishTest.Models
         public int MaxCount;
         public bool isFinish = false;
 
-        public ITraining(TaskService db, string level, ICondition condition)
+        public Training(TaskService db, string level, ITrainingEndCondition condition)
         {
             Database = db;
             Condition = condition;

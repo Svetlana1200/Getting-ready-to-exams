@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace EnglishTest.Models
 {
-    public class EndTasksCondition : ICondition
+    public class EndTasksCondition : ITrainingEndCondition
     {
         public bool isFinish(bool isRightAnswer, DateTime currentTime)
         {

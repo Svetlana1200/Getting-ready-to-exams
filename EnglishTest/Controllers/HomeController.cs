@@ -60,8 +60,8 @@ namespace EnglishTest.Controllers
             var trainingType = userTraining[answer["userTrainig"]];
             var conditionType = userContition[answer["userCondition"]];
             var level = answer["userLevel"].ToString();
-            var training = (ITraining)Activator.CreateInstance(trainingType, db, level,
-                            (ICondition)Activator.CreateInstance(conditionType));
+            var training = (Training)Activator.CreateInstance(trainingType, db, level,
+                            (ITrainingEndCondition)Activator.CreateInstance(conditionType));
             await training.CreateTasks();
 
             HttpContext.Session.Set("training", training);
@@ -114,17 +114,17 @@ namespace EnglishTest.Controllers
             return View("AnswerView", answerModel);
         }
 
-        private ITraining GetCurrentTraining()
+        private Training GetCurrentTraining()
         {
             var conditionType = HttpContext.Session.Get<Type>("conditionType");
-            var condition = HttpContext.Session.Get<ICondition>("condition", conditionType);
+            var condition = HttpContext.Session.Get<ITrainingEndCondition>("condition", conditionType);
             var trainingType = HttpContext.Session.Get<Type>("trainingType");
-            var training = HttpContext.Session.Get<ITraining>("training", trainingType);
+            var training = HttpContext.Session.Get<Training>("training", trainingType);
             training.Condition = condition;
             return training;
         }
 
-        private void SetSessionParameters(ITraining training)
+        private void SetSessionParameters(Training training)
         {
             ViewBag.TaskNumber = training.СurrentIndex;
             ViewBag.TotalNumber = training.Tasks.Count;
@@ -134,7 +134,7 @@ namespace EnglishTest.Controllers
             HttpContext.Session.Set("training", training);
         }
 
-        private ITask GetCurrentTask(ITraining training)
+        private ITask GetCurrentTask(Training training)
         {
             var taskBSON = db.GetTaskById(training.CurrentTaskCollection, training.CurrentTaskId).Result;
             return (ITask)BsonSerializer.Deserialize(taskBSON, taskTypes[training.CurrentTaskCollection]);
