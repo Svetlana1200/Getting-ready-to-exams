@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace EnglishTest.Models
@@ -8,7 +6,7 @@ namespace EnglishTest.Models
     public abstract class Training
     {
         public readonly TaskService Database;
-        [NonSerialized] public ITrainingEndCondition Condition;
+        public ITrainingEndCondition Condition;
         public string Level { get; set; }
         public Dictionary<string, string> Tasks = new Dictionary<string, string>();
         public List<string> TasksIds;
