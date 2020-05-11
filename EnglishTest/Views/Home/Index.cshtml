@@ -1,12 +1,12 @@
 ﻿@model Training
 
-<h2>Test settings</h2>
+<h2>Настройки теста</h2>
 @using (Html.BeginForm("StartTest", "Home", FormMethod.Post))
 {
 
     <markdown>
 
-        ##### **Choose level** #####
+        ##### **Выберите уровень:** #####
 
     </markdown>
 
@@ -18,35 +18,35 @@
 
     <markdown>
 
-        ##### **Choose training** #####
+        ##### **Выберите тип тренировки:** #####
 
     </markdown>
 
     @Html.RadioButton("userTrainig", "all", true)
-    <span>1. All tasks</span> <br />
+    <span>1. Все задания</span> <br />
     @Html.RadioButton("userTrainig", "sentences")
-    <span>2. Sentences tasks</span> <br />
+    <span>2. Предложения</span> <br />
     @Html.RadioButton("userTrainig", "texts")
-    <span>3. Text tasks</span> <br />
+    <span>3. Тексты</span> <br />
     @Html.RadioButton("userTrainig", "images")
-    <span>4. Image tasks</span> <br />
+    <span>4. Картинки</span> <br />
 
     <markdown>
 
-        ##### **Choose finish condition** #####
+        ##### **Выберите условие окончания тренировки:** #####
 
     </markdown>
 
     @Html.RadioButton("userCondition", "end", true)
-    <span>1. To end of tasks </span> <br />
+    <span>1. До конца заданий</span> <br />
     @Html.RadioButton("userCondition", "oneMistake")
-    <span>2. To first mistake</span> <br />
+    <span>2. До первой ошибки</span> <br />
     @Html.RadioButton("userCondition", "timer")
-    <span>3. 15 minutes</span> <br />
+    <span>3. Ограничение по времени: 15 минут</span> <br />
 
 
     <p>
-        <input type="submit" value="Start Test" />
+        <input type="submit" value="Начать тестирование" />
     </p><br />
 }
 

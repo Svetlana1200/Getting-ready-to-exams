@@ -25,9 +25,9 @@ namespace EnglishTest.Models
             gridFS = new GridFSBucket(database);
         }
 
-        public async Task<List<string>> GetTasksId(string taskType)
+        public async Task<List<string>> GetTasksIds(string taskType)
         {
-            var tasksId = new List<string>();
+            var tasksIds = new List<string>();
             var collection = await database
                 .GetCollection<BsonDocument>(taskType)
                 .Find(new BsonDocument())
@@ -35,9 +35,9 @@ namespace EnglishTest.Models
 
             foreach (var task in collection)
             {
-                tasksId.Add(task["_id"].ToString());
+                tasksIds.Add(task["_id"].ToString());
             }
-            return tasksId;
+            return tasksIds;
         }
 
         public async Task<BsonDocument> GetTaskById(string collection, string taskId)

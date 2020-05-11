@@ -2,22 +2,22 @@
 
 <markdown>
 
-    ##### **Your Results** #####
+    ##### **Ваши результаты** #####
 
 </markdown>
 
-<text>Correct Answers:</text><br>
+<text>Правильные ответы:</text><br>
 @foreach (var typeTask in Model.CorrectTasks.Keys)
 {
     <text>@typeTask: @Model.CorrectTasks[typeTask].ToString()</text><br>
 }
 <br>
-<text>Incorrect Answers:</text><br>
+<text>Неправильные ответы:</text><br>
 @foreach (var typeTask in Model.IncorrectTasks.Keys)
 {
     <text>@typeTask: @Model.IncorrectTasks[typeTask].ToString()</text><br>
 }
 <br>
-<text>Max count: @Model.MaxCount</text><br>
-<text>Your count: @Model.ResultCount</text><br>
-<text>Result: @Model.Procent%</text><br>
+<text>Максимальные баллы: @Model.MaxCount</text><br>
+<text>Ваши баллы: @Model.ResultCount</text><br>
+<text>Результат: @Model.Procent%</text><br>

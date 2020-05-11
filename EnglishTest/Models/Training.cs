@@ -11,7 +11,7 @@ namespace EnglishTest.Models
         [NonSerialized] public ITrainingEndCondition Condition;
         public string Level { get; set; }
         public Dictionary<string, string> Tasks = new Dictionary<string, string>();
-        public List<string> TasksId;
+        public List<string> TasksIds;
         public int СurrentIndex { get; set; }
         public string CurrentTaskId { get; set; }
         public string CurrentTaskCollection { get; set; }
@@ -32,8 +32,8 @@ namespace EnglishTest.Models
 
         async public Task AddTasks(string collection, int taskMaxCount)
         {
-            var tasksId = await Database.GetTasksId(collection);
-            foreach (var taskId in tasksId)
+            var tasksIds = await Database.GetTasksIds(collection);
+            foreach (var taskId in tasksIds)
             {
                 Tasks[taskId] = collection;
                 MaxCount += taskMaxCount;
@@ -52,7 +52,7 @@ namespace EnglishTest.Models
         {
             if (СurrentIndex < Tasks.Count && !isFinish)
             {
-                CurrentTaskId = TasksId[СurrentIndex];
+                CurrentTaskId = TasksIds[СurrentIndex];
                 CurrentTaskCollection = Tasks[CurrentTaskId];
                 СurrentIndex++;
             }

@@ -10,7 +10,7 @@ namespace EnglishTest.Models
         async public override Task CreateTasks()
         {
             await AddTasks("texts", TextAnswer.MaxCount);
-            TasksId = new List<string>(Tasks.Keys);
+            TasksIds = new List<string>(Tasks.Keys);
             Results = new Results(Tasks, MaxCount);
             isFinish = Condition.isFinish(Results);
         }

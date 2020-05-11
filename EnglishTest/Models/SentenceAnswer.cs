@@ -6,23 +6,23 @@
         public readonly string First;
         public readonly string[] Second;
         public readonly string Word;
-        public readonly string Answer;
+        public readonly string RightAnswer;
         public readonly string UserAnswer;
         public int Count { get; private set; }
 
-        public SentenceAnswer(string first, string second, string word, string answer, string userAnswer)
+        public SentenceAnswer(string first, string second, string word, string rightAnswer, string userAnswer)
         {
             First = first;
             Second = second.Split('_');
             Word = word;
-            Answer = answer;
+            RightAnswer = rightAnswer;
             UserAnswer = userAnswer;
         }
 
         public bool IsRight()
         {
             Count = 0;
-            if (Answer == UserAnswer)
+            if (RightAnswer == UserAnswer)
             {
                 Count = MaxCount;
                 return true;

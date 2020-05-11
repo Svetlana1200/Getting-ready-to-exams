@@ -7,25 +7,25 @@
         public readonly string Second;
         public readonly string Third;
         public readonly string ImageId;
-        public readonly string Answer;
+        public readonly string RightAnswer;
         public readonly string UserAnswer;
         public int Count { get; private set; }
 
         public ImageAnswer(string first, string second, string third, string imageId,
-            string answer, string userAnswer)
+            string rightAnswer, string userAnswer)
         {
             First = first;
             Second = second;
             Third = third;
             ImageId = imageId;
-            Answer = answer;
+            RightAnswer = rightAnswer;
             UserAnswer = userAnswer;
         }
 
         public bool IsRight()
         {
             Count = 0;
-            if (Answer == UserAnswer)
+            if (RightAnswer == UserAnswer)
             {
                 Count = MaxCount;
                 return true;

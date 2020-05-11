@@ -65,9 +65,6 @@ namespace EnglishTest.Controllers
             await training.CreateTasks();
 
             HttpContext.Session.Set("training", training);
-            HttpContext.Session.Set("trainingType", trainingType);
-            HttpContext.Session.Set("condition", training.Condition);
-            HttpContext.Session.Set("conditionType", conditionType);
 
             return ShowNextTask();
         }
@@ -84,7 +81,7 @@ namespace EnglishTest.Controllers
 
         public IActionResult ShowNextTask()
         {
-            var training = GetCurrentTraining();
+            var training = HttpContext.Session.Get<Training>("training");
             training.MoveToNextTask();
             var task = GetCurrentTask(training);
             SetSessionParameters(training);
@@ -94,14 +91,14 @@ namespace EnglishTest.Controllers
 
         public IActionResult ShowResults()
         {
-            var training = GetCurrentTraining();
+            var training = HttpContext.Session.Get<Training>("training");
             return View("Results", training.Results);
         }
 
         [HttpPost]
         public IActionResult CheckAnswer(IFormCollection answer)
         {
-            var training = GetCurrentTraining();
+            var training = HttpContext.Session.Get<Training>("training");
             var task = GetCurrentTask(training);
 
             ViewBag.Answer = answer["userAnswer"];
@@ -112,23 +109,12 @@ namespace EnglishTest.Controllers
             return View("AnswerView", answerModel);
         }
 
-        private Training GetCurrentTraining()
-        {
-            var conditionType = HttpContext.Session.Get<Type>("conditionType");
-            var condition = HttpContext.Session.Get<ITrainingEndCondition>("condition", conditionType);
-            var trainingType = HttpContext.Session.Get<Type>("trainingType");
-            var training = HttpContext.Session.Get<Training>("training", trainingType);
-            training.Condition = condition;
-            return training;
-        }
-
         private void SetSessionParameters(Training training)
         {
             ViewBag.TaskNumber = training.СurrentIndex;
             ViewBag.TotalNumber = training.Tasks.Count;
             ViewBag.TaskViews = taskViews;
             ViewBag.IsTrainingFinish = training.isFinish;
-            HttpContext.Session.Set("condition", training.Condition);
             HttpContext.Session.Set("training", training);
         }
 
@@ -140,13 +126,11 @@ namespace EnglishTest.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
             return View();
         }
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
             return View();
         }
 
