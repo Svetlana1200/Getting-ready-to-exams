@@ -15,11 +15,11 @@ namespace EnglishTest.DownloadingToDB
         public List<FormatSentencesTask> GetTasks()
         {
             var tasks = new List<FormatSentencesTask>();
-            for (var i = 0; i < 20; i++) // будут просматриваться все 20 страниц, при необходимости можно поставить меньше
+            for (var i = 0; i < 20; i++)
             {
                 var uri = FirstPart + (708 + i).ToString() + SecondPart + i.ToString();
 
-                var html = GetHTML(uri);
+                var html = HTML.GetHTML(uri);
                 var partTasks = GetTasksFromOnePage(html);
                 tasks.AddRange(partTasks);
             }
@@ -27,7 +27,7 @@ namespace EnglishTest.DownloadingToDB
             return tasks;
         }
 
-        public List<FormatSentencesTask> GetTasksFromOnePage(string html)
+        private List<FormatSentencesTask> GetTasksFromOnePage(string html)
         {
             var tasks = new List<FormatSentencesTask>();
             Regex regex = new Regex(@"first="" ([\w\W]*?\.)[\w\W]*?word=""(\w*?)"" beginning=""([\w\W]*?)""&nbsp;answer=""([\w\W]*?)(#[\w\W]*?)?"" ending=""([\w\W]*?.)""");
@@ -53,31 +53,10 @@ namespace EnglishTest.DownloadingToDB
                             match.Groups[3].Value,
                             match.Groups[4].Value,
                             match.Groups[6].Value));
-                        //Console.WriteLine(match.Groups[1].Value);
-                        //Console.WriteLine(match.Groups[2].Value);
-                        //Console.WriteLine(match.Groups[3].Value);
-                        //Console.WriteLine(match.Groups[4].Value);
-                        //Console.WriteLine(match.Groups[6].Value);
-                        //Console.WriteLine();
                     }
                 }
             }
-            //else
-            //{
-            //    Console.WriteLine("PROBLEM:(");
-            //}
             return tasks;
-        }
-
-        public string GetHTML(string url)
-        {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-            request.UserAgent = "My application name";
-            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-            using (StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.Default, true, 8192))
-            {
-                return reader.ReadToEnd();
-            }
         }
     }
 }
