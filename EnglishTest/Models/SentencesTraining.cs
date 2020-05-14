@@ -13,9 +13,9 @@ namespace EnglishTest.Models
 
         public SentencesTraining(TaskService db, string level, ITrainingEndCondition condition) : base(db, level, condition) {}
 
-        async public override Task CreateTasks()
+        public override void CreateTasks()
         {
-            await AddTasks(collections[Level], SentenceAnswer.MaxCount);
+            AddTasks(collections[Level], SentenceAnswer.MaxCount);
             TasksIds = new List<string>(Tasks.Keys);
             Results = new Results(Tasks, MaxCount);
             isFinish = Condition.isFinish(Results);

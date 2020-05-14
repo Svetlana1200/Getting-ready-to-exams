@@ -7,11 +7,11 @@ namespace EnglishTest.Models
     {
         public AllTasksTraining(TaskService db, string level, ITrainingEndCondition condition) : base(db, level, condition) {}
 
-        async public override Task CreateTasks()
+        public override void CreateTasks()
         {
-            await AddTasks("sentences", SentenceAnswer.MaxCount);
-            await AddTasks("texts", TextAnswer.MaxCount);
-            await AddTasks("images", ImageAnswer.MaxCount);
+            AddTasks("sentences", SentenceAnswer.MaxCount);
+            AddTasks("texts", TextAnswer.MaxCount);
+            AddTasks("images", ImageAnswer.MaxCount);
 
             TasksIds = new List<string>(Tasks.Keys);
             Results = new Results(Tasks, MaxCount);
