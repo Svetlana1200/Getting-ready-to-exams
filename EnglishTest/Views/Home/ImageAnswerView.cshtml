@@ -1,27 +1,37 @@
 ﻿@model ImageAnswer
 
-<markdown>
+<p style="background-color:lightcyan; font-size:large">
+    <b>
+        Look at the text. What does it say? Choose the correct answer.
+    </b>
+</p>
 
-    ##### **Look at the text. What does it say? Choose the correct answer.** #####
-
-</markdown>
+<style>
+    span.wrong {
+        color: red;
+    }
+    span.right {
+        color: green;
+    }
+</style>
 
 <img src="@Url.Action("GetImage", new { id = Model.ImageId })"><br>
 
 @Html.RadioButton("userAnswer", "1", (bool)(Model.UserAnswer == "1"))
-<span>1. @Model.First</span>  <br />
+<span class=@Model.Classes[0]>1. @Model.First</span>  <br />
 @Html.RadioButton("userAnswer", "2", (bool)(Model.UserAnswer == "2"))
-<span>2. @Model.Second</span>  <br />
+<span class=@Model.Classes[1]>2. @Model.Second</span>  <br />
 @Html.RadioButton("userAnswer", "3", (bool)(Model.UserAnswer == "3"))
-<span>3. @Model.Third</span>  <br />
+<span class=@Model.Classes[2]>3. @Model.Third</span>  <br />
 
 @{
     if (Model.IsRight())
     {
-    <span style="color:green;">Правильно!</span>
+        <span style="color:green;">Правильно!</span>
     }
-    else {
-    <span style="color:red;">Неправильно!</span><br>
-    <text>Правильный ответ: @Model.RightAnswer</text>
+    else
+    {
+        <span style="color:red;">Неправильно!</span><br>
+        <text>Правильный ответ: @Model.RightAnswer</text>
     }
 }

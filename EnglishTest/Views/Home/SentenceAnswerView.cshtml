@@ -1,17 +1,30 @@
 ﻿@model SentenceAnswer
 
-<markdown>
+<p style="background-color:lightcyan; font-size:large">
+    <b>
+        Complete the second sentence so that it has a similar meaning to the first sentence, using the word given.<br />
+        Do not change the word given. You must use between two and five words, including the word given.
+    </b>
+</p>
 
-    ##### **Complete the second sentence so that it has a similar meaning to the first sentence, using the word given.** #####
-    ##### **Do not change the word given. You must use between two and five words, including the word given.** #####
+<p style="font-size:large">
+    @Model.First
+</p>
 
-    ##### @Model.First #####
-    ##### *@Model.Word* #####
+<p style="font-size:large">
+    <b>
+        @Model.Word
+    </b>
+</p>
 
-</markdown>
+<style>
+    .wrong {
+        color: red;
+    }
+</style>
 
 @Model.Second[0]
-@Html.TextBox("userAnswer", (string)ViewBag.Answer)
+@Html.TextBox("userAnswer", (string)ViewBag.Answer, new { @class = @Model.Class })
 @Model.Second[1]<br />
 
 @{

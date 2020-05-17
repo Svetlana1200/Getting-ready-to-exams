@@ -1,14 +1,25 @@
 ﻿@model TextAnswer
 
-<markdown>
-    ##### **Click in the gaps and type one word in each gap.** #####
-</markdown>
+<p style="background-color:lightcyan; font-size:large">
+    <b>
+        Click in the gaps and type one word in each gap.
+    </b>
+</p>
+
+<style>
+    .wrong {
+        color: red;
+    }
+    .right {
+        color: green;
+    }
+</style>
 
 @{
     for (var i = 0; i < Model.Text.Length - 1; i++)
     {
         @Model.Text[i]
-        @Html.TextBox("userAnswer", (string)ViewBag.Answer?[i])
+        @Html.TextBox("userAnswer", (string)ViewBag.Answer?[i], new { @class = @Model.Classes?[i] })
     }
     @Model.Text[Model.Text.Length - 1]<br />
 }

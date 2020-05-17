@@ -8,6 +8,7 @@
         public readonly string Word;
         public readonly string RightAnswer;
         public readonly string UserAnswer;
+        public readonly string Class;
         public int Count { get; private set; }
 
         public SentenceAnswer(string first, string second, string word, string rightAnswer, string userAnswer)
@@ -17,6 +18,8 @@
             Word = word;
             RightAnswer = rightAnswer;
             UserAnswer = userAnswer;
+            if (UserAnswer != RightAnswer)
+                Class = "wrong";
         }
 
         public bool IsRight()

@@ -1,18 +1,18 @@
 ﻿@model Results
 
-<markdown>
+<p style="background-color:powderblue; font-size:large">
+    <b>
+        Ваши результаты
+    </b>
+</p>
 
-    ##### **Ваши результаты** #####
-
-</markdown>
-
-<text>Правильные ответы:</text><br>
+<text><b>Правильные ответы:</b></text><br>
 @foreach (var typeTask in Model.CorrectTasks.Keys)
 {
     <text>@typeTask: @Model.CorrectTasks[typeTask].ToString()</text><br>
 }
 <br>
-<text>Неправильные ответы:</text><br>
+<text><b>Неправильные ответы:</b></text><br>
 @foreach (var typeTask in Model.IncorrectTasks.Keys)
 {
     <text>@typeTask: @Model.IncorrectTasks[typeTask].ToString()</text><br>
@@ -20,4 +20,4 @@
 <br>
 <text>Максимальные баллы: @Model.MaxCount</text><br>
 <text>Ваши баллы: @Model.ResultCount</text><br>
-<text>Результат: @Model.Procent%</text><br>
+<text style="background-color:lightcyan;"><b>Результат: @Model.Procent%</b></text><br>

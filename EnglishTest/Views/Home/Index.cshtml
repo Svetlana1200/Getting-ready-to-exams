@@ -1,14 +1,14 @@
 ﻿@model Training
 
-<h2>Настройки теста</h2>
+<h2 style="background-color:powderblue;">Настройки теста</h2>
 @using (Html.BeginForm("StartTest", "Home", FormMethod.Post))
 {
 
-    <markdown>
+<markdown>
 
-        ##### **Выберите уровень:** #####
+    ##### **Выберите уровень:** #####
 
-    </markdown>
+</markdown>
 
     @Html.RadioButton("userLevel", "B1", true)
     <span>1. B1</span> <br />

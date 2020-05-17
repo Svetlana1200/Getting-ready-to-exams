@@ -3,21 +3,29 @@
 @{
     var parts = Model.Second.Split("_");
 }
-<markdown>
 
-    ##### **Complete the second sentence so that it has a similar meaning to the first sentence, using the word given.** #####
-    ##### **Do not change the word given. You must use between two and five words, including the word given.** #####
+<p style="background-color:lightcyan; font-size:large"> 
+    <b>
+    Complete the second sentence so that it has a similar meaning to the first sentence, using the word given.<br />
+    Do not change the word given. You must use between two and five words, including the word given.
+    </b>
+</p>
 
-    ##### @Model.First #####
-    ##### *@Model.Word* #####
+<p style="font-size:large">
+    @Model.First
+</p>
 
-</markdown>
+<p style="font-size:large">
+    <b>
+        @Model.Word
+    </b>
+</p>
 
 @using (Html.BeginForm("CheckAnswer", "Home", FormMethod.Post))
 {
     @parts[0]
     @Html.TextBox("userAnswer")
-    @parts[1]<br />
+    @parts[1]<br /> <br />
     <p>
         <input type="submit" value="Проверить" />
     </p><br />

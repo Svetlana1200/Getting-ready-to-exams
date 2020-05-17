@@ -1,6 +1,6 @@
 ﻿@model IAnswer
 
-<h4>Задание @ViewBag.TaskNumber/@ViewBag.TotalNumber</h4>
+<h4 style="background-color:powderblue;">Задание @ViewBag.TaskNumber/@ViewBag.TotalNumber</h4>
 
 @{ string view = ViewBag.TaskViews[Model.GetType()]; }
 @await Html.PartialAsync(view, Model)
@@ -8,10 +8,15 @@
 @{
     if (ViewBag.TaskNumber < ViewBag.TotalNumber && !ViewBag.IsTrainingFinish)
     {
-        <p><a href="~/Home/ShowNextTask">Следующее задание</a></p>
+        <p><a href="~/Home/ShowNextTask">
+           <input type="button" value="Следующее задание" />
+        </a></p>
     }
+
     else
     {
-        <p><a href="~/Home/ShowResults">Узнать результаты</a></p>
+        <p><a href="~/Home/ShowResults">
+           <input type="button" value="Узнать результаты">
+        </a></p>
     }
 }
