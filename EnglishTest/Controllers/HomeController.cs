@@ -55,14 +55,14 @@ namespace EnglishTest.Controllers
             return View();
         }
 
-        public async Task<IActionResult> StartTest(IFormCollection answer)
+        public IActionResult StartTest(IFormCollection answer)
         {
             var trainingType = userTraining[answer["userTrainig"]];
             var conditionType = userContition[answer["userCondition"]];
             var level = answer["userLevel"].ToString();
             var training = (Training)Activator.CreateInstance(trainingType, db, level,
                             (ITrainingEndCondition)Activator.CreateInstance(conditionType));
-            await training.CreateTasks();
+            training.CreateTasks();
 
             HttpContext.Session.Set("training", training);
 
@@ -120,7 +120,7 @@ namespace EnglishTest.Controllers
 
         private ITask GetCurrentTask(Training training)
         {
-            var taskBSON = db.GetTaskById(training.CurrentTaskCollection, training.CurrentTaskId).Result;
+            var taskBSON = db.GetTaskById(training.CurrentTaskCollection, training.CurrentTaskId);
             return (ITask)BsonSerializer.Deserialize(taskBSON, taskTypes[training.CurrentTaskCollection]);
         }
 

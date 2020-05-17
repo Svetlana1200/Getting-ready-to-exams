@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MongoDB.Bson;
@@ -11,6 +12,7 @@ namespace EnglishTest.Models
     {
         private IGridFSBucket gridFS;
         private IMongoDatabase database;
+        private Dictionary<string, List<BsonDocument>> databaseCache = new Dictionary<string, List<BsonDocument>>();
 
         public TaskService()
         {
@@ -23,32 +25,43 @@ namespace EnglishTest.Models
             var client = new MongoClient(connectionString);
             database = client.GetDatabase(connection.DatabaseName);
             gridFS = new GridFSBucket(database);
+
+            ReloadDBCache();
         }
 
-        public async Task<List<string>> GetTasksIds(string taskType)
+        public List<string> GetTasksIds(string collection)
         {
-            var tasksIds = new List<string>();
-            var collection = await database
-                .GetCollection<BsonDocument>(taskType)
-                .Find(new BsonDocument())
-                .ToListAsync();
-
-            foreach (var task in collection)
-            {
-                tasksIds.Add(task["_id"].ToString());
-            }
-            return tasksIds;
+            return databaseCache[collection]
+                .Select(x => x["_id"].ToString())
+                .ToList();
         }
 
-        public async Task<BsonDocument> GetTaskById(string collection, string taskId)
+        public BsonDocument GetTaskById(string collection, string taskId)
         {
-            var filter = Builders<BsonDocument>.Filter.Eq("_id", new ObjectId(taskId));
-            return await database.GetCollection<BsonDocument>(collection).Find(filter).SingleAsync();
+            return databaseCache[collection]
+                .Where(x => x["_id"] == new ObjectId(taskId))
+                .First();
         }
 
         public async Task<byte[]> GetImage(string id)
         {
             return await gridFS.DownloadAsBytesAsync(new ObjectId(id));
+        }
+
+        private void ReloadDBCache()
+        {
+            var collectionNames = database
+                .ListCollectionNames()
+                .ToList()
+                .Where(x => x != "fs.chunks" && x != "fs.files");
+
+            foreach (var name in collectionNames)
+            {
+                databaseCache[name] = database
+                    .GetCollection<BsonDocument>(name)
+                    .Find(new BsonDocument())
+                    .ToList();
+            }
         }
     }
 }

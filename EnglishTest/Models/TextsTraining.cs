@@ -7,9 +7,9 @@ namespace EnglishTest.Models
     {
         public TextsTraining(TaskService db, string level, ITrainingEndCondition condition) : base(db, level, condition) {}
 
-        async public override Task CreateTasks()
+        public override void CreateTasks()
         {
-            await AddTasks("texts", TextAnswer.MaxCount);
+            AddTasks("texts", TextAnswer.MaxCount);
             TasksIds = new List<string>(Tasks.Keys);
             Results = new Results(Tasks, MaxCount);
             isFinish = Condition.isFinish(Results);

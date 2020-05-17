@@ -26,11 +26,11 @@ namespace EnglishTest.Models
             СurrentIndex = 0;
         }
 
-        public abstract Task CreateTasks();
+        public abstract void CreateTasks();
 
-        async public Task AddTasks(string collection, int taskMaxCount)
+        public void AddTasks(string collection, int taskMaxCount)
         {
-            var tasksIds = await Database.GetTasksIds(collection);
+            var tasksIds = Database.GetTasksIds(collection);
             foreach (var taskId in tasksIds)
             {
                 Tasks[taskId] = collection;
