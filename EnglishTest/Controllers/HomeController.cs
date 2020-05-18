@@ -60,10 +60,9 @@ namespace EnglishTest.Controllers
             var trainingType = userTraining[answer["userTrainig"]];
             var conditionType = userContition[answer["userCondition"]];
             var level = answer["userLevel"].ToString();
-            var training = (Training)Activator.CreateInstance(trainingType, db, level,
+            var training = (Training)Activator.CreateInstance(trainingType, level,
                             (ITrainingEndCondition)Activator.CreateInstance(conditionType));
-            training.CreateTasks();
-
+            training.CreateTasks(db);
             HttpContext.Session.Set("training", training);
 
             return ShowNextTask();

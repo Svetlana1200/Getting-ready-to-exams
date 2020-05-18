@@ -7,15 +7,15 @@
 </p>
 
 <text><b>Правильные ответы:</b></text><br>
-@foreach (var typeTask in Model.CorrectTasks.Keys)
+@foreach (var taskType in Model.CorrectTasks.Keys)
 {
-    <text>@typeTask: @Model.CorrectTasks[typeTask].ToString()</text><br>
+    <text>@Model.TaskNames[taskType]: @Model.CorrectTasks[taskType].ToString()</text><br>
 }
 <br>
 <text><b>Неправильные ответы:</b></text><br>
-@foreach (var typeTask in Model.IncorrectTasks.Keys)
+@foreach (var taskType in Model.IncorrectTasks.Keys)
 {
-    <text>@typeTask: @Model.IncorrectTasks[typeTask].ToString()</text><br>
+    <text>@Model.TaskNames[taskType]: @Model.IncorrectTasks[taskType].ToString()</text><br>
 }
 <br>
 <text>Максимальные баллы: @Model.MaxCount</text><br>

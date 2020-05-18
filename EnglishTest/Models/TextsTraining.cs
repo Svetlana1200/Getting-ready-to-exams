@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace EnglishTest.Models
 {
     public class TextsTraining: Training
     {
-        public TextsTraining(TaskService db, string level, ITrainingEndCondition condition) : base(db, level, condition) {}
+        public TextsTraining(string level, ITrainingEndCondition condition) : base(level, condition) {}
 
-        public override void CreateTasks()
+        public override void CreateTasks(TaskService db)
         {
-            AddTasks("texts", TextAnswer.MaxCount);
+            AddTasks(db, "texts", TextAnswer.MaxCount);
             TasksIds = new List<string>(Tasks.Keys);
             Results = new Results(Tasks, MaxCount);
             isFinish = Condition.isFinish(Results);

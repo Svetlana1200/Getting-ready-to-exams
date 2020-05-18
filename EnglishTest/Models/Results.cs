@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EnglishTest.Models
 {
@@ -19,7 +17,13 @@ namespace EnglishTest.Models
                 return Math.Round((double)ResultCount / MaxCount * 100, 2);
             }
         }
-       
+        public Dictionary<string, string> TaskNames = new Dictionary<string, string>
+        {
+            { "sentences", "Предложения" },
+            { "sentences2", "Предложения"},
+            { "texts", "Тексты" },
+            { "images", "Картинки" }
+        };
 
         public Results(Dictionary<string, string> tasks, int maxCount)
         {
@@ -42,7 +46,7 @@ namespace EnglishTest.Models
                     CorrectTasks[type] += 1;
                 else
                     IncorrectTasks[type] += 1;
-    }   
+            }   
         }
     }
 }

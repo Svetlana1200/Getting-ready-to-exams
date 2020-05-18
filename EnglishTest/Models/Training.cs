@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace EnglishTest.Models
 {
     public abstract class Training
     {
-        public readonly TaskService Database;
         public ITrainingEndCondition Condition;
         public string Level { get; set; }
         public Dictionary<string, string> Tasks = new Dictionary<string, string>();
@@ -18,19 +16,18 @@ namespace EnglishTest.Models
         public int MaxCount;
         public bool isFinish;
 
-        public Training(TaskService db, string level, ITrainingEndCondition condition)
+        public Training(string level, ITrainingEndCondition condition)
         {
-            Database = db;
             Condition = condition;
             Level = level;
             СurrentIndex = 0;
         }
 
-        public abstract void CreateTasks();
+        public abstract void CreateTasks(TaskService db);
 
-        public void AddTasks(string collection, int taskMaxCount)
+        public void AddTasks(TaskService db, string collection, int taskMaxCount)
         {
-            var tasksIds = Database.GetTasksIds(collection);
+            var tasksIds = db.GetTasksIds(collection);
             foreach (var taskId in tasksIds)
             {
                 Tasks[taskId] = collection;

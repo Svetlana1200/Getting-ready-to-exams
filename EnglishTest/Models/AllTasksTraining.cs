@@ -1,17 +1,16 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace EnglishTest.Models
 {
     public class AllTasksTraining : Training
     {
-        public AllTasksTraining(TaskService db, string level, ITrainingEndCondition condition) : base(db, level, condition) {}
+        public AllTasksTraining(string level, ITrainingEndCondition condition) : base(level, condition) {}
 
-        public override void CreateTasks()
+        public override void CreateTasks(TaskService db)
         {
-            AddTasks("sentences", SentenceAnswer.MaxCount);
-            AddTasks("texts", TextAnswer.MaxCount);
-            AddTasks("images", ImageAnswer.MaxCount);
+            AddTasks(db, "sentences", SentenceAnswer.MaxCount);
+            AddTasks(db, "texts", TextAnswer.MaxCount);
+            AddTasks(db, "images", ImageAnswer.MaxCount);
 
             TasksIds = new List<string>(Tasks.Keys);
             Results = new Results(Tasks, MaxCount);

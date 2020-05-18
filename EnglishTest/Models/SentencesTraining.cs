@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace EnglishTest.Models
 {
@@ -11,11 +10,11 @@ namespace EnglishTest.Models
             { "B2", "sentences2" }
         };
 
-        public SentencesTraining(TaskService db, string level, ITrainingEndCondition condition) : base(db, level, condition) {}
+        public SentencesTraining(string level, ITrainingEndCondition condition) : base(level, condition) {}
 
-        public override void CreateTasks()
+        public override void CreateTasks(TaskService db)
         {
-            AddTasks(collections[Level], SentenceAnswer.MaxCount);
+            AddTasks(db, collections[Level], SentenceAnswer.MaxCount);
             TasksIds = new List<string>(Tasks.Keys);
             Results = new Results(Tasks, MaxCount);
             isFinish = Condition.isFinish(Results);
