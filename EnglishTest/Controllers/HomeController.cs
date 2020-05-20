@@ -60,8 +60,16 @@ namespace EnglishTest.Controllers
             var trainingType = userTraining[answer["userTrainig"]];
             var conditionType = userContition[answer["userCondition"]];
             var level = answer["userLevel"].ToString();
-            var training = (Training)Activator.CreateInstance(trainingType, level,
-                            (ITrainingEndCondition)Activator.CreateInstance(conditionType));
+            var time = int.Parse(answer["time"]);
+            var tasksNumber = int.Parse(answer["tasksNumber"]);
+
+            ITrainingEndCondition trainingEndCondition = null;
+            if (conditionType == typeof(TimerTrainingEndCondition))
+                trainingEndCondition = (ITrainingEndCondition)Activator.CreateInstance(conditionType, time);
+            else
+                trainingEndCondition = (ITrainingEndCondition)Activator.CreateInstance(conditionType);
+
+            var training = (Training)Activator.CreateInstance(trainingType, level, tasksNumber, trainingEndCondition);
             training.CreateTasks(db);
             HttpContext.Session.Set("training", training);
 

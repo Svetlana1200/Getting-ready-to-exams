@@ -4,11 +4,11 @@
 @using (Html.BeginForm("StartTest", "Home", FormMethod.Post))
 {
 
-<markdown>
+    <markdown>
 
-    ##### **Выберите уровень:** #####
+        ##### **Выберите уровень:** #####
 
-</markdown>
+    </markdown>
 
     @Html.RadioButton("userLevel", "B1", true)
     <span>1. B1</span> <br />
@@ -29,7 +29,15 @@
     @Html.RadioButton("userTrainig", "texts")
     <span>3. Тексты</span> <br />
     @Html.RadioButton("userTrainig", "images")
-    <span>4. Картинки</span> <br />
+    <span>4. Картинки</span> <br /><br />
+
+    <label> Количество заданий:</label>
+    <select name="tasksNumber">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="30">30</option>
+    </select>
 
     <markdown>
 
@@ -42,8 +50,8 @@
     @Html.RadioButton("userCondition", "oneMistake")
     <span>2. До первой ошибки</span> <br />
     @Html.RadioButton("userCondition", "timer")
-    <span>3. Ограничение по времени: 15 минут</span> <br />
-
+    <span>3. Ограничение по времени (пока в секундах, чтобы удобнее было тестировать) </span>
+    <input type="number" name="time" style="width: 5em" min="1" oninput="validity.valid||(value='');"><br /><br />
 
     <p>
         <input type="submit" value="Начать тестирование" />

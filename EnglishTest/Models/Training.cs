@@ -15,12 +15,14 @@ namespace EnglishTest.Models
         public Results Results;
         public int MaxCount;
         public bool isFinish;
+        public int TasksNumber;
 
-        public Training(string level, ITrainingEndCondition condition)
+        public Training(string level, int tasksNumber, ITrainingEndCondition condition)
         {
             Condition = condition;
             Level = level;
             СurrentIndex = 0;
+            TasksNumber = tasksNumber;
         }
 
         public abstract void CreateTasks(TaskService db);
@@ -40,7 +42,7 @@ namespace EnglishTest.Models
             IsCorrectLastTask = isCorrect;
             Results.ChangeCountCorrectOrIncorrectTasks(isCorrect, CurrentTaskId, count);
             if (!isFinish)
-                isFinish = Condition.isFinish(Results);
+                isFinish = Condition.IsFinish(Results);
         }
 
         public void MoveToNextTask()
