@@ -12,8 +12,8 @@ namespace EnglishTest.DownloadingToDB
         {
             var textTaskB2 = new ParsingTextTaskB2().GetTasks();
 
-            //var sentensesTasks = new ParsingSentencesTaskB2().GetTasks();
-            //var textTasks = new ParsingTextTaskB1().GetTasks();
+            var sentensesTasks = new ParsingSentencesTaskB2().GetTasks();
+            var textTasksB1 = new ParsingTextTaskB1().GetTasks();
 
             var user = Environment.GetEnvironmentVariable("MONGODB_USERNAME");
             var password = Environment.GetEnvironmentVariable("MONGODB_PASSWORD");
@@ -24,8 +24,8 @@ namespace EnglishTest.DownloadingToDB
             var database = client.GetDatabase(connection.DatabaseName);
 
             AddTextsDocsToDB(database, "texts2", textTaskB2).GetAwaiter().GetResult();
-            //AddTextsDocsToDB(database, "texts", textTasks).GetAwaiter().GetResult();
-            //AddSentencesDocsToDB(database, "sentences2", sentensesTasks).GetAwaiter().GetResult();
+            AddTextsDocsToDB(database, "texts", textTasksB1).GetAwaiter().GetResult();
+            AddSentencesDocsToDB(database, "sentences2", sentensesTasks).GetAwaiter().GetResult();
         }
 
         private static async Task AddTextsDocsToDB(IMongoDatabase db, string collectionName,

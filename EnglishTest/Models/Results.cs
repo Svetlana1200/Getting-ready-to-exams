@@ -22,6 +22,7 @@ namespace EnglishTest.Models
             { "sentences", "Предложения" },
             { "sentences2", "Предложения"},
             { "texts", "Тексты" },
+            { "texts2", "Тексты" },
             { "images", "Картинки" }
         };
 

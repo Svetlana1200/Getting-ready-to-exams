@@ -17,6 +17,7 @@ namespace EnglishTest.Controllers
             { "sentences", typeof(SentenceTask) },
             { "sentences2", typeof(SentenceTask)},
             { "texts", typeof(TextTask) },
+            { "texts2", typeof(TextTask)},
             { "images", typeof(ImageTask) }
         };
 
