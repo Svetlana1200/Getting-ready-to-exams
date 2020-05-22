@@ -51,7 +51,7 @@
     <span>2. До первой ошибки</span> <br />
     @Html.RadioButton("userCondition", "timer")
     <span>3. Ограничение по времени (пока в секундах, чтобы удобнее было тестировать) </span>
-    <input type="number" name="time" style="width: 5em" min="1" oninput="validity.valid||(value='');"><br /><br />
+    <input type="number" name="time" style="width: 5em" value="5" min="1" oninput="validity.valid||(value='');"><br /><br />
 
     <p>
         <input type="submit" value="Начать тестирование" />
