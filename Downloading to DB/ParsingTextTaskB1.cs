@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace EnglishTest.DownloadingToDB
 {
-    public class ParsingTextTask : IParsingTasks<FormatTextTask>
+    public class ParsingTextTaskB1 : IParsingTasks<FormatTextTask>
     {
         public static string FirstPart = "https://englishapple.ru/index.php/%D1%83%D1%87%D0%B8%D0%BC-%D0%B0%D0%BD%D0%B3%D0%BB%D0%B8%D0%B9%D1%81%D0%BA%D0%B8%D0%B9/%D0%B0%D1%83%D0%B4%D0%B8%D0%BE/";
         public static string SecondPart = "-fce-use-of-english-open-cloze-test-";
@@ -18,7 +18,6 @@ namespace EnglishTest.DownloadingToDB
             for (var i = 0; i < 13; i++)
             {
                 var uri = FirstPart + (626 + i).ToString() + SecondPart + (8 + i).ToString();
-
                 var html = HTML.GetHTML(uri);
                 var partTasks = GetTasksFromOnePage(html);
                 tasks.Add(partTasks);
@@ -65,10 +64,8 @@ namespace EnglishTest.DownloadingToDB
                 foreach(Match match in matches)
                 {
                     answers.Add(match.Groups[2].Value.ToLower());
-                    Console.WriteLine(match.Groups[2].Value.ToLower());
                 }
             }
-            Console.WriteLine(answers.Count);
             return new FormatTextTask(textWithNumbers.ToString(), answers);
         }
     }
