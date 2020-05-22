@@ -10,7 +10,8 @@ namespace EnglishTest.DownloadingToDB
     {
         static void Main(string[] args)
         {
-            var tasks = new ParsingSentencesTask<FormatSentencesTask>().GetTasks();
+            var sentensesTasks = new ParsingSentencesTask().GetTasks();
+            var textTasks = new ParsingTextTask().GetTasks();
 
             var user = Environment.GetEnvironmentVariable("MONGODB_USERNAME");
             var password = Environment.GetEnvironmentVariable("MONGODB_PASSWORD");
@@ -20,7 +21,24 @@ namespace EnglishTest.DownloadingToDB
             var client = new MongoClient(connectionString);
             var database = client.GetDatabase(connection.DatabaseName);
 
-            AddSentencesDocsToDB(database, "sentences2", tasks).GetAwaiter().GetResult();
+            AddTextsDocsToDB(database, "texts", textTasks).GetAwaiter().GetResult();
+            AddSentencesDocsToDB(database, "sentences2", sentensesTasks).GetAwaiter().GetResult();
+        }
+
+        private static async Task AddTextsDocsToDB(IMongoDatabase db, string collectionName,
+            List<FormatTextTask> tasks)
+        {
+            var collection = db.GetCollection<BsonDocument>(collectionName);
+
+            foreach (var task in tasks)
+            {
+                var doc = new BsonDocument
+                {
+                    { "Text", task.Text},
+                    { "Answer", new BsonArray(task.Answers) }
+                };
+                await collection.InsertOneAsync(doc);
+            }
         }
 
         private static async Task AddSentencesDocsToDB(IMongoDatabase db, string collectionName, 
