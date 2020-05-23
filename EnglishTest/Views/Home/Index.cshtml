@@ -1,20 +1,20 @@
-﻿@model Training
+﻿@model Parameters
 
 <h2 style="background-color:powderblue;">Настройки теста</h2>
 @using (Html.BeginForm("StartTest", "Home", FormMethod.Post))
 {
-
     <markdown>
 
         ##### **Выберите уровень:** #####
 
     </markdown>
 
-    @Html.RadioButton("userLevel", "B1", true)
-    <span>1. B1</span> <br />
-    @Html.RadioButton("userLevel", "B2")
-    <span>2. B2</span> <br />
-
+    @for (var n = 0; n < Model.Levels.Count; n++)
+    {
+        <span>@Html.RadioButtonFor(m => m.UserLevel, Model.Levels[n], n == 0 ? new { @checked = "checked" } : null)</span>
+        @string.Format("{0}. {1}", n + 1, Model.Levels[n])
+        <br />
+    }
 
     <markdown>
 
@@ -22,22 +22,18 @@
 
     </markdown>
 
-    @Html.RadioButton("userTrainig", "all", true)
-    <span>1. Все задания</span> <br />
-    @Html.RadioButton("userTrainig", "sentences")
-    <span>2. Предложения</span> <br />
-    @Html.RadioButton("userTrainig", "texts")
-    <span>3. Тексты</span> <br />
-    @Html.RadioButton("userTrainig", "images")
-    <span>4. Картинки</span> <br /><br />
+    @Html.RadioButtonFor(m => m.UserTraining, "all", new { @checked = "checked" })
+    <span> 1. Все задания</span><br />
+    @Html.RadioButtonFor(m => m.UserTraining, "sentences")
+    <span> 2. Предложения</span><br />
+    @Html.RadioButtonFor(m => m.UserTraining, "texts")
+    <span> 3. Тексты</span><br />
+    @Html.RadioButtonFor(m => m.UserTraining, "images")
+    <span> 4. Картинки</span><br /><br />
 
     <label> Количество заданий:</label>
-    <select name="tasksNumber">
-        <option value="5">5</option>
-        <option value="10">10</option>
-        <option value="20">20</option>
-        <option value="30">30</option>
-    </select>
+    <input asp-for="TasksNumber" type="number" style="width: 5em" value="1" min="1" max="2" onkeydown="return false" />
+    <br />
 
     <markdown>
 
@@ -45,16 +41,19 @@
 
     </markdown>
 
-    @Html.RadioButton("userCondition", "end", true)
-    <span>1. До конца заданий</span> <br />
-    @Html.RadioButton("userCondition", "oneMistake")
-    <span>2. До первой ошибки</span> <br />
-    @Html.RadioButton("userCondition", "timer")
-    <span>3. Ограничение по времени (пока в секундах, чтобы удобнее было тестировать) </span>
-    <input type="number" name="time" style="width: 5em" value="5" min="1" oninput="validity.valid||(value='');"><br /><br />
+    var i = 1;
+    foreach (var condition in Model.Conditions)
+    {
+        <span>@Html.RadioButtonFor(m => m.UserCondition, condition.Key, i == 1 ? new { @checked = "checked" } : null)</span>
+        @string.Format("{0}. {1}", i, condition.Value);
+        i++;
+        if (condition.Key == "timer")
+        {
+            <input asp-for="Time" type="number" style="width: 5em" value="5" min="1" oninput="validity.valid||(value='');" />
+        }
+        <br />
+    }
 
-    <p>
-        <input type="submit" value="Начать тестирование" />
-    </p><br />
+    <input type="submit" value="Начать тестирование" />
 }
 

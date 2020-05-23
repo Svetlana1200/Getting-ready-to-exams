@@ -29,7 +29,7 @@ namespace EnglishTest.Models
 
         public void AddTasks(TaskService db, string collection, int taskMaxCount)
         {
-            var tasksIds = db.GetTasksIds(collection);
+            var tasksIds = db.GetTasksIds(collection, TasksNumber);
             foreach (var taskId in tasksIds)
             {
                 Tasks[taskId] = collection;

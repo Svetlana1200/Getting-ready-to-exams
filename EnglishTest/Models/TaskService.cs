@@ -29,9 +29,12 @@ namespace EnglishTest.Models
             ReloadDBCache();
         }
 
-        public List<string> GetTasksIds(string collection)
+        public List<string> GetTasksIds(string collection, int tasksNumber)
         {
+            var rnd = new Random();
             return databaseCache[collection]
+                .OrderBy(x => rnd.Next())
+                .Take(Math.Min(tasksNumber, databaseCache[collection].Count))
                 .Select(x => x["_id"].ToString())
                 .ToList();
         }

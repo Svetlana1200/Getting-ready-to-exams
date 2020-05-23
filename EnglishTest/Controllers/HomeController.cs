@@ -53,24 +53,22 @@ namespace EnglishTest.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(new Parameters());
         }
 
-        public IActionResult StartTest(IFormCollection answer)
+        public IActionResult StartTest(Parameters parameters)
         {
-            var trainingType = userTraining[answer["userTrainig"]];
-            var conditionType = userContition[answer["userCondition"]];
-            var level = answer["userLevel"].ToString();
-            var time = int.Parse(answer["time"]);
-            var tasksNumber = int.Parse(answer["tasksNumber"]);
+            var trainingType = userTraining[parameters.UserTraining];
+            var conditionType = userContition[parameters.UserCondition];
 
             ITrainingEndCondition trainingEndCondition = null;
             if (conditionType == typeof(TimerTrainingEndCondition))
-                trainingEndCondition = (ITrainingEndCondition)Activator.CreateInstance(conditionType, time);
+                trainingEndCondition = (ITrainingEndCondition)Activator.CreateInstance(conditionType, parameters.Time);
             else
                 trainingEndCondition = (ITrainingEndCondition)Activator.CreateInstance(conditionType);
 
-            var training = (Training)Activator.CreateInstance(trainingType, level, tasksNumber, trainingEndCondition);
+            var training = (Training)Activator.CreateInstance(
+                trainingType, parameters.UserLevel, parameters.TasksNumber, trainingEndCondition);
             training.CreateTasks(db);
             HttpContext.Session.Set("training", training);
 
