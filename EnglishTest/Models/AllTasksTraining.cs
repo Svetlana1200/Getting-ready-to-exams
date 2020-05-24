@@ -4,10 +4,10 @@ namespace EnglishTest.Models
 {
     public class AllTasksTraining : Training
     {
-        private readonly Dictionary<string, List<string>> collections = new Dictionary<string, List<string>>
+        private readonly Dictionary<Parameters.Levels, List<string>> collections = new Dictionary<Parameters.Levels, List<string>>
         {
-            { "B1", new List<string>(){"sentences", "texts", "images" } },
-            { "B2", new List<string>(){"sentences2", "texts2", "images" }  }
+            { Parameters.Levels.B1, new List<string>(){"sentences", "texts", "images" } },
+            { Parameters.Levels.B2, new List<string>(){"sentences2", "texts2", "images" }  }
         };
 
         private readonly Dictionary<string, int> scoresForType = new Dictionary<string, int>
@@ -19,13 +19,13 @@ namespace EnglishTest.Models
             { "images", ImageAnswer.MaxCount },
             //{ "images2", ImageAnswer.MaxCount}
         };
-        public AllTasksTraining(string level, int tasksNumber, ITrainingEndCondition condition) 
-            : base(level, tasksNumber, condition) {}
+        public AllTasksTraining(Parameters.Levels level, ITrainingEndCondition condition) 
+            : base(level, condition) {}
 
-        public override void CreateTasks(TaskService db)
+        public override void CreateTasks(TaskService db, int tasksNumber)
         {
             foreach (var collection in collections[Level])
-                AddTasks(db, collection, scoresForType[collection]);
+                AddTasks(db, collection, scoresForType[collection], tasksNumber);
 
             TasksIds = new List<string>(Tasks.Keys);
             Results = new Results(Tasks, MaxCount);

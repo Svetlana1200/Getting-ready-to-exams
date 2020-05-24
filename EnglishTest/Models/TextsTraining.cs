@@ -4,17 +4,17 @@ namespace EnglishTest.Models
 {
     public class TextsTraining: Training
     {
-        private readonly Dictionary<string, string> collections = new Dictionary<string, string>
+        private readonly Dictionary<Parameters.Levels, string> collections = new Dictionary<Parameters.Levels, string>
         {
-            { "B1", "texts" },
-            { "B2", "texts2" }
+            { Parameters.Levels.B1, "texts" },
+            { Parameters.Levels.B2, "texts2" }
         };
-        public TextsTraining(string level, int tasksNumber, ITrainingEndCondition condition) 
-            : base(level, tasksNumber, condition) {}
+        public TextsTraining(Parameters.Levels level, ITrainingEndCondition condition) 
+            : base(level, condition) {}
 
-        public override void CreateTasks(TaskService db)
+        public override void CreateTasks(TaskService db, int tasksNumber)
         {
-            AddTasks(db, collections[Level], TextAnswer.MaxCount);
+            AddTasks(db, collections[Level], TextAnswer.MaxCount, tasksNumber);
             TasksIds = new List<string>(Tasks.Keys);
             Results = new Results(Tasks, MaxCount);
             isFinish = Condition.IsFinish(Results);

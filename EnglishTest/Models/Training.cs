@@ -5,7 +5,7 @@ namespace EnglishTest.Models
     public abstract class Training
     {
         public ITrainingEndCondition Condition;
-        public string Level { get; set; }
+        public Parameters.Levels Level { get; set; }
         public Dictionary<string, string> Tasks = new Dictionary<string, string>();
         public List<string> TasksIds;
         public int СurrentIndex { get; set; }
@@ -15,21 +15,19 @@ namespace EnglishTest.Models
         public Results Results;
         public int MaxCount;
         public bool isFinish;
-        public int TasksNumber;
 
-        public Training(string level, int tasksNumber, ITrainingEndCondition condition)
+        public Training(Parameters.Levels level, ITrainingEndCondition condition)
         {
             Condition = condition;
             Level = level;
             СurrentIndex = 0;
-            TasksNumber = tasksNumber;
         }
 
-        public abstract void CreateTasks(TaskService db);
+        public abstract void CreateTasks(TaskService db, int tasksNumber);
 
-        public void AddTasks(TaskService db, string collection, int taskMaxCount)
+        public void AddTasks(TaskService db, string collection, int taskMaxCount, int tasksNumber)
         {
-            var tasksIds = db.GetTasksIds(collection, TasksNumber);
+            var tasksIds = db.GetTasksIds(collection, tasksNumber);
             foreach (var taskId in tasksIds)
             {
                 Tasks[taskId] = collection;

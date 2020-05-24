@@ -4,12 +4,12 @@ namespace EnglishTest.Models
 {
     public class ImageTraining : Training
     {
-        public ImageTraining(string level, int tasksNumber, ITrainingEndCondition condition) 
-            : base(level, tasksNumber, condition) {}
+        public ImageTraining(Parameters.Levels level, ITrainingEndCondition condition) 
+            : base(level, condition) {}
 
-        public override void CreateTasks(TaskService db)
+        public override void CreateTasks(TaskService db, int tasksNumber)
         {
-            AddTasks(db, "images", ImageAnswer.MaxCount);
+            AddTasks(db, "images", ImageAnswer.MaxCount, tasksNumber);
             TasksIds = new List<string>(Tasks.Keys);
             Results = new Results(Tasks, MaxCount);
             isFinish = Condition.IsFinish(Results);

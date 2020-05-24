@@ -1,4 +1,5 @@
 ﻿@model Parameters
+@using System.ComponentModel.DataAnnotations;
 
 <h2 style="background-color:powderblue;">Настройки теста</h2>
 @using (Html.BeginForm("StartTest", "Home", FormMethod.Post))
@@ -9,10 +10,12 @@
 
     </markdown>
 
-    @for (var n = 0; n < Model.Levels.Count; n++)
+    var n = 1;
+    foreach (var level in Enum.GetValues(typeof(Parameters.Levels)))
     {
-        <span>@Html.RadioButtonFor(m => m.UserLevel, Model.Levels[n], n == 0 ? new { @checked = "checked" } : null)</span>
-        @string.Format("{0}. {1}", n + 1, Model.Levels[n])
+        @Html.RadioButtonFor(m => m.UserLevel, level)
+        @string.Format(" {0}. {1}", n, level)
+        n++;
         <br />
     }
 
@@ -22,16 +25,16 @@
 
     </markdown>
 
-    @Html.RadioButtonFor(m => m.UserTraining, "all", new { @checked = "checked" })
-    <span> 1. Все задания</span><br />
-    @Html.RadioButtonFor(m => m.UserTraining, "sentences")
-    <span> 2. Предложения</span><br />
-    @Html.RadioButtonFor(m => m.UserTraining, "texts")
-    <span> 3. Тексты</span><br />
-    @Html.RadioButtonFor(m => m.UserTraining, "images")
-    <span> 4. Картинки</span><br /><br />
+    n = 1;
+    foreach (Parameters.Trainings training in Enum.GetValues(typeof(Parameters.Trainings)))
+    {
+        @Html.RadioButtonFor(m => m.UserTraining, training)
+        @string.Format(" {0}. {1}", n, training.GetAttribute<DisplayAttribute>().Name)
+        n++;
+        <br />
+    }
 
-    <label> Количество заданий:</label>
+    <label> Количество заданий одного типа:</label>
     <input asp-for="TasksNumber" type="number" style="width: 5em" value="1" min="1" max="2" onkeydown="return false" />
     <br />
 
@@ -41,18 +44,19 @@
 
     </markdown>
 
-    var i = 1;
-    foreach (var condition in Model.Conditions)
+    n = 1;
+    foreach (Parameters.Conditions condition in Enum.GetValues(typeof(Parameters.Conditions)))
     {
-        <span>@Html.RadioButtonFor(m => m.UserCondition, condition.Key, i == 1 ? new { @checked = "checked" } : null)</span>
-        @string.Format("{0}. {1}", i, condition.Value);
-        i++;
-        if (condition.Key == "timer")
+        @Html.RadioButtonFor(m => m.UserCondition, condition)
+        @string.Format(" {0}. {1}", n, condition.GetAttribute<DisplayAttribute>().Name)
+        n++;
+        if (condition == Parameters.Conditions.Timer)
         {
             <input asp-for="Time" type="number" style="width: 5em" value="5" min="1" oninput="validity.valid||(value='');" />
         }
         <br />
     }
+    <br />
 
     <input type="submit" value="Начать тестирование" />
 }

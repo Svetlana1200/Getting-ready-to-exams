@@ -21,19 +21,19 @@ namespace EnglishTest.Controllers
             { "images", typeof(ImageTask) }
         };
 
-        private readonly Dictionary<string, Type> userTraining = new Dictionary<string, Type>
+        private readonly Dictionary<Parameters.Trainings, Type> userTraining = new Dictionary<Parameters.Trainings, Type>
         {
-            { "all", typeof(AllTasksTraining) },
-            { "sentences", typeof(SentencesTraining) },
-            { "texts", typeof(TextsTraining) },
-            { "images", typeof(ImageTraining) }
+            { Parameters.Trainings.All, typeof(AllTasksTraining) },
+            { Parameters.Trainings.Sentences, typeof(SentencesTraining) },
+            { Parameters.Trainings.Texts, typeof(TextsTraining) },
+            { Parameters.Trainings.Images, typeof(ImageTraining) }
         };
 
-        private readonly Dictionary<string, Type> userContition = new Dictionary<string, Type>
+        private readonly Dictionary<Parameters.Conditions, Type> userContition = new Dictionary<Parameters.Conditions, Type>
         {
-            { "oneMistake", typeof(OneMistakeTrainingEndCondition) },
-            { "timer", typeof(TimerTrainingEndCondition) },
-            { "end", typeof(EndTasksTrainingEndCondition) }
+            { Parameters.Conditions.OneMistake, typeof(OneMistakeTrainingEndCondition) },
+            { Parameters.Conditions.Timer, typeof(TimerTrainingEndCondition) },
+            { Parameters.Conditions.End, typeof(EndTasksTrainingEndCondition) }
         };
 
         private readonly Dictionary<Type, string> taskViews = new Dictionary<Type, string>
@@ -68,8 +68,8 @@ namespace EnglishTest.Controllers
                 trainingEndCondition = (ITrainingEndCondition)Activator.CreateInstance(conditionType);
 
             var training = (Training)Activator.CreateInstance(
-                trainingType, parameters.UserLevel, parameters.TasksNumber, trainingEndCondition);
-            training.CreateTasks(db);
+                trainingType, parameters.UserLevel, trainingEndCondition);
+            training.CreateTasks(db, parameters.TasksNumber);
             HttpContext.Session.Set("training", training);
 
             return ShowNextTask();
