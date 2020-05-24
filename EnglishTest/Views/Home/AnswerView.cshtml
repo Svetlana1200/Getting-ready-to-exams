@@ -9,14 +9,14 @@
     if (ViewBag.TaskNumber < ViewBag.TotalNumber && !ViewBag.IsTrainingFinish)
     {
         <p><a href="~/Home/ShowNextTask">
-           <input type="button" value="Следующее задание" />
+           <input type="submit" value="Следующее задание" />
         </a></p>
     }
 
     else
     {
         <p><a href="~/Home/ShowResults">
-           <input type="button" value="Узнать результаты">
+           <input type="submit" value="Узнать результаты">
         </a></p>
     }
 }

@@ -19,7 +19,10 @@
 
 <style>
     .wrong {
-        color: red;
+        background-color: #FA8072;
+    }
+    .right {
+        background-color: #7CFC00;
     }
 </style>
 
@@ -30,11 +33,11 @@
 @{
     if (Model.IsRight())
     {
-        <span style="color:green;">Правильно!</span>
+        <span style="color:#7CFC00;">Правильно!</span>
     }
     else
     {
-        <span style="color:red;">Неправильно!</span><br>
+        <span style="color:#FA8072;">Неправильно!</span><br>
         <text>Правильный ответ: @Model.RightAnswer</text>
     }
 }
