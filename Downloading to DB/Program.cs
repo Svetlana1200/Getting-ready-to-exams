@@ -10,7 +10,8 @@ namespace EnglishTest.DownloadingToDB
     {
         static void Main(string[] args)
         {
-            var imageTasks = new ParsingImageTask().GetTasks();
+            var sentensesTasks = new ParsingSentencesTaskB1().GetTasks();
+            //var imageTasks = new ParsingImageTask().GetTasks();
             //var textTaskB2 = new ParsingTextTaskB2().GetTasks();
 
             //var sentensesTasks = new ParsingSentencesTaskB2().GetTasks();
@@ -24,10 +25,11 @@ namespace EnglishTest.DownloadingToDB
             var client = new MongoClient(connectionString);
             var database = client.GetDatabase(connection.DatabaseName);
 
-            AddSImagesDocsToDB(database, "images", imageTasks).GetAwaiter().GetResult();
+            //AddSImagesDocsToDB(database, "images", imageTasks).GetAwaiter().GetResult();
             //AddTextsDocsToDB(database, "texts2", textTaskB2).GetAwaiter().GetResult();
             //AddTextsDocsToDB(database, "texts", textTasksB1).GetAwaiter().GetResult();
             //AddSentencesDocsToDB(database, "sentences2", sentensesTasks).GetAwaiter().GetResult();
+            AddSentencesDocsToDB(database, "sentences", sentensesTasks).GetAwaiter().GetResult();
         }
 
         private static async Task AddSImagesDocsToDB(IMongoDatabase db, string collectionName,
