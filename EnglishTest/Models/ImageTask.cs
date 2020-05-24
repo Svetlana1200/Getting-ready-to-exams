@@ -7,6 +7,8 @@ namespace EnglishTest.Models
     {
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
+        public string Question { get; set; }
+        public string Script { get; set; }
         public string First { get; set; }
         public string Second { get; set; }
         public string Third { get; set; }
@@ -15,7 +17,7 @@ namespace EnglishTest.Models
 
         public IAnswer CheckUserAnswer(string userAnswer)
         {
-            return new ImageAnswer(First, Second, Third, ImageId, Answer, userAnswer);
+            return new ImageAnswer(First, Second, Third, ImageId, Answer, Script, Question, userAnswer);
         }
     }
 }

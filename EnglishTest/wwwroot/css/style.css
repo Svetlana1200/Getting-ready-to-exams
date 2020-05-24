@@ -1,0 +1,204 @@
+body {
+	
+	font-size: 16px;
+	
+}
+
+.wrapper  {
+	width:77%;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+
+.box-black  {
+    font-size: 28px;
+	height: 200px;
+}
+
+.box-black2-caption  {
+	font-size: 20px;	
+}
+
+.box-notice  {
+    font-size: 28px;
+	height: 200px;
+	line-height: 40px;
+}
+
+.box-notice-caption  {
+	font-size: 16px;
+	line-height: 30px;
+}
+
+.box-notice2  {
+	font-size: 26px;
+	height: 200px;
+	line-height: 40px;
+	padding-right: 0px;
+	padding-left: 0px;
+}
+
+.box-notice-caption2  {
+	font-size: 16px;
+	line-height: 30px;
+}
+
+.box-email  {
+    font-size: 16px;
+	height: 200px;
+}
+
+.inside-box-email  {
+	padding: 10px;
+	height: 180px;
+}
+
+.box-email2  {
+	font-size: 22px;
+}
+
+.inside-box-email2  {
+	padding-top: 25px;
+	padding-right: 0px;
+	padding-bottom: 10px;
+	padding-left: 0px;	
+}
+
+.box-email3  {
+    font-size: 16px;
+	min-height: 200px;
+}
+
+.inside-box-email3  {
+	padding: 10px;
+	min-height: 180px;
+}
+
+.box-handwriting  {
+    font-size: 18px;
+	height: 200px;
+}
+
+.box-handwriting3  {
+	font-size: 18px;
+	height: 200px;
+	padding-right: 0px;
+}
+
+.box-dotted  {
+    font-size: 28px;
+	height: 200px;
+}
+
+.box-dotted2  {
+    font-size: 24px;
+	height: 200px;
+}
+
+.box-dotted3  {
+    font-size: 24px;
+	height: 200px;
+}
+
+.box-warning  {
+	font-size: 28px;
+	height: 200px;
+	padding-top: 20px;
+	padding-right: 0px;
+	padding-bottom: 10px;
+	padding-left: 0px;	
+	
+}
+.box-warning2  {
+	font-size: 28px;
+	height: 200px;
+	padding-top: 10px;
+	padding-right: 0px;
+	padding-bottom: 10px;
+	padding-left: 0px;	
+	
+}
+
+.inside-box-warning2  {
+	padding: 10px;
+	font-size: 20px;
+	font-weight: normal;
+}
+
+
+.box-road  {
+	font-size: 22px;
+	height: 200px;
+	padding-top: 20px;
+	padding-right: 0px;
+	padding-bottom: 10px;
+	padding-left: 0px;	
+	
+}
+
+.box-railing  {
+	font-size: 26px;
+	height: 200px;
+	padding-top: 10px;
+	padding-right: 0px;
+	padding-bottom: 10px;
+	padding-left: 0px;	
+	
+}
+
+.box-storeincool  {
+	font-size: 22px;
+	height: 200px;
+	padding-right: 20px;
+	padding-left: 20px;
+	padding-top: 20px;
+}
+
+.inside-box-storeincool  {
+	padding: 10px;
+	font-size: 24px;	
+}
+
+.box-rubbish  {
+	font-size: 28px;
+	height: 200px;
+	padding-top: 20px;
+}
+
+.box-hampton  {
+    font-size: 26px;
+	height: 200px;
+	line-height: 40px;
+}
+
+.box-reservedparking  {
+	font-size: 28px;
+	height: 200px;
+	padding:10px;
+}
+
+.inside-box-reservedparking  {
+	padding: 5px;
+	font-size: 28px;	
+}
+
+.box-dogs  {
+	font-size: 24px;
+	height: 200px;
+	padding:10px;
+}
+
+.inside-box-dogs  {
+	font-size: 26px;
+	padding: 0px;
+}
+
+.list-group {
+	line-height: 28px;
+}
+
+.list-group-item {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}

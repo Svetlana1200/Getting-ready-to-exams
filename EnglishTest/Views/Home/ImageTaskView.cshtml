@@ -1,15 +1,28 @@
 ﻿@model ImageTask
 
-<p style="background-color:lightcyan; font-size:large"> 
+<p style="background-color:lightcyan; font-size:large">
     <b>
         Look at the text. What does it say? Choose the correct answer.
     </b>
 </p>
+<br>
 
-<img src="@Url.Action("GetImage", new { id = Model.ImageId })"><br>
+<link href="~/css/colors.css" rel="stylesheet" />
+<link href="~/css/style.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+      asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+      asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+<link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+
+
+@Html.Raw(@Model.Script)
+
 
 @using (Html.BeginForm("CheckAnswer", "Home", FormMethod.Post))
 {
+    <span>@Model.Question</span> <br />
     @Html.RadioButton("userAnswer", "1", true)
     <span>1. @Model.First</span> <br />
     @Html.RadioButton("userAnswer", "2")

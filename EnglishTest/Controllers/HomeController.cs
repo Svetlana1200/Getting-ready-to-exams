@@ -75,16 +75,6 @@ namespace EnglishTest.Controllers
             return ShowNextTask();
         }
 
-        public async Task<ActionResult> GetImage(string id)
-        {
-            var image = await db.GetImage(id);
-            if (image == null)
-            {
-                return NotFound();
-            }
-            return File(image, "image/png");
-        }
-
         public IActionResult ShowNextTask()
         {
             var training = HttpContext.Session.Get<Training>("training");

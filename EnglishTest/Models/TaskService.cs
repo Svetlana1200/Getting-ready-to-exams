@@ -46,11 +46,6 @@ namespace EnglishTest.Models
                 .First();
         }
 
-        public async Task<byte[]> GetImage(string id)
-        {
-            return await gridFS.DownloadAsBytesAsync(new ObjectId(id));
-        }
-
         private void ReloadDBCache()
         {
             var collectionNames = database

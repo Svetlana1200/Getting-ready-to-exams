@@ -10,12 +10,24 @@
     span.wrong {
         color: red;
     }
+
     span.right {
         color: green;
     }
 </style>
 
-<img src="@Url.Action("GetImage", new { id = Model.ImageId })"><br>
+<link href="~/css/colors.css" rel="stylesheet" />
+<link href="~/css/style.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+      asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+      asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+<link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+
+@Html.Raw(@Model.Script)
+
+<span>@Model.Question</span> <br />
 
 @Html.RadioButton("userAnswer", "1", (bool)(Model.UserAnswer == "1"))
 <span class=@Model.Classes[0]>1. @Model.First</span>  <br />

@@ -3,6 +3,8 @@
     public class ImageAnswer : IAnswer
     {
         public const int MaxCount = 1;
+        public string Question;
+        public string Script;
         public readonly string First;
         public readonly string Second;
         public readonly string Third;
@@ -13,13 +15,15 @@
         public int Count { get; private set; }
 
         public ImageAnswer(string first, string second, string third, string imageId,
-            string rightAnswer, string userAnswer)
+            string rightAnswer, string scriptHTML, string question, string userAnswer)
         {
             First = first;
             Second = second;
             Third = third;
             ImageId = imageId;
             RightAnswer = rightAnswer;
+            Script = scriptHTML;
+            Question = question;
             UserAnswer = userAnswer;
             Classes[int.Parse(userAnswer) - 1] = "wrong";
             Classes[int.Parse(rightAnswer) - 1] = "right";
