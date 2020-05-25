@@ -309,7 +309,7 @@ hr.style-one {
 	padding-top: 10px;
 	padding-bottom: 10px;
 	font-style: italic;
-	height: 100px;
+	min-height: 100px;
 	
 }
 
@@ -323,7 +323,7 @@ hr.style-one {
 	padding-top: 10px;
 	padding-bottom: 10px;
 	font-style: italic;
-	height: 100px;
+	min-height: 100px;
 	color: #039;
 }
 
@@ -337,7 +337,7 @@ hr.style-one {
 	padding-top: 10px;
 	padding-bottom: 10px;
 	font-style: italic;
-	height: 100px;
+	min-height: 100px;
 	color: #FFF;
 }
 

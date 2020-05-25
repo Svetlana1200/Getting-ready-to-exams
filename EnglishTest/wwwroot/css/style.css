@@ -13,7 +13,7 @@ body {
 
 .box-black  {
     font-size: 28px;
-	height: 200px;
+	min-height: 200px;
 }
 
 .box-black2-caption  {
@@ -22,7 +22,7 @@ body {
 
 .box-notice  {
     font-size: 28px;
-	height: 200px;
+	min-height: 200px;
 	line-height: 40px;
 }
 
@@ -33,7 +33,7 @@ body {
 
 .box-notice2  {
 	font-size: 26px;
-	height: 200px;
+	min-height: 200px;
 	line-height: 40px;
 	padding-right: 0px;
 	padding-left: 0px;
@@ -46,12 +46,12 @@ body {
 
 .box-email  {
     font-size: 16px;
-	height: 200px;
+	min-height: 200px;
 }
 
 .inside-box-email  {
 	padding: 10px;
-	height: 180px;
+	min-height: 180px;
 }
 
 .box-email2  {
@@ -77,33 +77,33 @@ body {
 
 .box-handwriting  {
     font-size: 18px;
-	height: 200px;
+	min-height: 200px;
 }
 
 .box-handwriting3  {
 	font-size: 18px;
-	height: 200px;
+	min-height: 200px;
 	padding-right: 0px;
 }
 
 .box-dotted  {
     font-size: 28px;
-	height: 200px;
+	min-height: 200px;
 }
 
 .box-dotted2  {
     font-size: 24px;
-	height: 200px;
+	min-height: 200px;
 }
 
 .box-dotted3  {
     font-size: 24px;
-	height: 200px;
+	min-height: 200px;
 }
 
 .box-warning  {
 	font-size: 28px;
-	height: 200px;
+	min-height: 200px;
 	padding-top: 20px;
 	padding-right: 0px;
 	padding-bottom: 10px;
@@ -112,7 +112,7 @@ body {
 }
 .box-warning2  {
 	font-size: 28px;
-	height: 200px;
+	min-height: 200px;
 	padding-top: 10px;
 	padding-right: 0px;
 	padding-bottom: 10px;
@@ -129,7 +129,7 @@ body {
 
 .box-road  {
 	font-size: 22px;
-	height: 200px;
+	min-height: 200px;
 	padding-top: 20px;
 	padding-right: 0px;
 	padding-bottom: 10px;
@@ -139,7 +139,7 @@ body {
 
 .box-railing  {
 	font-size: 26px;
-	height: 200px;
+	min-height: 200px;
 	padding-top: 10px;
 	padding-right: 0px;
 	padding-bottom: 10px;
@@ -149,7 +149,7 @@ body {
 
 .box-storeincool  {
 	font-size: 22px;
-	height: 200px;
+	min-height: 200px;
 	padding-right: 20px;
 	padding-left: 20px;
 	padding-top: 20px;
@@ -162,19 +162,19 @@ body {
 
 .box-rubbish  {
 	font-size: 28px;
-	height: 200px;
+	min-height: 200px;
 	padding-top: 20px;
 }
 
 .box-hampton  {
     font-size: 26px;
-	height: 200px;
+	min-height: 200px;
 	line-height: 40px;
 }
 
 .box-reservedparking  {
 	font-size: 28px;
-	height: 200px;
+	min-height: 200px;
 	padding:10px;
 }
 
@@ -185,7 +185,7 @@ body {
 
 .box-dogs  {
 	font-size: 24px;
-	height: 200px;
+	min-height: 200px;
 	padding:10px;
 }
 

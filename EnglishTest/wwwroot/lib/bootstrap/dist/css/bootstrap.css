@@ -134,7 +134,7 @@ input[type="reset"],
 input[type="submit"] {
   -webkit-appearance: button;
   cursor: pointer;
-  font-size:xx-large;
+  font-size: calc(15px + .5vw);
   text-shadow: 1px 1px 0 hsl(200,100%,35%),
                2px 2px 0 hsl(200,100%,55%),
                3px 3px 0 hsl(200,100%,60%),
