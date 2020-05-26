@@ -17,7 +17,7 @@
             Classes = new string[UserAnswer.Length];
             for (var i = 0; i < UserAnswer.Length; i++)
             {
-                if (UserAnswer[i].ToLower() != RightAnswer[i].ToLower())
+                if (string.Compare(UserAnswer[i], RightAnswer[i], true) != 0)
                     Classes[i] = "wrong";
                 else
                     Classes[i] = "right";
@@ -29,7 +29,7 @@
             Count = 0;
             for (var i = 0; i < UserAnswer.Length; i++)
             {
-                if (UserAnswer[i].ToLower() == RightAnswer[i].ToLower())
+                if (string.Compare(UserAnswer[i], RightAnswer[i], true) == 0)
                     Count++;
             }
             return Count == MaxCount;

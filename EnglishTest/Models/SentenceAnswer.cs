@@ -18,14 +18,14 @@
             Word = word;
             RightAnswer = rightAnswer;
             UserAnswer = userAnswer;
-            if (UserAnswer != RightAnswer)
+            if (string.Compare(RightAnswer, UserAnswer, true) != 0)
                 Class = "wrong";
         }
 
         public bool IsRight()
         {
             Count = 0;
-            if (RightAnswer == UserAnswer)
+            if (string.Compare(RightAnswer, UserAnswer, true) == 0)
             {
                 Count = MaxCount;
                 return true;
