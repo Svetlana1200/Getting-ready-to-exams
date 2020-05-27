@@ -3,15 +3,13 @@ using System.Linq;
 using System.Collections.Generic;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using MongoDB.Driver.GridFS;
 
 namespace EnglishTest.Models
 {
     public class TaskService
     {
-        private IGridFSBucket gridFS;
         private IMongoDatabase database;
-        private Dictionary<string, List<BsonDocument>> databaseCache = new Dictionary<string, List<BsonDocument>>();
+        private readonly Dictionary<string, List<BsonDocument>> databaseCache = new Dictionary<string, List<BsonDocument>>();
 
         public TaskService()
         {
@@ -23,7 +21,6 @@ namespace EnglishTest.Models
             var connection = new MongoUrlBuilder(connectionString);
             var client = new MongoClient(connectionString);
             database = client.GetDatabase(connection.DatabaseName);
-            gridFS = new GridFSBucket(database);
 
             ReloadDBCache();
         }
@@ -33,7 +30,7 @@ namespace EnglishTest.Models
             var rnd = new Random();
             return databaseCache[collection]
                 .OrderBy(x => rnd.Next())
-                .Take(Math.Min(tasksNumber, databaseCache[collection].Count))
+                .Take(tasksNumber)
                 .Select(x => x["_id"].ToString())
                 .ToList();
         }
@@ -49,8 +46,7 @@ namespace EnglishTest.Models
         {
             var collectionNames = database
                 .ListCollectionNames()
-                .ToList()
-                .Where(x => x != "fs.chunks" && x != "fs.files");
+                .ToList();
 
             foreach (var name in collectionNames)
             {
