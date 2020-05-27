@@ -44,7 +44,7 @@ namespace EnglishTest.Models
 
         private void ReloadDBCache()
         { 
-            var collectionNames = new List<string>(){"texts", "images", "sentences" };
+            var collectionNames = new List<string>(){"texts", "images", "sentences", "texts2", "sentences2" };
 
             foreach (var name in collectionNames)
             {

@@ -2633,7 +2633,7 @@ label {
   display: inline-block;
   max-width: 100%;
   margin-bottom: 5px;
-  font-weight: 700;
+  font-weight: 500;
 }
 input[type="search"] {
   -webkit-box-sizing: border-box;
@@ -4948,7 +4948,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   display: inline;
   padding: 0.2em 0.6em 0.3em;
   font-size: 75%;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1;
   color: #fff;
   text-align: center;

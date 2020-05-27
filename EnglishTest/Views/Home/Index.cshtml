@@ -10,14 +10,12 @@
 
     </markdown>
 
-    var n = 1;
     foreach (var level in Enum.GetValues(typeof(Parameters.Levels)))
     {
         <label>
         @Html.RadioButtonFor(m => m.UserLevel, level)
         @string.Format(" {0}", level)
         </label>
-        n++;
         <br />
     }
 
@@ -27,7 +25,6 @@
 
     </markdown>
 
-    n = 1;
     foreach (Parameters.Trainings training in Enum.GetValues(typeof(Parameters.Trainings)))
     {
         <label>
@@ -35,7 +32,6 @@
             @string.Format(" {0}", training.GetAttribute<DisplayAttribute>().Name)
         </label>
         <br />
-        n++;
     }
 
     <label> Количество заданий одного типа:</label>
@@ -48,14 +44,12 @@
 
     </markdown>
 
-    n = 1;
     foreach (Parameters.Conditions condition in Enum.GetValues(typeof(Parameters.Conditions)))
     {
         <label>
         @Html.RadioButtonFor(m => m.UserCondition, condition)
         @string.Format(" {0}", condition.GetAttribute<DisplayAttribute>().Name)
         </label>
-        n++;
         if (condition == Parameters.Conditions.Timer)
         {
             <input asp-for="Time" type="number" style="width: 5em" value="5" min="1" oninput="validity.valid||(value='');" />
