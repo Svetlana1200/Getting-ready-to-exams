@@ -10,10 +10,10 @@
     span.wrong {
         background-color: #FA8072;
     }
+
     span.right {
         background-color: #7CFC00;
     }
-
 </style>
 
 <link href="~/css/colors.css" rel="stylesheet" />
@@ -29,21 +29,28 @@
 
 <span>@Model.Question</span> <br />
 
-@Html.RadioButton("userAnswer", "1", (bool)(Model.UserAnswer == "1"))
-<span class=@Model.Classes[0]>1. @Model.First</span>  <br />
-@Html.RadioButton("userAnswer", "2", (bool)(Model.UserAnswer == "2"))
-<span class=@Model.Classes[1]>2. @Model.Second</span>  <br />
-@Html.RadioButton("userAnswer", "3", (bool)(Model.UserAnswer == "3"))
-<span class=@Model.Classes[2]>3. @Model.Third</span>  <br />
+<label>
+    @Html.RadioButton("userAnswer", "1", (bool)(Model.UserAnswer == "1"))
+    <span class=@Model.Classes[0]>@Model.First</span>
+</label> <br />
+
+<label>
+    @Html.RadioButton("userAnswer", "2", (bool)(Model.UserAnswer == "2"))
+    <span class=@Model.Classes[1]>@Model.Second</span>
+</label><br />
+
+<label>
+    @Html.RadioButton("userAnswer", "3", (bool)(Model.UserAnswer == "3"))
+    <span class=@Model.Classes[2]>@Model.Third</span>
+</label><br />
 
 @{
     if (Model.IsRight())
     {
-        <span style="color:#7CFC00;">Правильно!</span>
+        <span style="color:#006600;">Правильно!</span>
     }
     else
     {
-        <span style="color:#FA8072;">Неправильно!</span><br>
-        <text>Правильный ответ: @Model.RightAnswer</text>
+        <span style="color:#B00F0F;">Неправильно!</span><br>
     }
 }

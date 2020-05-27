@@ -23,12 +23,21 @@
 @using (Html.BeginForm("CheckAnswer", "Home", FormMethod.Post))
 {
     <span>@Model.Question</span> <br />
-    @Html.RadioButton("userAnswer", "1", true)
-    <span>1. @Model.First</span> <br />
-    @Html.RadioButton("userAnswer", "2")
-    <span>2. @Model.Second</span> <br />
-    @Html.RadioButton("userAnswer", "3")
-    <span>3. @Model.Third</span> <br />
+
+    <label>
+        @Html.RadioButton("userAnswer", "1", true)
+        <span>@Model.First</span>
+    </label> <br />
+
+    <label>
+        @Html.RadioButton("userAnswer", "2")
+        <span>@Model.Second</span>
+    </label> <br />
+
+    <label>
+        @Html.RadioButton("userAnswer", "3")
+        <span>@Model.Third</span>
+    </label> <br />
 
     <p>
         <input type="submit" value="Проверить" />

@@ -6,32 +6,36 @@
 {
     <markdown>
 
-        ##### **Выберите уровень:** #####
+        #### **Выберите уровень:** ####
 
     </markdown>
 
     var n = 1;
     foreach (var level in Enum.GetValues(typeof(Parameters.Levels)))
     {
+        <label>
         @Html.RadioButtonFor(m => m.UserLevel, level)
-        @string.Format(" {0}. {1}", n, level)
+        @string.Format(" {0}", level)
+        </label>
         n++;
         <br />
     }
 
     <markdown>
 
-        ##### **Выберите тип тренировки:** #####
+        #### **Выберите тип тренировки:** ####
 
     </markdown>
 
     n = 1;
     foreach (Parameters.Trainings training in Enum.GetValues(typeof(Parameters.Trainings)))
     {
-        @Html.RadioButtonFor(m => m.UserTraining, training)
-        @string.Format(" {0}. {1}", n, training.GetAttribute<DisplayAttribute>().Name)
-        n++;
+        <label>
+            @Html.RadioButtonFor(m => m.UserTraining, training)
+            @string.Format(" {0}", training.GetAttribute<DisplayAttribute>().Name)
+        </label>
         <br />
+        n++;
     }
 
     <label> Количество заданий одного типа:</label>
@@ -40,15 +44,17 @@
 
     <markdown>
 
-        ##### **Выберите условие окончания тренировки:** #####
+        #### **Выберите условие окончания тренировки:** ####
 
     </markdown>
 
     n = 1;
     foreach (Parameters.Conditions condition in Enum.GetValues(typeof(Parameters.Conditions)))
     {
+        <label>
         @Html.RadioButtonFor(m => m.UserCondition, condition)
-        @string.Format(" {0}. {1}", n, condition.GetAttribute<DisplayAttribute>().Name)
+        @string.Format(" {0}", condition.GetAttribute<DisplayAttribute>().Name)
+        </label>
         n++;
         if (condition == Parameters.Conditions.Timer)
         {

@@ -43,10 +43,8 @@ namespace EnglishTest.Models
         }
 
         private void ReloadDBCache()
-        {
-            var collectionNames = database
-                .ListCollectionNames()
-                .ToList();
+        { 
+            var collectionNames = new List<string>(){"texts", "images", "sentences" };
 
             foreach (var name in collectionNames)
             {
