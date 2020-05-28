@@ -27,6 +27,8 @@ namespace EnglishTest.Models
 
         public List<string> GetTasksIds(string collection, int tasksNumber)
         {
+            if (tasksNumber <= 0)
+                tasksNumber = 1;
             var rnd = new Random();
             return databaseCache[collection]
                 .OrderBy(x => rnd.Next())

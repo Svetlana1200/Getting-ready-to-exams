@@ -69,15 +69,16 @@ namespace EnglishTest.Controllers
             var training = (Training)Activator.CreateInstance(
                 trainingType, parameters.UserLevel, trainingEndCondition);
             training.CreateTasks(db, parameters.TasksNumber);
-            HttpContext.Session.Set("training", training);
-
+            if (HttpContext.Session.Get<Training>("training") == null)
+                HttpContext.Session.Set("training", training);
             return ShowNextTask();
         }
 
         public IActionResult ShowNextTask()
         {
             var training = HttpContext.Session.Get<Training>("training");
-            training.MoveToNextTask();
+            if (training.wasAnsweredCurrentTask)
+                training.MoveToNextTask();
             var task = GetCurrentTask(training);
             SetSessionParameters(training);
             

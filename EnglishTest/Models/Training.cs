@@ -15,6 +15,7 @@ namespace EnglishTest.Models
         public Results Results;
         public int MaxCount;
         public bool isFinish;
+        public bool wasAnsweredCurrentTask = true;
 
         public Training(Parameters.Levels level, ITrainingEndCondition condition)
         {
@@ -37,6 +38,7 @@ namespace EnglishTest.Models
 
         public void ChangeCountCorrectOrIncorrectTasks(bool isCorrect, int count)
         {
+            wasAnsweredCurrentTask = true;
             IsCorrectLastTask = isCorrect;
             Results.ChangeCountCorrectOrIncorrectTasks(isCorrect, CurrentTaskId, count);
             if (!isFinish)
@@ -50,6 +52,7 @@ namespace EnglishTest.Models
                 CurrentTaskId = TasksIds[СurrentIndex];
                 CurrentTaskCollection = Tasks[CurrentTaskId];
                 СurrentIndex++;
+                wasAnsweredCurrentTask = false;
             }
         }
     }
