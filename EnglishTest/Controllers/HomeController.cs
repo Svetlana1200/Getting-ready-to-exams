@@ -55,6 +55,7 @@ namespace EnglishTest.Controllers
             return View(new Parameters());
         }
 
+        [HttpPost]
         public IActionResult StartTest(Parameters parameters)
         {
             var trainingType = userTraining[parameters.UserTraining];
@@ -69,8 +70,7 @@ namespace EnglishTest.Controllers
             var training = (Training)Activator.CreateInstance(
                 trainingType, parameters.UserLevel, trainingEndCondition);
             training.CreateTasks(db, parameters.TasksNumber);
-            if (HttpContext.Session.Get<Training>("training") == null)
-                HttpContext.Session.Set("training", training);
+            HttpContext.Session.Set("training", training);
             return ShowNextTask();
         }
 
