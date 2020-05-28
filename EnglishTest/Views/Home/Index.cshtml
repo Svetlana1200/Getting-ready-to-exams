@@ -35,7 +35,7 @@
     }
 
     <label> Количество заданий одного типа:</label>
-    <input asp-for="TasksNumber" type="number" style="width: 5em" value="1" min="1" />
+    <input asp-for="TasksNumber" type="number" style="width: 5em" value="1" min="1" oninput="validity.valid||(value='');" />
     <br />
 
     <markdown>
