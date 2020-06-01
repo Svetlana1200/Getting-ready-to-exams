@@ -10,6 +10,8 @@ namespace EnglishTest.Models
     {
         private IMongoDatabase database;
         private readonly Dictionary<string, List<BsonDocument>> databaseCache = new Dictionary<string, List<BsonDocument>>();
+        private readonly List<string> collectionNames = new List<string>() {
+            "texts", "images", "sentences", "texts2", "sentences2" };
 
         public TaskService()
         {
@@ -27,8 +29,6 @@ namespace EnglishTest.Models
 
         public List<string> GetTasksIds(string collection, int tasksNumber)
         {
-            if (tasksNumber <= 0)
-                tasksNumber = 1;
             var rnd = new Random();
             return databaseCache[collection]
                 .OrderBy(x => rnd.Next())
@@ -46,8 +46,6 @@ namespace EnglishTest.Models
 
         private void ReloadDBCache()
         { 
-            var collectionNames = new List<string>(){"texts", "images", "sentences", "texts2", "sentences2" };
-
             foreach (var name in collectionNames)
             {
                 databaseCache[name] = database

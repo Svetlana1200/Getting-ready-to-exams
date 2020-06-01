@@ -35,7 +35,7 @@
     }
 
     <label> Количество заданий одного типа:</label>
-    <input asp-for="TasksNumber" type="number" style="width: 5em" value="1" min="1" oninput="validity.valid||(value='');" />
+    <input asp-for="TasksNumber" type="number" style="width: 5em" value=1 required min="1" />
     <br />
 
     <markdown>
@@ -52,7 +52,7 @@
         </label>
         if (condition == Parameters.Conditions.Timer)
         {
-            <input asp-for="Time" type="number" style="width: 5em" value="5" min="1" oninput="validity.valid||(value='');" />
+            <input asp-for="Time" type="number" style="width: 5em" value=1 placeholder="1" min="1" />
         }
         <br />
     }
