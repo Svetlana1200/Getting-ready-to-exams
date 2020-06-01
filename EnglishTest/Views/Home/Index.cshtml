@@ -1,63 +1,63 @@
 ﻿@model Parameters
 @using System.ComponentModel.DataAnnotations;
 
-<h2 style="background-color:powderblue;">Настройки теста</h2>
+<h1>Настройки теста</h1>
 @using (Html.BeginForm("StartTest", "Home", FormMethod.Post))
 {
-    <markdown>
-
-        #### **Выберите уровень:** ####
-
-    </markdown>
-
-    foreach (var level in Enum.GetValues(typeof(Parameters.Levels)))
-    {
-        <label>
-        @Html.RadioButtonFor(m => m.UserLevel, level)
-        @string.Format(" {0}", level)
-        </label>
-        <br />
-    }
-
-    <markdown>
-
-        #### **Выберите тип тренировки:** ####
-
-    </markdown>
-
-    foreach (Parameters.Trainings training in Enum.GetValues(typeof(Parameters.Trainings)))
-    {
-        <label>
-            @Html.RadioButtonFor(m => m.UserTraining, training)
-            @string.Format(" {0}", training.GetAttribute<DisplayAttribute>().Name)
-        </label>
-        <br />
-    }
-
-    <label> Количество заданий одного типа:</label>
-    <input asp-for="TasksNumber" type="number" style="width: 5em" value=1 required min="1" />
-    <br />
-
-    <markdown>
-
-        #### **Выберите условие окончания тренировки:** ####
-
-    </markdown>
-
-    foreach (Parameters.Conditions condition in Enum.GetValues(typeof(Parameters.Conditions)))
-    {
-        <label>
-        @Html.RadioButtonFor(m => m.UserCondition, condition)
-        @string.Format(" {0}", condition.GetAttribute<DisplayAttribute>().Name)
-        </label>
-        if (condition == Parameters.Conditions.Timer)
-        {
-            <input asp-for="Time" type="number" style="width: 5em" value=1 placeholder="1" min="1" />
-        }
-        <br />
-    }
-    <br />
-
+    <set class="setting-container">
+        <set class="level-subblock">
+            <set class="block-text">
+                Выберите уровнь
+            </set>
+            @foreach (var level in Enum.GetValues(typeof(Parameters.Levels)))
+            {
+                <set class="block-variants">
+                    <label>
+                        @Html.RadioButtonFor(m => m.UserLevel, level)
+                        @string.Format(" {0}", level)
+                    </label>
+                </set>
+            }
+        </set>
+        <set class="setting-line "></set>
+        <set class="type-subblock">
+            <set class="block-text">
+                Выберите тип тренировки
+            </set>
+            @foreach (Parameters.Trainings training in Enum.GetValues(typeof(Parameters.Trainings)))
+            {
+                <set class="block-variants">
+                    <label>
+                        @Html.RadioButtonFor(m => m.UserTraining, training)
+                        @string.Format(" {0}", training.GetAttribute<DisplayAttribute>().Name)
+                    </label>
+                </set>
+            }
+            <set class="block-variants">
+                <label> Количество заданий одного типа:</label>
+                <input asp-for="TasksNumber" type="number" style="width: 5em" value=1 required min="1" />
+            </set>
+        </set>
+        <set class="setting-line "></set>
+        <set class="end-subblock">
+            <set class="block-text">
+                Выберите условия окончания тренировки
+            </set>
+            @foreach (Parameters.Conditions condition in Enum.GetValues(typeof(Parameters.Conditions)))
+            {
+                <set class="block-variants">
+                    <label>
+                        @Html.RadioButtonFor(m => m.UserCondition, condition)
+                        @string.Format(" {0}", condition.GetAttribute<DisplayAttribute>().Name)
+                    </label>
+                </set>
+                if (condition == Parameters.Conditions.Timer)
+                {
+                    <input asp-for="Time" type="number" style="width: 5em" value=1 placeholder="1" min="1" />
+                }
+            }
+        </set>
+    </set>
     <input type="submit" value="Начать тестирование" />
 }
 

@@ -10,29 +10,27 @@
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment exclude="Development">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
+        <div class="container" style="height: 58px">
+            <div class="navbar-header" style="height: 58px">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">EnglishTest</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand" style="height: 58px">EnglishTest</a>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Главная</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">Инструкции</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Контакты</a></li>
+            <div class="navbar-collapse collapse" style="height: 58px">
+                <ul class="nav navbar-nav" style="height: 58px">
+                    <li style="height: 58px"><a asp-area="" asp-controller="Home" asp-action="Index">Главная</a></li>
+                    <li style="height: 58px"><a asp-area="" asp-controller="Home" asp-action="About">Инструкции</a></li>
+                    <li style="height: 58px"><a asp-area="" asp-controller="Home" asp-action="Contact">Контакты</a></li>
                 </ul>
             </div>
         </div>
