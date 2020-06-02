@@ -15,7 +15,7 @@
                 @for (var i = 0; i < parts.Length - 1; i++)
                 {
                     @parts[i]
-                    @Html.TextBox("userAnswer", "", new { autocomplete = "off" })
+                    @Html.TextBox("userAnswer")
                 }
                 @parts[parts.Length - 1]
             </task>
