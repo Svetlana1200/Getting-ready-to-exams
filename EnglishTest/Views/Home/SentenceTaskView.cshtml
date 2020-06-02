@@ -19,7 +19,7 @@
         {
             <task class="sentence" style="padding-bottom: 83px;">
                 @parts[0]
-                @Html.TextBox("userAnswer")
+                @Html.TextBox("userAnswer", "", new { autocomplete = "off" })
                 @parts[1]
             </task>
             <input type="submit" style="margin-bottom: 22px;" value="Проверить" />
