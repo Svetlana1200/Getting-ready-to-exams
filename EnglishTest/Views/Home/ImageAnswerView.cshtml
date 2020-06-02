@@ -47,19 +47,19 @@
 
                 <task class="block-variant-image">
                     <label style=@styleWrongAnswer[0]>
-                        @Html.RadioButton("userAnswer", "1", (bool)(Model.UserAnswer == "1"))
+                        @Html.RadioButton("userAnswer", "1", (bool)(Model.UserAnswer == "1"), new { @disabled = true})
                         @Model.First
                     </label>
                 </task>
                 <task class="block-variant-image">
                     <label style=@styleWrongAnswer[1]>
-                        @Html.RadioButton("userAnswer", "2", (bool)(Model.UserAnswer == "2"))
+                        @Html.RadioButton("userAnswer", "2", (bool)(Model.UserAnswer == "2"), new { @disabled = true })
                         @Model.Second
                     </label>
                 </task>
                 <task class="block-variant-image">
                     <label style=@styleWrongAnswer[2]>
-                        @Html.RadioButton("userAnswer", "3", (bool)(Model.UserAnswer == "3"))
+                        @Html.RadioButton("userAnswer", "3", (bool)(Model.UserAnswer == "3"), new { @disabled = true })
                         @Model.Third
                     </label>
                 </task>

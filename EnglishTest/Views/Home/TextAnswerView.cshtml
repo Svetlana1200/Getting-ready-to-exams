@@ -32,17 +32,19 @@
             @for (var i = 0; i < Model.Text.Length - 1; i++)
             {
                 @Model.Text[i]
-                @Html.TextBox("userAnswer", (string)ViewBag.Answer?[i], new { @style = @styleWrongAnswer[i], @readonly = true })
+                @Html.TextBox("userAnswer", (string)ViewBag.Answer?[i], new { @style = @styleWrongAnswer[i], @disabled = true })
             }
             @Model.Text[Model.Text.Length - 1]
         </task>
         @if (!Model.IsRight())
         {
-            <task class="description-texts" style="padding-top: 0px; padding-bottom: 80px;">
+            <task class="answers-texts" style="padding-top: 0px; padding-bottom: 80px;">
                 Правильные ответы:
                 @for (var i = 0; i < Model.RightAnswer.Length; i++)
                 {
-                    @String.Format("{0}. {1}    ", i + 1, Model.RightAnswer[i])
+                     <task class="answers-texts" style="padding-left: 20px">
+                        @String.Format("{0}. {1}    ", i + 1, Model.RightAnswer[i])
+                     </task>
                 }
             </task>
         }

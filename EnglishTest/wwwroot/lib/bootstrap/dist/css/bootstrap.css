@@ -154,6 +154,23 @@ input[type="submit"]:hover {
   color: #fff;
 }
 
+input[type="number"] {
+  background: #FFFFFF;
+	border: 1px solid #000000;
+	box-sizing: border-box;
+	border-radius: 1px;
+	width: 60px;
+	height: 30px;
+}
+input[type="number"]:hover {
+  background: #FFFFFF;
+	border: 1px solid #000000;
+	box-sizing: border-box;
+	border-radius: 1px;
+	width: 60px;
+	height: 30px;
+}
+
 
 button[disabled],
 html input[disabled] {
@@ -1652,6 +1669,31 @@ pre code {
 }
 
 
+info-container {
+	font-family: PT Sans;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 18px;
+	/* or 17px */
+
+	letter-spacing: -0.005em;
+
+	color: #000000;
+}
+
+contacts-container {
+	font-family: PT Sans;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 24px;
+	line-height: 70.69%;
+	/* or 13px */
+
+	letter-spacing: -0.005em;
+
+	color: #000000;
+}
+
 @media (min-width: 768px) {
 	result{
 		display:flex;
@@ -1660,7 +1702,6 @@ pre code {
 	.result-container{
 		padding-right: 15px;
 		width: 33%;
-		min-height: 100px;
 		display: block;
 	}
 	.result-bold-text {
@@ -1706,7 +1747,6 @@ pre code {
 	.result-container{
 		padding-bottom: 20px;
 		width: 100%;
-		min-height: 100px;
 		display: block;
 	}
 	.result-bold-text {
@@ -1756,7 +1796,6 @@ set{
 		width: 100%;
 	}
 	.level-subblock {
-		height: 402px;
 		width: 22%;
 		font-family: PT Sans;
 		font-style: normal;
@@ -1771,7 +1810,6 @@ set{
 		display: block;
 	}
 	.type-subblock {
-		height: 402px;
 		width: 43%;
 		font-family: PT Sans;
 		font-style: normal;
@@ -1787,7 +1825,6 @@ set{
 		display: block;
 	}
 	.end-subblock {
-		height: 402px;
 		width: 35%;
 		font-family: PT Sans;
 		font-style: normal;
@@ -1809,61 +1846,57 @@ set{
 		border: 1px solid rgba(0, 0, 0, 0.5);
 	}
 	.block-text {
-		height: 15%;
+		padding-bottom: 16px;
 	}
 	.block-variants {
-		height: 12%;
 		display: block;
+		padding-bottom: 11px;
 	}
 }
 
 @media (max-width: 767px) {
 	.setting-container {
-		display: flex;
-		height: 302px;
+		display: block;
 		width: 100%;
 	}
 	.level-subblock {
-		height: 302px;
-		width: 22%;
 		font-family: PT Sans;
 		font-style: normal;
 		font-weight: normal;
-		font-size: 14px;
+		font-size: 18px;
 		line-height: 96.19%;
 		/* identical to box height, or 23px */
-		padding-right: 5%;
+		padding-bottom: 20px;
+		padding-top: 20px;
 		letter-spacing: -0.005em;
 
 		color: #000000;
 		display: block;
 	}
 	.type-subblock {
-		height: 302px;
-		width: 43%;
 		font-family: PT Sans;
 		font-style: normal;
 		font-weight: normal;
-		font-size: 14px;
+		font-size: 18px;
 		line-height: 96.19%;
 		/* identical to box height, or 23px */
 
 		letter-spacing: -0.005em;
-		padding-left: 5%;
-		padding-right: 5%;
+		padding-bottom: 20px;
+		padding-top: 20px;
+
 		color: #000000;
 		display: block;
+
 	}
 	.end-subblock {
-		height: 302px;
-		width: 35%;
 		font-family: PT Sans;
 		font-style: normal;
 		font-weight: normal;
-		font-size: 14px;
+		font-size: 18px;
 		line-height: 96.19%;
-		padding-left: 5%;
-		padding-right: 5%;
+		padding-bottom: 20px;
+		padding-top: 20px;
 
 		/* identical to box height, or 23px */
 
@@ -1873,10 +1906,11 @@ set{
 		display: block;
 	}
 	.setting-line {
-	height: 235px;
+	width: 235px;
 	border: 1px solid rgba(0, 0, 0, 0.5);
 	}
 	.block-text {
+		padding-bottom: 10px;
 	}
 	.block-variants {
 		display: block;
@@ -1921,7 +1955,6 @@ task {
 .color-task-conteiner-image {
 	margin-left: 18.7%;
 	width: 81.3%;
-	min-height: 526px;
 	background: #E0E0E0;
 	border-radius: 10px;
 	display:block;
@@ -1932,7 +1965,6 @@ task {
 	display:block;
 }
 .description-image {
-	min-height: 46px;
 	padding-top: 21px;
 	padding-bottom: 19px;
 	font-family: PT Sans;
@@ -1947,13 +1979,11 @@ task {
 }
 @media (min-width: 768px) {
 	.block-image-task {
-		min-height: 230px;
 		padding-bottom: 100px;
 	}
 }
 @media (max-width: 767px) {
 	.block-image-task {
-		min-height: 230px;
 		display: block;
 		padding-bottom: 30px;
 	}
@@ -1962,7 +1992,6 @@ task {
 	.image-task {
 		display: block;
 		width: 50%;
-		min-height: 230px;
 		padding-left: 53px;
 		padding-top: 10px;
 		font-family: PT Sans;
@@ -1978,7 +2007,6 @@ task {
 	}
 	.block-variant-image {
 		padding-bottom: 15px;
-		min-height: 24px;
 		display: block;
 	}
 }
@@ -1986,7 +2014,6 @@ task {
 	.image-task {
 		display: block;
 		width: 100%;
-		min-height: 230px;
 		padding-left: 10px;
 		padding-top: 20px;
 		font-family: PT Sans;
@@ -2002,7 +2029,6 @@ task {
 	}
 		.block-variant-image {
 		padding-bottom: 8px;
-		min-height: 18px;
 		display: block;
 	}
 }
@@ -2013,7 +2039,6 @@ task {
 .color-task-conteiner-texts {
 	margin-left: 7.8%;
 	width: 92.2%;
-	min-height: 526px;
 	background: #E0E0E0;
 	border-radius: 10px;
 	display:block;
@@ -2024,8 +2049,21 @@ task {
 	display:block;
 }
 @media (min-width: 768px) {
+	.answers-texts {
+		flex-wrap: wrap;
+		font-family: PT Sans;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 24px;
+		line-height: 96.19%;
+		/* or 23px */
+
+		letter-spacing: -0.005em;
+
+		color: #000000;
+		padding-bottom: 5px;
+	}
 	.description-texts {
-		min-height: 23px;
 		padding-top: 25px;
 		padding-bottom: 26px;
 		font-family: PT Sans;
@@ -2055,15 +2093,28 @@ task {
 	}
 }
 @media (max-width: 767px) {
+	.answers-texts {
+		flex-wrap: wrap;
+		font-family: PT Sans;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 18px;
+		line-height: 96.19%;
+		/* or 23px */
+
+		letter-spacing: -0.005em;
+
+		color: #000000;
+		padding-bottom: 5px;
+	}
 	.description-texts {
-		min-height: 23px;
 		padding-top: 25px;
 		padding-bottom: 26px;
 		font-family: PT Sans;
 		font-style: normal;
 		font-weight: bold;
 		font-size: 18px;
-		line-height: 96.19%;
+		line-height: 100%;
 		/* or 23px */
 
 		letter-spacing: -0.005em;
@@ -2090,7 +2141,6 @@ task {
 .color-task-conteiner {
 	margin-left: 17%;
 	width: 83%;
-	min-height: 483px;
 	background: #E0E0E0;
 	border-radius: 10px;
 	display:block;
@@ -2103,8 +2153,6 @@ task {
 }
 @media (min-width: 768px) {
 	.description {
-		min-height:112px;
-
 		padding-top: 15px;
 		padding-bottom: 36px;
 		font-family: PT Sans;
@@ -2135,8 +2183,6 @@ task {
 }
 @media (max-width: 767px) {
 	.description {
-		min-height:112px;
-
 		padding-top: 15px;
 		padding-bottom: 36px;
 		font-family: PT Sans;
@@ -3393,6 +3439,8 @@ input[type="checkbox"]:focus {
 
 input[type=text]{
 	max-width: 197px;
+	padding-top: 0px;
+	padding-bottom: 0px;
 	background-color: inherit;
 	border: none;
     border-bottom: 1px solid #000000;
@@ -3402,6 +3450,8 @@ input[type=text]:hover{
 	background-color: inherit;
 	border: none;
     border-bottom: 1px solid #000000;
+	padding-top: 0px;
+	padding-bottom: 0px;
 }
 
 input[type=text]:focus{
@@ -3409,6 +3459,8 @@ input[type=text]:focus{
 	background-color: inherit;
 	border: none;
     border-bottom: 1px solid #000000;
+	padding-top: 0px;
+	padding-bottom: 0px;
 }
 
 

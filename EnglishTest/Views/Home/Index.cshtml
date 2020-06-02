@@ -11,12 +11,10 @@
             </set>
             @foreach (var level in Enum.GetValues(typeof(Parameters.Levels)))
             {
-                <set class="block-variants">
-                    <label>
-                        @Html.RadioButtonFor(m => m.UserLevel, level)
-                        @string.Format(" {0}", level)
-                    </label>
-                </set>
+                <label class="block-variants">
+                    @Html.RadioButtonFor(m => m.UserLevel, level)
+                    @string.Format(" {0}", level)
+                </label>
             }
         </set>
         <set class="setting-line "></set>
@@ -26,17 +24,13 @@
             </set>
             @foreach (Parameters.Trainings training in Enum.GetValues(typeof(Parameters.Trainings)))
             {
-                <set class="block-variants">
-                    <label>
-                        @Html.RadioButtonFor(m => m.UserTraining, training)
-                        @string.Format(" {0}", training.GetAttribute<DisplayAttribute>().Name)
-                    </label>
-                </set>
+                <label class="block-variants">
+                    @Html.RadioButtonFor(m => m.UserTraining, training)
+                    @string.Format(" {0}", training.GetAttribute<DisplayAttribute>().Name)
+                </label>
             }
-            <set class="block-variants">
-                <label> Количество заданий одного типа:</label>
-                <input asp-for="TasksNumber" type="number" style="width: 5em" value=1 required min="1" />
-            </set>
+            <label class="block-variants"> Количество заданий одного типа:</label>
+            <input asp-for="TasksNumber" type="number" value=1 required min="1" />
         </set>
         <set class="setting-line "></set>
         <set class="end-subblock">
@@ -45,15 +39,13 @@
             </set>
             @foreach (Parameters.Conditions condition in Enum.GetValues(typeof(Parameters.Conditions)))
             {
-                <set class="block-variants">
-                    <label>
+                    <label class="block-variants">
                         @Html.RadioButtonFor(m => m.UserCondition, condition)
                         @string.Format(" {0}", condition.GetAttribute<DisplayAttribute>().Name)
                     </label>
-                </set>
                 if (condition == Parameters.Conditions.Timer)
                 {
-                    <input asp-for="Time" type="number" style="width: 5em" value=1 placeholder="1" min="1" />
+                    <input asp-for="Time" type="number" value=1 placeholder="1" min="1" />
                 }
             }
         </set>
