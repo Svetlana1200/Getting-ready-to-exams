@@ -44,13 +44,13 @@
         @if (ViewBag.TaskNumber < ViewBag.TotalNumber && !ViewBag.IsTrainingFinish)
         {
             <a href="~/Home/ShowNextTask">
-                <input type="submit" value="Следующее задание" />
+                <input type="submit" style="margin-bottom: 22px;" value="Следующее задание" />
             </a>
         }
         else
         {
             <a href="~/Home/ShowResults">
-                <input type="submit" value="Узнать результаты">
+                <input type="submit" style="margin-bottom: 22px;" value="Узнать результаты">
             </a>
         }
     </task>

@@ -1,6 +1,31 @@
 ﻿@model TextTask
 
-<p style="background-color:lightcyan; font-size:large">
+@{
+    var parts = Model.Text.Split("_");
+}
+
+<task class="color-task-conteiner-texts">
+    <task class="task-container-text">
+        <task class="description-texts">
+            Click in the gaps and type one word in each gap.
+        </task>
+        @using (Html.BeginForm("CheckAnswer", "Home", FormMethod.Post))
+        {
+            <task class="text-task">
+                @for (var i = 0; i < parts.Length - 1; i++)
+                {
+                    @parts[i]
+                    @Html.TextBox("userAnswer")
+                }
+                @parts[parts.Length - 1]
+            </task>
+            <input type="submit" style="margin-bottom: 62px;" value="Проверить" />
+        }
+    </task>
+</task>
+
+
+@*<p style="background-color:lightcyan; font-size:large">
     <b>
         Click in the gaps and type one word in each gap.
     </b>
@@ -21,4 +46,4 @@
     <p>
         <input type="submit" value="Проверить" />
     </p><br />
-}
+}*@

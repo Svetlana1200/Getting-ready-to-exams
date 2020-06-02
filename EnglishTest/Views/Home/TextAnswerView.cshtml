@@ -1,6 +1,73 @@
 ﻿@model TextAnswer
 
-<p style="background-color:lightcyan; font-size:large">
+@{
+    var style = "";
+    if  (Model.IsRight())
+    {
+        style = "background-color:#D3FFD2";
+    }
+    else
+    {
+        style = "background-color:#FFD2D2";
+    }
+    var styleWrongAnswer = new string[Model.UserAnswer.Length];
+    for (var i = 0; i < Model.Text.Length - 1; i++)
+    {
+        if (Model.Classes[i] == "wrong")
+        {
+            styleWrongAnswer[i] = "background:#FF9797;";
+        }
+        else
+        {
+            styleWrongAnswer[i] = style;
+        }
+    }
+}
+<task class="color-task-conteiner-texts" style=@style>
+    <task class="task-container-text">
+        <task class="description-texts">
+            Click in the gaps and type one word in each gap.
+        </task>
+        <task class="text-task" style="padding-bottom: 26px;">
+            @for (var i = 0; i < Model.Text.Length - 1; i++)
+            {
+                @Model.Text[i]
+                @Html.TextBox("userAnswer", (string)ViewBag.Answer?[i], new { @style = @styleWrongAnswer[i], @readonly = true })
+            }
+            @Model.Text[Model.Text.Length - 1]
+        </task>
+        @if (!Model.IsRight())
+        {
+            <task class="description-texts" style="padding-top: 0px; padding-bottom: 80px;">
+                Правильные ответы:
+                @for (var i = 0; i < Model.RightAnswer.Length; i++)
+                {
+                    @String.Format("{0}. {1}    ", i + 1, Model.RightAnswer[i])
+                }
+            </task>
+        }
+        else
+        {
+            <task class="description-texts" style="padding-top: 0px; padding-bottom: 103px;">
+            </task>
+        }
+        @if (ViewBag.TaskNumber < ViewBag.TotalNumber && !ViewBag.IsTrainingFinish)
+        {
+            <a href="~/Home/ShowNextTask">
+                <input type="submit" style="margin-bottom: 62px;" value="Следующее задание" />
+            </a>
+        }
+        else
+        {
+            <a href="~/Home/ShowResults">
+                <input type="submit" style="margin-bottom: 62px;" value="Узнать результаты">
+            </a>
+        }
+    </task>
+</task>
+
+
+@*<p style="background-color:lightcyan; font-size:large">
     <b>
         Click in the gaps and type one word in each gap.
     </b>
@@ -38,4 +105,4 @@
             <text>@String.Format("{0}. {1}", i + 1, Model.RightAnswer[i])</text><br>
         }
     }
-}
+}*@
