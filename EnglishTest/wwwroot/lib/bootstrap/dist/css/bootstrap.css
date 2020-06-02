@@ -63,7 +63,7 @@ strong {
 dfn {
   font-style: italic;
 }
-h1 {
+h1 {	
   font-size: 2em;
   margin: 0.67em 0;
 }
@@ -1242,12 +1242,23 @@ h6 .small,
   line-height: 1;
   color: #777777;
 }
-h1,
-.h1,
-h2,
-.h2 {
-  margin-top: 57px;
-  margin-bottom: 34px;
+@media (min-width: 768px) {
+	h1,
+	.h1,
+	h2,
+	.h2 {
+	  margin-top: 57px;
+	  margin-bottom: 34px;
+	}
+}
+@media (max-width: 767px) {
+	h1,
+	.h1,
+	h2,
+	.h2 {
+	  margin-top: 35px;
+	  margin-bottom: 21px;
+	}
 }
 .h4 {
   margin-top: 37px;
@@ -1290,9 +1301,17 @@ h6 .small,
 .h6 .small {
   font-size: 75%;
 }
-h1,
-.h1 {
-  font-size: 48px;
+@media (min-width: 768px) {
+	h1,
+	.h1 {
+	  font-size: 48px;
+	}
+}
+@media (max-width: 767px) {
+	h1,
+	.h1 {
+	  font-size: 30px;
+	}
 }
 h2,
 .h2 {
@@ -1630,6 +1649,100 @@ pre code {
   .container {
     width: 1170px;
   }
+}
+
+
+@media (min-width: 768px) {
+	result{
+		display:flex;
+		text-align:left;
+	}
+	.result-container{
+		padding-right: 15px;
+		width: 33%;
+		min-height: 100px;
+		display: block;
+	}
+	.result-bold-text {
+		
+		font-family: PT Sans;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 24px;
+		line-height: 100%;
+		/* or 23px */
+
+		letter-spacing: -0.005em;
+
+		color: #000000;
+	}
+	.result-normal-text {
+		font-family: PT Sans;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 24px;
+		line-height: 100%;
+		/* or 23px */
+		letter-spacing: -0.005em;
+		color: #000000;
+	}
+	.result-procent-text {
+		padding-top: 14px;
+		font-family: PT Sans;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 30px;
+		line-height: 100%;
+		/* identical to box height, or 36px */
+		letter-spacing: -0.005em;
+		color: #000000;
+	}
+}
+@media (max-width: 767px) {
+	result{
+		display:block;
+		text-align:left;
+	}
+	.result-container{
+		padding-bottom: 20px;
+		width: 100%;
+		min-height: 100px;
+		display: block;
+	}
+	.result-bold-text {
+		
+		font-family: PT Sans;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 18px;
+		line-height: 100%;
+		/* or 23px */
+
+		letter-spacing: -0.005em;
+
+		color: #000000;
+	}
+	.result-normal-text {
+		font-family: PT Sans;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 18px;
+		line-height: 100%;
+		/* or 23px */
+		letter-spacing: -0.005em;
+		color: #000000;
+	}
+	.result-procent-text {
+		padding-top: 14px;
+		font-family: PT Sans;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 24px;
+		line-height: 100%;
+		/* identical to box height, or 36px */
+		letter-spacing: -0.005em;
+		color: #000000;
+	}
 }
 
 set{

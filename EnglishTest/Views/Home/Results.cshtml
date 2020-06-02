@@ -1,23 +1,32 @@
 ﻿@model Results
 
-<p style="background-color:powderblue; font-size:large">
-    <b>
-        Ваши результаты
-    </b>
-</p>
-
-<text><b>Правильные ответы:</b></text><br>
-@foreach (var taskType in Model.CorrectTasks.Keys)
-{
-    <text>@Model.TaskNames[taskType]: @Model.CorrectTasks[taskType].ToString()</text><br>
-}
-<br>
-<text><b>Неправильные ответы:</b></text><br>
-@foreach (var taskType in Model.IncorrectTasks.Keys)
-{
-    <text>@Model.TaskNames[taskType]: @Model.IncorrectTasks[taskType].ToString()</text><br>
-}
-<br>
-<text>Максимальные баллы: @Model.MaxCount</text><br>
-<text>Ваши баллы: @Model.ResultCount</text><br>
-<text style="background-color:lightcyan;"><b>Результат: @Model.Procent%</b></text><br>
+<h1>Результаты</h1>
+<result>
+    <result class="result-container">
+        <result class="result-bold-text">
+            Правильные ответы:
+        </result>
+            @foreach (var taskType in Model.CorrectTasks.Keys)
+            {
+                <result class="result-normal-text">
+                    @Model.TaskNames[taskType]: @Model.CorrectTasks[taskType].ToString()
+                </result>
+            }
+    </result>
+    <result class="result-container">
+        <result class="result-bold-text">
+            Неправильные ответы:
+        </result>
+        @foreach (var taskType in Model.IncorrectTasks.Keys)
+        {
+            <result class="result-normal-text">
+                @Model.TaskNames[taskType]: @Model.IncorrectTasks[taskType].ToString()
+            </result>
+        }
+    </result>
+        <result class="result-container">
+            <result class="result-normal-text">Максимальные баллы: @Model.MaxCount</result>
+            <result class="result-normal-text">Ваши баллы: @Model.ResultCount</result>
+            <result class="result-procent-text">Результат: @Model.Procent%</result>
+        </result>
+</result>
