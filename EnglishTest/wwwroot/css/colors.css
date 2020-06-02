@@ -1,16 +1,4 @@
 /* Main Layout */
-body {
-	font: 12px/1.6 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif;
-	color: #333;
-	font-size: 12px;
-	background-attachment: fixed;
-	background-position: 0 center;
-	padding-top: 0;
-	padding-right: 0;
-	padding-bottom: 0px;
-	padding-left: 0;
-	margin: 0px;
-}
 
 h1  {
 	text-align: center;
@@ -37,16 +25,7 @@ h3  {
 	padding-right:0px;
 }
 
-.container  {
-	width:100%;
-	padding:3x; 
-}
 
-#container {
-	color:#444;
-	padding-right: 0px;
-	padding-left: 0px;	
-}
 
 .btn {
   background-color: #F7F7F7;

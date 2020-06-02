@@ -15,7 +15,7 @@
                 @for (var i = 0; i < parts.Length - 1; i++)
                 {
                     @parts[i]
-                    @Html.TextBox("userAnswer")
+                    @Html.TextBox("userAnswer", "", new { autocomplete = "off" })
                 }
                 @parts[parts.Length - 1]
             </task>
@@ -23,27 +23,3 @@
         }
     </task>
 </task>
-
-
-@*<p style="background-color:lightcyan; font-size:large">
-    <b>
-        Click in the gaps and type one word in each gap.
-    </b>
-</p>
-
-@{
-    var parts = Model.Text.Split("_");
-}
-
-@using (Html.BeginForm("CheckAnswer", "Home", FormMethod.Post))
-{
-    for (var i = 0; i < parts.Length - 1; i++)
-    {
-        @parts[i]
-        @Html.TextBox("userAnswer")
-    }
-    @parts[parts.Length - 1]<br />
-    <p>
-        <input type="submit" value="Проверить" />
-    </p><br />
-}*@

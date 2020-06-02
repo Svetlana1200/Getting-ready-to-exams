@@ -1,42 +1,49 @@
 ﻿@model ImageTask
 
-<p style="background-color:lightcyan; font-size:large">
-    <b>
-        Look at the text. What does it say? Choose the correct answer.
-    </b>
-</p>
-<br>
-
-<link href="~/css/colors.css" rel="stylesheet" />
-<link href="~/css/style.css" rel="stylesheet" />
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-<link rel="stylesheet" href="~/css/site.css" />
-<link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
 
+<task class="color-task-conteiner-image">
+    <task class="task-container-image">
+        <task class="description-image">
+            Look at the text. What does it say? Choose the correct answer.
+        </task>
+        @using (Html.BeginForm("CheckAnswer", "Home", FormMethod.Post))
+        {
+            <task class="block-image-task">
+                <link href="~/css/colors.css" rel="stylesheet" />
+                <link href="~/css/style.css" rel="stylesheet" />
+                @Html.Raw(@Model.Script)
+                <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+                <task class="image-task">
 
-@Html.Raw(@Model.Script)
+                    @if (@Model.Question.Length > 1)
+                    {
+                        <task class="block-variant-image" style="margin-bottom:21px">@Model.Question</task>
+                    }
 
+                    <task class="block-variant-image">
+                        <label>
+                            @Html.RadioButton("userAnswer", "1", true)
+                            @Model.First
+                        </label>
+                    </task>
+                    <task class="block-variant-image">
+                        <label>
+                            @Html.RadioButton("userAnswer", "2")
+                            @Model.Second
+                        </label>
+                    </task>
+                    <task class="block-variant-image">
+                        <label>
+                            @Html.RadioButton("userAnswer", "3")
+                            @Model.Third
+                        </label>
+                    </task>
 
-@using (Html.BeginForm("CheckAnswer", "Home", FormMethod.Post))
-{
-    <span>@Model.Question</span> <br />
+                </task>
+            </task>
 
-    <label>
-        @Html.RadioButton("userAnswer", "1", true)
-        <span>@Model.First</span>
-    </label> <br />
-
-    <label>
-        @Html.RadioButton("userAnswer", "2")
-        <span>@Model.Second</span>
-    </label> <br />
-
-    <label>
-        @Html.RadioButton("userAnswer", "3")
-        <span>@Model.Third</span>
-    </label> <br />
-
-    <p>
-        <input type="submit" value="Проверить" />
-    </p><br />
-}
+            <input type="submit" style="margin-bottom:65px" value="Проверить" />
+        }
+    </task>
+</task>

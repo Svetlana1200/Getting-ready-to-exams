@@ -1,7 +1,7 @@
 ﻿@model ITask
 
 
-<h3>Задание @ViewBag.TaskNumber/@ViewBag.TotalNumber</h3>
+<h4>Задание @ViewBag.TaskNumber/@ViewBag.TotalNumber</h4>
 
 @{ string view = ViewBag.TaskViews[Model.GetType()]; }
 @await Html.PartialAsync(view, Model)

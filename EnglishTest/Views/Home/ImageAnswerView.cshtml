@@ -1,53 +1,82 @@
 ﻿@model ImageAnswer
-
-<p style="background-color:lightcyan; font-size:large">
-    <b>
-        Look at the text. What does it say? Choose the correct answer.
-    </b>
-</p>
-
-<style>
-    span.wrong {
-        background-color: #FA8072;
-    }
-
-    span.right {
-        background-color: #7CFC00;
-    }
-</style>
-
-<link href="~/css/colors.css" rel="stylesheet" />
-<link href="~/css/style.css" rel="stylesheet" />
-<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-<link rel="stylesheet" href="~/css/site.css" />
-<link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-
-@Html.Raw(@Model.Script)
-
-<span>@Model.Question</span> <br />
-
-<label>
-    @Html.RadioButton("userAnswer", "1", (bool)(Model.UserAnswer == "1"))
-    <span class=@Model.Classes[0]>@Model.First</span>
-</label> <br />
-
-<label>
-    @Html.RadioButton("userAnswer", "2", (bool)(Model.UserAnswer == "2"))
-    <span class=@Model.Classes[1]>@Model.Second</span>
-</label><br />
-
-<label>
-    @Html.RadioButton("userAnswer", "3", (bool)(Model.UserAnswer == "3"))
-    <span class=@Model.Classes[2]>@Model.Third</span>
-</label><br />
-
 @{
+    var style = "";
+    string[] styleWrongAnswer = null;
     if (Model.IsRight())
     {
-        <span style="color:#006600;">Правильно!</span>
+        style = "background-color:#D3FFD2";
+        styleWrongAnswer = new string[]{"", "","" };
     }
     else
     {
-        <span style="color:#B00F0F;">Неправильно!</span><br>
+        styleWrongAnswer = new string[3];
+        style = "background-color:#FFD2D2";
+        for (var i = 0; i < 3; i++)
+        {
+            if (i == int.Parse(Model.RightAnswer) - 1)
+            {
+                styleWrongAnswer[i] = "text-decoration-line:underline;";
+            }
+            else
+            {
+                styleWrongAnswer[i] = "color:rgba(0,0,0,0.5);";
+            }
+        }
     }
 }
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+
+<task class="color-task-conteiner-image" style=@style>
+    <task class="task-container-image">
+        <task class="description-image">
+            Look at the text. What does it say? Choose the correct answer.
+        </task>
+
+        <task class="block-image-task">
+            <link href="~/css/colors.css" rel="stylesheet" />
+            <link href="~/css/style.css" rel="stylesheet" />
+            @Html.Raw(@Model.Script)
+            <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+            <task class="image-task">
+
+                @if (@Model.Question.Length > 1)
+                {
+                    <task class="block-variant-image" style="margin-bottom:21px">@Model.Question</task>
+                }
+
+                <task class="block-variant-image">
+                    <label style=@styleWrongAnswer[0]>
+                        @Html.RadioButton("userAnswer", "1", (bool)(Model.UserAnswer == "1"))
+                        @Model.First
+                    </label>
+                </task>
+                <task class="block-variant-image">
+                    <label style=@styleWrongAnswer[1]>
+                        @Html.RadioButton("userAnswer", "2", (bool)(Model.UserAnswer == "2"))
+                        @Model.Second
+                    </label>
+                </task>
+                <task class="block-variant-image">
+                    <label style=@styleWrongAnswer[2]>
+                        @Html.RadioButton("userAnswer", "3", (bool)(Model.UserAnswer == "3"))
+                        @Model.Third
+                    </label>
+                </task>
+            </task>
+        </task>
+        @if (ViewBag.TaskNumber < ViewBag.TotalNumber && !ViewBag.IsTrainingFinish)
+        {
+            <a href="~/Home/ShowNextTask">
+                <input type="submit" style="margin-bottom: 62px;" value="Следующее задание" />
+            </a>
+        }
+        else
+        {
+            <a href="~/Home/ShowResults">
+                <input type="submit" style="margin-bottom: 62px;" value="Узнать результаты">
+            </a>
+        }
+
+    </task>
+</task>
