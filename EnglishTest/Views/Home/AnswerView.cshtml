@@ -1,22 +1,7 @@
 ﻿@model IAnswer
 
-<h4 style="background-color:powderblue;">Задание @ViewBag.TaskNumber/@ViewBag.TotalNumber</h4>
+<h3>Задание @ViewBag.TaskNumber/@ViewBag.TotalNumber</h3>
 
 @{ string view = ViewBag.TaskViews[Model.GetType()]; }
 @await Html.PartialAsync(view, Model)
 
-@{
-    if (ViewBag.TaskNumber < ViewBag.TotalNumber && !ViewBag.IsTrainingFinish)
-    {
-        <p><a href="~/Home/ShowNextTask">
-           <input type="submit" value="Следующее задание" />
-        </a></p>
-    }
-
-    else
-    {
-        <p><a href="~/Home/ShowResults">
-           <input type="submit" value="Узнать результаты">
-        </a></p>
-    }
-}

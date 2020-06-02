@@ -1,6 +1,7 @@
 ﻿@model ITask
 
-<h4 style="background-color:powderblue;">Задание @ViewBag.TaskNumber/@ViewBag.TotalNumber</h4>
+
+<h3>Задание @ViewBag.TaskNumber/@ViewBag.TotalNumber</h3>
 
 @{ string view = ViewBag.TaskViews[Model.GetType()]; }
 @await Html.PartialAsync(view, Model)

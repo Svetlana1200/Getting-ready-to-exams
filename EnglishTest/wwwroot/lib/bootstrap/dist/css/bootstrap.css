@@ -1245,11 +1245,13 @@ h6 .small,
 h1,
 .h1,
 h2,
-.h2,
-h3,
-.h3 {
+.h2 {
   margin-top: 57px;
   margin-bottom: 34px;
+}
+.h3 {
+  margin-top: 37px;
+  margin-bottom: 33px;
 }
 h1 small,
 .h1 small,
@@ -1299,6 +1301,8 @@ h2,
 h3,
 .h3 {
   font-size: 24px;
+  margin-top: 37px;
+  margin-bottom: 33px;
 }
 h4,
 .h4 {
@@ -1632,71 +1636,204 @@ set{
 	display:flex;
 	text-align:left;
 }
-.setting-container {
-	display: flex;
-	height: 402px;
-	width: 100%;
+@media (min-width: 768px) {
+	.setting-container {
+		display: flex;
+		height: 402px;
+		width: 100%;
+	}
+	.level-subblock {
+		height: 402px;
+		width: 22%;
+		font-family: PT Sans;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 24px;
+		line-height: 96.19%;
+		/* identical to box height, or 23px */
+		padding-right: 5%;
+		letter-spacing: -0.005em;
+
+		color: #000000;
+		display: block;
+	}
+	.type-subblock {
+		height: 402px;
+		width: 43%;
+		font-family: PT Sans;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 24px;
+		line-height: 96.19%;
+		/* identical to box height, or 23px */
+
+		letter-spacing: -0.005em;
+		padding-left: 5%;
+		padding-right: 5%;
+		color: #000000;
+		display: block;
+	}
+	.end-subblock {
+		height: 402px;
+		width: 35%;
+		font-family: PT Sans;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 24px;
+		line-height: 96.19%;
+		padding-left: 5%;
+		padding-right: 5%;
+
+		/* identical to box height, or 23px */
+
+		letter-spacing: -0.005em;
+
+		color: #000000;
+		display: block;
+	}
+	.setting-line {
+		height: 281.01px;
+		border: 1px solid rgba(0, 0, 0, 0.5);
+	}
+	.block-text {
+		height: 15%;
+	}
+	.block-variants {
+		height: 12%;
+		display: block;
+	}
 }
-.level-subblock {
-	height: 402px;
-	width: 22%;
-	font-family: PT Sans;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 24px;
-	line-height: 96.19%;
-	/* identical to box height, or 23px */
-	padding-right: 5%;
-	letter-spacing: -0.005em;
 
-	color: #000000;
-	display: block;
-}
-.type-subblock {
-	height: 402px;
-	width: 43%;
-	font-family: PT Sans;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 24px;
-	line-height: 96.19%;
-	/* identical to box height, or 23px */
+@media (max-width: 767px) {
+	.setting-container {
+		display: flex;
+		height: 302px;
+		width: 100%;
+	}
+	.level-subblock {
+		height: 302px;
+		width: 22%;
+		font-family: PT Sans;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 14px;
+		line-height: 96.19%;
+		/* identical to box height, or 23px */
+		padding-right: 5%;
+		letter-spacing: -0.005em;
 
-	letter-spacing: -0.005em;
-	padding-left: 5%;
-	padding-right: 5%;
-	color: #000000;
-	display: block;
-}
-.end-subblock {
-	height: 402px;
-	width: 35%;
-	font-family: PT Sans;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 24px;
-	line-height: 96.19%;
-	padding-left: 5%;
-	padding-right: 5%;
+		color: #000000;
+		display: block;
+	}
+	.type-subblock {
+		height: 302px;
+		width: 43%;
+		font-family: PT Sans;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 14px;
+		line-height: 96.19%;
+		/* identical to box height, or 23px */
 
-	/* identical to box height, or 23px */
+		letter-spacing: -0.005em;
+		padding-left: 5%;
+		padding-right: 5%;
+		color: #000000;
+		display: block;
+	}
+	.end-subblock {
+		height: 302px;
+		width: 35%;
+		font-family: PT Sans;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 14px;
+		line-height: 96.19%;
+		padding-left: 5%;
+		padding-right: 5%;
 
-	letter-spacing: -0.005em;
+		/* identical to box height, or 23px */
 
-	color: #000000;
-	display: block;
-}
-.setting-line {
-	height: 281.01px;
+		letter-spacing: -0.005em;
+
+		color: #000000;
+		display: block;
+	}
+	.setting-line {
+	height: 235px;
 	border: 1px solid rgba(0, 0, 0, 0.5);
+	}
+	.block-text {
+	}
+	.block-variants {
+		display: block;
+	}
 }
-.block-text {
-	height: 15%;
+
+number-task {
+	margin-top: 95px;
+	width: 23px;
+	height: 158px;
+	font-family: PT Mono;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 24px;
+	line-height: 96.19%;
+	/* identical to box height, or 23px */
+
+	letter-spacing: -0.005em;
+	color: #000000;
 }
-.block-variants {
-	height: 12%;
+
+task {
+	display:flex;
+}
+.color-task-conteiner {
+	margin-left: 17%;
+	width: 83%;
+	min-height: 483px;
+	background: #E0E0E0;
+	border-radius: 10px;
+	display:block;
+}
+.task-container {
+	padding-left: 5%;
+	padding-right: 4.6%;
+
+	display:block;
+}
+.description {
+	min-height:112px;
+
+	padding-top: 15px;
+	padding-bottom: 36px;
+	font-family: PT Sans;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 24px;
+	line-height: 96.19%;
+	/* or 23px */
+
+	letter-spacing: -0.005em;
+
+	color: #000000;
+}
+.sentence {
+	padding-bottom: 32px;
+	font-family: PT Sans;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 24px;
+	line-height: 96.19%;
+	/* identical to box height, or 23px */
+
+	letter-spacing: -0.005em;
+
+	color: #000000;
 	display: block;
 }
+
+
 
 
 .container-fluid {
@@ -2916,6 +3053,28 @@ input[type="checkbox"]:focus {
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
+
+input[type=text]{
+	max-width: 197px;
+	background-color: inherit;
+	border: none;
+    border-bottom: 1px solid #000000;
+}
+input[type=text]:hover{
+	max-width: 197px;
+	background-color: inherit;
+	border: none;
+    border-bottom: 1px solid #000000;
+}
+
+input[type=text]:focus{
+	max-width: 197px;
+	background-color: inherit;
+	border: none;
+    border-bottom: 1px solid #000000;
+}
+
+
 output {
   display: block;
   padding-top: 7px;

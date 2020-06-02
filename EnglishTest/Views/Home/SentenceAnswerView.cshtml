@@ -1,43 +1,57 @@
 ﻿@model SentenceAnswer
-
-<p style="background-color:lightcyan; font-size:large">
-    <b>
-        Complete the second sentence so that it has a similar meaning to the first sentence, using the word given.<br />
-        Do not change the word given. You must use between two and five words, including the word given.
-    </b>
-</p>
-
-<p style="font-size:large">
-    @Model.First
-</p>
-
-<p style="font-size:large">
-    <b>
-        @Model.Word
-    </b>
-</p>
-
-<style>
-    .wrong {
-        background-color: #FA8072;
-    }
-    .right {
-        background-color: #7CFC00;
-    }
-</style>
-
-@Model.Second[0]
-@Html.TextBox("userAnswer", (string)ViewBag.Answer, new { @class = @Model.Class })
-@Model.Second[1]<br />
-
+    
 @{
-    if (Model.IsRight())
+    var style = "";
+    if  (Model.IsRight())
     {
-        <span style="color:#006600;">Правильно!</span>
+        style = "background-color:#D3FFD2";
     }
     else
     {
-        <span style="color:#B00F0F;">Неправильно!</span><br>
-        <text>Правильный ответ: @Model.RightAnswer</text>
+        style = "background-color:#FFD2D2";
     }
 }
+
+<task class="color-task-conteiner" style=@style>
+    <task class="task-container">
+        <task class="description">
+            Complete the second sentence so that it has a similar meaning to the first sentence, using the word given.<br />
+            Do not change the word given. You must use between two and five words, including the word given.
+        </task>
+        <task class="sentence">
+            @Model.First
+        </task>
+        <task class="description">
+            @Model.Word
+        </task>
+        <task class="sentence" style="padding-bottom: 36px;">
+            @Model.Second[0]
+            @Html.TextBox("userAnswer", (string)ViewBag.Answer, new { @class = @Model.Class, @readonly = true })
+            @Model.Second[1]
+        </task>
+
+        @if (!Model.IsRight())
+        {
+            <task class="sentence" style="padding-bottom: 24px;">
+                Правильный ответ:  @Model.RightAnswer
+            </task>
+        }
+        else
+        {
+            <task class="sentence" style="padding-bottom: 48px;">
+            </task>
+        }
+        @if (ViewBag.TaskNumber < ViewBag.TotalNumber && !ViewBag.IsTrainingFinish)
+        {
+            <a href="~/Home/ShowNextTask">
+                <input type="submit" value="Следующее задание" />
+            </a>
+        }
+        else
+        {
+            <a href="~/Home/ShowResults">
+                <input type="submit" value="Узнать результаты">
+            </a>
+        }
+    </task>
+</task>

@@ -3,6 +3,32 @@
 @{
     var parts = Model.Second.Split("_");
 }
+<task class="color-task-conteiner">
+    <task class="task-container">
+        <task class="description">
+            Complete the second sentence so that it has a similar meaning to the first sentence, using the word given.<br />
+            Do not change the word given. You must use between two and five words, including the word given.
+        </task>
+        <task class="sentence">
+            @Model.First
+        </task>
+        <task class="description">
+            @Model.Word
+        </task>
+        @using (Html.BeginForm("CheckAnswer", "Home", FormMethod.Post))
+        {
+            <task class="sentence" style="padding-bottom: 83px;">
+                @parts[0]
+                @Html.TextBox("userAnswer")
+                @parts[1]
+            </task>
+            <input type="submit" style="margin-bottom: 22px;" value="Проверить" />
+        }
+    </task>
+</task>
+@*@{
+    var parts = Model.Second.Split("_");
+}
 
 <p style="background-color:lightcyan; font-size:large"> 
     <b>
@@ -29,5 +55,5 @@
     <p>
         <input type="submit" value="Проверить" />
     </p><br />
-}
+}*@
 
