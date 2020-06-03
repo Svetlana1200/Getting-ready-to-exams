@@ -3438,6 +3438,7 @@ input[type="checkbox"]:focus {
 }
 
 input[type=text]{
+	text-align: center;
 	max-width: 197px;
 	padding-top: 0px;
 	padding-bottom: 0px;
@@ -3446,6 +3447,7 @@ input[type=text]{
     border-bottom: 1px solid #000000;
 }
 input[type=text]:hover{
+	text-align: center;
 	max-width: 197px;
 	background-color: inherit;
 	border: none;
@@ -3455,6 +3457,7 @@ input[type=text]:hover{
 }
 
 input[type=text]:focus{
+	text-align: center;
 	max-width: 197px;
 	background-color: inherit;
 	border: none;
@@ -5570,7 +5573,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 }
 .navbar-inverse .navbar-toggle:hover,
 .navbar-inverse .navbar-toggle:focus {
-  background-color: #333;
+  background-color: #004680;
 }
 .navbar-inverse .navbar-toggle .icon-bar {
   background-color: #fff;

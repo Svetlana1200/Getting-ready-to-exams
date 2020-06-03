@@ -7,7 +7,7 @@
     <set class="setting-container">
         <set class="level-subblock">
             <set class="block-text">
-                Выберите уровнь
+                Выберите уровень
             </set>
             @foreach (var level in Enum.GetValues(typeof(Parameters.Levels)))
             {
@@ -29,13 +29,13 @@
                     @string.Format(" {0}", training.GetAttribute<DisplayAttribute>().Name)
                 </label>
             }
-            <label class="block-variants"> Количество заданий одного типа:</label>
+            <set class="block-variants"> Количество заданий одного типа:</set>
             <input asp-for="TasksNumber" type="number" value=1 required min="1" />
         </set>
         <set class="setting-line "></set>
         <set class="end-subblock">
             <set class="block-text">
-                Выберите условия окончания тренировки
+                Выберите условие окончания тренировки
             </set>
             @foreach (Parameters.Conditions condition in Enum.GetValues(typeof(Parameters.Conditions)))
             {
