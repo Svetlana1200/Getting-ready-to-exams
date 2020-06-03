@@ -11,7 +11,6 @@
         public readonly string ImageId;
         public readonly string RightAnswer;
         public readonly string UserAnswer;
-        public readonly string[] Classes = new string[3];
         public int Count { get; private set; }
 
         public ImageAnswer(string first, string second, string third, string imageId,
@@ -25,8 +24,6 @@
             Script = scriptHTML;
             Question = question;
             UserAnswer = userAnswer;
-            Classes[int.Parse(userAnswer) - 1] = "wrong";
-            Classes[int.Parse(rightAnswer) - 1] = "right";
         }
 
         public bool IsRight()

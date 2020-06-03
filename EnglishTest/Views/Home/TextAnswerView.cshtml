@@ -13,7 +13,7 @@
     var styleWrongAnswer = new string[Model.UserAnswer.Length];
     for (var i = 0; i < Model.Text.Length - 1; i++)
     {
-        if (Model.Classes[i] == "wrong")
+        if (!Model.AnswersRightness[i])
         {
             styleWrongAnswer[i] = "background:#FF9797;";
         }
@@ -31,8 +31,13 @@
         <task class="text-task" style="padding-bottom: 26px;">
             @for (var i = 0; i < Model.Text.Length - 1; i++)
             {
+                var answer = (string)ViewBag.Answer?[i];
+                if (!Model.AnswersRightness[i])
+                {
+                    answer += String.Format(" ({0})", Model.RightAnswer[i]);
+                }
                 @Model.Text[i]
-                @Html.TextBox("userAnswer", (string)ViewBag.Answer?[i], new { @style = @styleWrongAnswer[i], @disabled = true })
+                @Html.TextBox("userAnswer", answer, new { @style = @styleWrongAnswer[i], @disabled = true })
             }
             @Model.Text[Model.Text.Length - 1]
         </task>

@@ -6,7 +6,7 @@
         public readonly string[] Text;
         public readonly string[] RightAnswer;
         public readonly string[] UserAnswer;
-        public readonly string[] Classes;
+        public bool[] AnswersRightness;
         public int Count { get; private set; }
 
         public TextAnswer(string text, string[] rightAnswer, string userAnswer)
@@ -14,14 +14,7 @@
             Text = text.Split('_');
             RightAnswer = rightAnswer;
             UserAnswer = userAnswer.Split(',');
-            Classes = new string[UserAnswer.Length];
-            for (var i = 0; i < UserAnswer.Length; i++)
-            {
-                if (string.Compare(UserAnswer[i], RightAnswer[i], true) != 0)
-                    Classes[i] = "wrong";
-                else
-                    Classes[i] = "right";
-            }
+            AnswersRightness = new bool[RightAnswer.Length];
         }
 
         public bool IsRight()
@@ -30,7 +23,10 @@
             for (var i = 0; i < UserAnswer.Length; i++)
             {
                 if (string.Compare(UserAnswer[i], RightAnswer[i], true) == 0)
+                {
                     Count++;
+                    AnswersRightness[i] = true;
+                }
             }
             return Count == MaxCount;
         }

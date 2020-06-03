@@ -10,7 +10,6 @@ namespace EnglishTest.Models
         public readonly string Word;
         public readonly string RightAnswer;
         public readonly string UserAnswer;
-        public readonly string Class;
         public int Count { get; private set; }
 
         private readonly Dictionary<string, List<string>> verbContractions = new Dictionary<string, List<string>>()
@@ -33,9 +32,6 @@ namespace EnglishTest.Models
             Word = word;
             RightAnswer = rightAnswer;
             UserAnswer = userAnswer;
-
-            if (string.Compare(RightAnswer, UserAnswer, true) != 0)
-                Class = "wrong";
         }
 
         public bool IsRight()
