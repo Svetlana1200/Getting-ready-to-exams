@@ -1667,31 +1667,58 @@ pre code {
     width: 1170px;
   }
 }
+@media (min-width: 768px) {
+	info-container {
+		font-family: PT Sans;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 24px;
+		/* or 17px */
 
+		letter-spacing: -0.005em;
 
-info-container {
-	font-family: PT Sans;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 18px;
-	/* or 17px */
+		color: #000000;
+	}
 
-	letter-spacing: -0.005em;
+	contacts-container {
+		font-family: PT Sans;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 24px;
+		line-height: 70.69%;
+		/* or 13px */
 
-	color: #000000;
+		letter-spacing: -0.005em;
+
+		color: #000000;
+	}
 }
 
-contacts-container {
-	font-family: PT Sans;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 24px;
-	line-height: 70.69%;
-	/* or 13px */
+@media (max-width: 767px) {
+	info-container {
+		font-family: PT Sans;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 18px;
+		/* or 17px */
 
-	letter-spacing: -0.005em;
+		letter-spacing: -0.005em;
 
-	color: #000000;
+		color: #000000;
+	}
+
+	contacts-container {
+		font-family: PT Sans;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 18px;
+		line-height: 70.69%;
+		/* or 13px */
+
+		letter-spacing: -0.005em;
+
+		color: #000000;
+	}
 }
 
 @media (min-width: 768px) {
@@ -1952,13 +1979,7 @@ set{
 task {
 	display:flex;
 }
-.color-task-conteiner-image {
-	margin-left: 18.7%;
-	width: 81.3%;
-	background: #E0E0E0;
-	border-radius: 10px;
-	display:block;
-}
+
 .task-container-image {
 	padding-left: 3%;
 	padding-right: 4%;
@@ -1981,11 +2002,24 @@ task {
 	.block-image-task {
 		padding-bottom: 100px;
 	}
+	.color-task-conteiner-image {
+		margin-left: 18.7%;
+		width: 81.3%;
+		background: #E0E0E0;
+		border-radius: 10px;
+		display:block;
+	}
 }
 @media (max-width: 767px) {
 	.block-image-task {
 		display: block;
 		padding-bottom: 30px;
+	}
+	.color-task-conteiner-image {
+		width: 100%;
+		background: #E0E0E0;
+		border-radius: 10px;
+		display:block;
 	}
 }
 @media (min-width: 768px) {
@@ -2036,19 +2070,20 @@ task {
 
 
 
-.color-task-conteiner-texts {
-	margin-left: 7.8%;
-	width: 92.2%;
-	background: #E0E0E0;
-	border-radius: 10px;
-	display:block;
-}
+
 .task-container-text {
 	padding-left: 2.6%;
 	padding-right: 6.25%;
 	display:block;
 }
 @media (min-width: 768px) {
+	.color-task-conteiner-texts {
+		margin-left: 7.8%;
+		width: 92.2%;
+		background: #E0E0E0;
+		border-radius: 10px;
+		display:block;
+	}
 	.answers-texts {
 		flex-wrap: wrap;
 		font-family: PT Sans;
@@ -2093,6 +2128,12 @@ task {
 	}
 }
 @media (max-width: 767px) {
+	.color-task-conteiner-texts {
+		width: 100%;
+		background: #E0E0E0;
+		border-radius: 10px;
+		display:block;
+	}
 	.answers-texts {
 		flex-wrap: wrap;
 		font-family: PT Sans;
@@ -2138,13 +2179,7 @@ task {
 }
 
 
-.color-task-conteiner {
-	margin-left: 17%;
-	width: 83%;
-	background: #E0E0E0;
-	border-radius: 10px;
-	display:block;
-}
+
 .task-container {
 	padding-left: 5%;
 	padding-right: 4.6%;
@@ -2152,6 +2187,13 @@ task {
 	display:block;
 }
 @media (min-width: 768px) {
+	.color-task-conteiner {
+		margin-left: 17%;
+		width: 83%;
+		background: #E0E0E0;
+		border-radius: 10px;
+		display:block;
+	}
 	.description {
 		padding-top: 15px;
 		padding-bottom: 36px;
@@ -2182,6 +2224,12 @@ task {
 	}
 }
 @media (max-width: 767px) {
+	.color-task-conteiner {
+		width: 100%;
+		background: #E0E0E0;
+		border-radius: 10px;
+		display:block;
+	}
 	.description {
 		padding-top: 15px;
 		padding-bottom: 36px;

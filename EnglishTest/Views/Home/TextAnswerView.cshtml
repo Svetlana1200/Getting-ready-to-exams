@@ -31,13 +31,35 @@
         <task class="text-task" style="padding-bottom: 26px;">
             @for (var i = 0; i < Model.Text.Length - 1; i++)
             {
-                var answer = (string)ViewBag.Answer?[i];
-                if (!Model.AnswersRightness[i])
-                {
-                    answer += String.Format(" ({0})", Model.RightAnswer[i]);
-                }
                 @Model.Text[i]
-                @Html.TextBox("userAnswer", answer, new { @style = @styleWrongAnswer[i], @disabled = true })
+                if (Model.IsRight())
+                {
+                    @Html.TextBox("userAnswer", (string)ViewBag.Answer?[i], new { @style = styleWrongAnswer[i], @disabled = true })
+                }
+                else
+                {
+                    if ((string)ViewBag.Answer?[i].Trim() == "")
+                    {
+                        @Html.TextBox("userAnswer", String.Format("({0})", Model.RightAnswer[i]), new { @style = styleWrongAnswer[i] + "font-weight: bold;", @disabled = true })
+                    }
+                    else
+                    {
+                        var lenUserAnswer = Math.Max(((string)ViewBag.Answer?[i]).Length, 98);
+                        var lenCorrectAnswer = Math.Max(Model.RightAnswer[i].Length + 2, 98);
+                        @Html.TextBox("userAnswer", (string)ViewBag.Answer?[i], new { @style = styleWrongAnswer[i] + "text-align:right;" + String.Format("width:{0}px", lenUserAnswer), @disabled = true })
+                        @Html.TextBox("userAnswer", String.Format("({0})", Model.RightAnswer[i]), new { @style = styleWrongAnswer[i] + "font-weight:bold;text-align:left;"  + String.Format("width:{0}px", lenCorrectAnswer), @disabled = true })
+
+
+                    }
+                }
+                @*var answer = (string)ViewBag.Answer?[i];
+            if (!Model.AnswersRightness[i])
+            {
+                answer += String.Format(" ({0})", Model.RightAnswer[i]);
+            }
+            @Model.Text[i]
+            @Html.TextBox("userAnswer", answer, new { @style = @styleWrongAnswer[i], @disabled = true })*@
+
             }
             @Model.Text[Model.Text.Length - 1]
         </task>
