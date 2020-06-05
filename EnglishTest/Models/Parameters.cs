@@ -34,7 +34,7 @@ namespace EnglishTest.Models
             End,
             [Display(Name = "До первой ошибки")]
             OneMistake,
-            [Display(Name = "Ограничение по времени (в секундах)")]
+            [Display(Name = "Ограничение по времени (в минутах)")]
             Timer
         }
     }

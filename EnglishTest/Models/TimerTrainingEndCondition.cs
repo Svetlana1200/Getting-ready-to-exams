@@ -22,7 +22,7 @@ namespace EnglishTest.Models
                 StartTime = currentTime;
                 return false;
             }
-            return (currentTime - StartTime).TotalSeconds > TotalTime;
+            return (currentTime - StartTime).TotalMinutes > TotalTime;
         }
     }
 }

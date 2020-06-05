@@ -5,7 +5,6 @@ using EnglishTest.Models;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using MongoDB.Bson.Serialization;
-using Ninject;
 
 namespace EnglishTest.Controllers
 {
@@ -63,21 +62,14 @@ namespace EnglishTest.Controllers
             var conditionType = userContition[parameters.UserCondition];
             var time = Math.Max(1, parameters.Time);
 
-            var container = new StandardKernel();
-            container.Bind<int>().ToConstant(time);
-            container.Bind<ITrainingEndCondition>().To(conditionType);
-            container.Bind<Parameters.Levels>().ToConstant(parameters.UserLevel);
-            container.Bind<Training>().To(trainingType);
-            var training = container.Get<Training>();
+            ITrainingEndCondition trainingEndCondition = null;
+            if (conditionType == typeof(TimerTrainingEndCondition))
+                trainingEndCondition = (ITrainingEndCondition)Activator.CreateInstance(conditionType, time);
+            else
+                trainingEndCondition = (ITrainingEndCondition)Activator.CreateInstance(conditionType);
 
-            //ITrainingEndCondition trainingEndCondition = null;
-            //if (conditionType == typeof(TimerTrainingEndCondition))
-            //    trainingEndCondition = (ITrainingEndCondition)Activator.CreateInstance(conditionType, time);
-            //else
-            //    trainingEndCondition = (ITrainingEndCondition)Activator.CreateInstance(conditionType);
-
-            //var training = (Training)Activator.CreateInstance(
-            //    trainingType, parameters.UserLevel, trainingEndCondition);
+            var training = (Training)Activator.CreateInstance(
+                trainingType, parameters.UserLevel, trainingEndCondition);
 
             training.CreateTasks(db, parameters.TasksNumber);
             HttpContext.Session.Set("training", training);
