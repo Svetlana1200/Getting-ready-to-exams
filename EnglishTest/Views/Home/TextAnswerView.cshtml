@@ -32,7 +32,7 @@
             @for (var i = 0; i < Model.Text.Length - 1; i++)
             {
                 @Model.Text[i]
-                if (Model.IsRight())
+                if (Model.AnswersRightness[i])
                 {
                     @Html.TextBox("userAnswer", (string)ViewBag.Answer?[i], new { @style = styleWrongAnswer[i], @disabled = true })
                 }
