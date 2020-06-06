@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using EnglishTest.Models;
+using System;
+using MongoDB.Driver;
 
 namespace EnglishTest
 {
@@ -19,7 +21,17 @@ namespace EnglishTest
 
         public void ConfigureServices(IServiceCollection services)
         {
+            var user = Environment.GetEnvironmentVariable("MONGODB_USERNAME");
+            var password = Environment.GetEnvironmentVariable("MONGODB_PASSWORD");
+            var cluster = Environment.GetEnvironmentVariable("MONGODB_CLUSTER");
+            var connectionString = $"mongodb+srv://{user}:{password}@{cluster}/englishTest?retryWrites=true&w=majority";
+
+            var connection = new MongoUrlBuilder(connectionString);
+            var client = new MongoClient(connectionString);
+
             services.AddTransient<TaskService>();
+            services.AddSingleton(connection);
+            services.AddSingleton(client);
             services.AddSession();
 
             services.Configure<CookiePolicyOptions>(options =>

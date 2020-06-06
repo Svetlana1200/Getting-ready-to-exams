@@ -13,17 +13,9 @@ namespace EnglishTest.Models
         private readonly List<string> collectionNames = new List<string>() {
             "texts", "images", "sentences", "texts2", "sentences2" };
 
-        public TaskService()
+        public TaskService(MongoUrlBuilder connection, MongoClient client)
         {
-            var user = Environment.GetEnvironmentVariable("MONGODB_USERNAME");
-            var password = Environment.GetEnvironmentVariable("MONGODB_PASSWORD");
-            var connectionString = $"mongodb+srv://{user}:{password}@englishtasks-n4smy.gcp.mongodb.net/" +
-                "englishTest?retryWrites=true&w=majority";
-
-            var connection = new MongoUrlBuilder(connectionString);
-            var client = new MongoClient(connectionString);
             database = client.GetDatabase(connection.DatabaseName);
-
             ReloadDBCache();
         }
 
