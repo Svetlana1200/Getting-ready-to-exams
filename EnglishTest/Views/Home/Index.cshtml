@@ -25,7 +25,7 @@
             @foreach (Parameters.Trainings training in Enum.GetValues(typeof(Parameters.Trainings)))
             {
                 <label class="block-variants">
-                    @Html.RadioButtonFor(m => m.UserTraining, training)
+                    @Html.RadioButtonFor(m => m.UserTraining, training, new { @id = training })
                     @string.Format(" {0}", training.GetAttribute<DisplayAttribute>().Name)
                 </label>
             }
@@ -58,6 +58,18 @@
                     else {
                         $("#Time").hide();
                         $("#Time").val(1);
+                    }
+                });
+
+                $("input[name='UserLevel']").change(function () {
+                    if ($(this).val() == "B1") {
+                        $("#Images").parent().show();
+                    }
+                    else {
+                        $("#Images").parent().hide();
+                        if ($("#Images").is(":checked")) {
+                            $("#All").prop("checked", true);
+                        }
                     }
                 });
             </script>

@@ -7,7 +7,7 @@ namespace EnglishTest.Models
         private readonly Dictionary<Parameters.Levels, List<string>> collections = new Dictionary<Parameters.Levels, List<string>>
         {
             { Parameters.Levels.B1, new List<string>(){"sentences", "texts", "images" } },
-            { Parameters.Levels.B2, new List<string>(){"sentences2", "texts2", "images" }  }
+            { Parameters.Levels.B2, new List<string>(){"sentences2", "texts2" } }
         };
 
         private readonly Dictionary<string, int> scoresForType = new Dictionary<string, int>
@@ -17,7 +17,6 @@ namespace EnglishTest.Models
             { "texts", TextAnswer.MaxCount },
             { "texts2", TextAnswer.MaxCount },
             { "images", ImageAnswer.MaxCount },
-            //{ "images2", ImageAnswer.MaxCount}
         };
         public AllTasksTraining(Parameters.Levels level, ITrainingEndCondition condition) 
             : base(level, condition) {}
