@@ -39,15 +39,28 @@
             </set>
             @foreach (Parameters.Conditions condition in Enum.GetValues(typeof(Parameters.Conditions)))
             {
-                    <label class="block-variants">
-                        @Html.RadioButtonFor(m => m.UserCondition, condition)
-                        @string.Format(" {0}", condition.GetAttribute<DisplayAttribute>().Name)
-                    </label>
+                <label class="block-variants">
+                    @Html.RadioButtonFor(m => m.UserCondition, condition)
+                    @string.Format(" {0}", condition.GetAttribute<DisplayAttribute>().Name)
+                </label>
                 if (condition == Parameters.Conditions.Timer)
                 {
-                    <input asp-for="Time" type="number" value=1 placeholder="1" min="1" max="1000" />
+                    <input asp-for="Time" style="display:none;" type="number" value=1 placeholder="1" min="1" max="1000" />
                 }
             }
+
+            <script src="~/lib/jquery/dist/jquery.js"></script>
+            <script>
+                $("input[name='UserCondition']").change(function () {
+                    if ($(this).val() == "Timer") {
+                        $("#Time").show();
+                    }
+                    else {
+                        $("#Time").hide();
+                        $("#Time").val(1);
+                    }
+                });
+            </script>
         </set>
     </set>
     <input type="submit" value="Начать тестирование" />

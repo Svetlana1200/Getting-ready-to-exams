@@ -122,17 +122,7 @@ namespace EnglishTest.Controllers
             return (ITask)BsonSerializer.Deserialize(taskBSON, taskTypes[training.CurrentTaskCollection]);
         }
 
-        public IActionResult About()
-        {
-            return View();
-        }
-
         public IActionResult Contact()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
         {
             return View();
         }
