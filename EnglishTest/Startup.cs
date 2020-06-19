@@ -26,12 +26,9 @@ namespace EnglishTest
             var cluster = Environment.GetEnvironmentVariable("MONGODB_CLUSTER");
             var connectionString = $"mongodb+srv://{user}:{password}@{cluster}/englishTest?retryWrites=true&w=majority";
 
-            var connection = new MongoUrlBuilder(connectionString);
-            var client = new MongoClient(connectionString);
-
             services.AddTransient<TaskService>();
-            services.AddSingleton(connection);
-            services.AddSingleton(client);
+            services.AddTransient<MongoUrlBuilder>(s => new MongoUrlBuilder(connectionString));
+            services.AddTransient<MongoClient>(s => new MongoClient(connectionString));
             services.AddSession();
 
             services.Configure<CookiePolicyOptions>(options =>
