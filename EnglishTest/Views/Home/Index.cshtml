@@ -50,29 +50,7 @@
             }
 
             <script src="~/lib/jquery/dist/jquery.js"></script>
-            <script>
-                $("input[name='UserCondition']").change(function () {
-                    if ($(this).val() == "Timer") {
-                        $("#Time").show();
-                    }
-                    else {
-                        $("#Time").hide();
-                        $("#Time").val(1);
-                    }
-                });
-
-                $("input[name='UserLevel']").change(function () {
-                    if ($(this).val() == "B1") {
-                        $("#Images").parent().show();
-                    }
-                    else {
-                        $("#Images").parent().hide();
-                        if ($("#Images").is(":checked")) {
-                            $("#All").prop("checked", true);
-                        }
-                    }
-                });
-            </script>
+            <script src="~/js/script.js"></script>
         </set>
     </set>
     <input type="submit" value="Начать тестирование" />
