@@ -12,10 +12,10 @@
 2. Добавление новых типов тренировок (абстрактный класс [Training](EnglishTest/Models/Training.cs)).<br>
 3. Добавление новых условий окончания тренировки (интерфейс [ITrainingEndCondition](EnglishTest/Models/ITrainingEndCondition.cs)).<br>
 
-Сборка зависимостей происходит в классе [Startup](EnglishTest/Startup.cs) в методе ConfigureServices.<br>
+Сборка зависимостей происходит в классе [Startup](EnglishTest/Startup.cs) в методе [ConfigureServices](EnglishTest/Startup.cs#L22).<br>
 
 Проект создан в соответствии с паттерном MVC.<br>
 Классы, расположенные в папке [Models](EnglishTest/Models), моделируют предметную область: задания, ответы, тренировки, условия окончания тренировок и результаты.<br>
 Слой пользовательского интерфейса реализован с помощью представлений, расположенных в папке [Views](EnglishTest/Views).<br>
 [Контроллер](EnglishTest/Controllers/HomeController.cs) обеспечивает связь между пользователем и приложением.<br>
-Такие классы, как [SessionExtensions](EnglishTest/Controllers/SessionExtensions.cs) и [EnumExtensions](EnglishTest/Models/EnumExtensions.cs) составляют инфраструктуру проекта.<br>
+Такие классы, как [SessionExtensions](EnglishTest/Controllers/SessionExtensions.cs) и [EnumExtensions](EnglishTest/Models/EnumExtensions.cs) составляют инфраструктуру проекта.
