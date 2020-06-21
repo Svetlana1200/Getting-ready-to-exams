@@ -60,11 +60,10 @@ namespace EnglishTest.Controllers
         {
             var trainingType = userTraining[parameters.UserTraining];
             var conditionType = userContition[parameters.UserCondition];
-            var time = Math.Max(1, parameters.Time);
 
             ITrainingEndCondition trainingEndCondition = null;
             if (conditionType == typeof(TimerTrainingEndCondition))
-                trainingEndCondition = (ITrainingEndCondition)Activator.CreateInstance(conditionType, time);
+                trainingEndCondition = (ITrainingEndCondition)Activator.CreateInstance(conditionType, parameters.Time);
             else
                 trainingEndCondition = (ITrainingEndCondition)Activator.CreateInstance(conditionType);
 

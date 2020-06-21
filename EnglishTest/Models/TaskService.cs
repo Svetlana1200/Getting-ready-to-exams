@@ -10,12 +10,13 @@ namespace EnglishTest.Models
     {
         private IMongoDatabase database;
         private readonly Dictionary<string, List<BsonDocument>> databaseCache = new Dictionary<string, List<BsonDocument>>();
+        private const string databaseName = "englishTest";
         private readonly List<string> collectionNames = new List<string>() {
             "texts", "images", "sentences", "texts2", "sentences2" };
 
-        public TaskService(MongoUrlBuilder connection, MongoClient client)
+        public TaskService(MongoClient client)
         {
-            database = client.GetDatabase(connection.DatabaseName);
+            database = client.GetDatabase(databaseName);
             ReloadDBCache();
         }
 
