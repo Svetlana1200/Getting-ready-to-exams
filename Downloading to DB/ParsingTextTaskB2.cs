@@ -7,10 +7,10 @@ namespace EnglishTest.DownloadingToDB
 {
     public class ParsingTextTaskB2 : IParsingTasks<FormatTextTask>
     {
-        public static string FirstPart = "https://englishapple.ru/index.php/%D1%83%D1%87%D0%B8%D0%BC-%D0%B0%D0%BD%D0%B3%D0%BB%D0%B8%D0%B9%D1%81%D0%BA%D0%B8%D0%B9/%D0%B0%D1%83%D0%B4%D0%B8%D0%BE/";
-        public static string SecondPart = "-cambridge-english-advanced-cae-use-of-english-open-cloze-test-";
-        public static Regex regexText = new Regex(@"For questions 1-8,[\w\W]*?<h(4|3)[\w\W]*?<p>([\w\W]*?)</p>");
-        public static Regex regexAnswer = new Regex(@"GAP (\d)+ \(([\w\s]*?)[\)/]");
+        private readonly static string firstPart = "https://englishapple.ru/index.php/%D1%83%D1%87%D0%B8%D0%BC-%D0%B0%D0%BD%D0%B3%D0%BB%D0%B8%D0%B9%D1%81%D0%BA%D0%B8%D0%B9/%D0%B0%D1%83%D0%B4%D0%B8%D0%BE/";
+        private readonly static string secondPart = "-cambridge-english-advanced-cae-use-of-english-open-cloze-test-";
+        private readonly static Regex regexText = new Regex(@"For questions 1-8,[\w\W]*?<h(4|3)[\w\W]*?<p>([\w\W]*?)</p>");
+        private readonly static Regex regexAnswer = new Regex(@"GAP (\d)+ \(([\w\s]*?)[\)/]");
     
         public List<FormatTextTask> GetTasks()
         {
@@ -22,14 +22,12 @@ namespace EnglishTest.DownloadingToDB
                 if (i == 4)
                     start = 668;
                 FormatTextTask partTasks = null;
-                var uri = FirstPart + (start + i).ToString() + SecondPart + (i + 1).ToString();
+                var uri = firstPart + (start + i).ToString() + secondPart + (i + 1).ToString();
                 var html = HTML.GetHTML(uri);
                 partTasks = GetTasksFromOnePage(html);
-                Console.WriteLine();
                 if (partTasks.Text.Length > 100)
                     tasks.Add(partTasks);
             }
-            Console.WriteLine(tasks.Count);
             return tasks;
         }
 
@@ -43,7 +41,6 @@ namespace EnglishTest.DownloadingToDB
                 {
                     text = match.Groups[2].Value.Replace("…", "_");
                     text = text.Replace("<br />", "\n").Replace("...", "_");
-                    Console.WriteLine(text);
                 }
             }
             Regex regexAnswers = new Regex(@"\[answer=""([\w\W]*?)[""#]");

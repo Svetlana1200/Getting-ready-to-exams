@@ -7,10 +7,10 @@ namespace EnglishTest.DownloadingToDB
 {
     public class ParsingTextTaskB1 : IParsingTasks<FormatTextTask>
     {
-        public static string FirstPart = "https://englishapple.ru/index.php/%D1%83%D1%87%D0%B8%D0%BC-%D0%B0%D0%BD%D0%B3%D0%BB%D0%B8%D0%B9%D1%81%D0%BA%D0%B8%D0%B9/%D0%B0%D1%83%D0%B4%D0%B8%D0%BE/";
-        public static string SecondPart = "-fce-use-of-english-open-cloze-test-";
-        public static Regex regexText = new Regex(@"<(h3|h4) style[\w\W]*?</(h3|h4)>[\w\W]*?(<(p|h4)[\w\W]*?>([\w\d\s,:""!.?]*?<[\w\W]*?</b><span>&nbsp;</span>\.\.\.)*?</(p|h4)>\s*<(p|h4)[\w\W]*?>([\w\d\s,:""!.?]*?<[\w\W]*?</b><span>&nbsp;</span>\.\.\.)*?[\w\d\s,:""!.?]*?</(p|h4)>)");
-        public static Regex regexAnswer = new Regex(@"GAP (\d)+ \(([\w\s]*?)[\)/]");
+        private readonly static string FirstPart = "https://englishapple.ru/index.php/%D1%83%D1%87%D0%B8%D0%BC-%D0%B0%D0%BD%D0%B3%D0%BB%D0%B8%D0%B9%D1%81%D0%BA%D0%B8%D0%B9/%D0%B0%D1%83%D0%B4%D0%B8%D0%BE/";
+        private readonly static string SecondPart = "-fce-use-of-english-open-cloze-test-";
+        private readonly static Regex regexText = new Regex(@"<(h3|h4) style[\w\W]*?</(h3|h4)>[\w\W]*?(<(p|h4)[\w\W]*?>([\w\d\s,:""!.?]*?<[\w\W]*?</b><span>&nbsp;</span>\.\.\.)*?</(p|h4)>\s*<(p|h4)[\w\W]*?>([\w\d\s,:""!.?]*?<[\w\W]*?</b><span>&nbsp;</span>\.\.\.)*?[\w\d\s,:""!.?]*?</(p|h4)>)");
+        private readonly static Regex regexAnswer = new Regex(@"GAP (\d)+ \(([\w\s]*?)[\)/]");
         public List<FormatTextTask> GetTasks()
         {
             var tasks = new List<FormatTextTask>();
@@ -21,9 +21,7 @@ namespace EnglishTest.DownloadingToDB
                 var html = HTML.GetHTML(uri);
                 var partTasks = GetTasksFromOnePage(html);
                 tasks.Add(partTasks);
-                Console.WriteLine();
             }
-            Console.WriteLine(tasks.Count);
             return tasks;
         }
 
@@ -55,7 +53,6 @@ namespace EnglishTest.DownloadingToDB
             {
                 textWithNumbers.Append(" " + i.ToString() + "._" + partsText[i]);
             }
-            Console.WriteLine(textWithNumbers);
 
             var answers = new List<string>();
             matches = regexAnswer.Matches(html);

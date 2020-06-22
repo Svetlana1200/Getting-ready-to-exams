@@ -12,6 +12,7 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
+        "MONGODB_CLUSTER": "englishtasks-n4smy.gcp.mongodb.net",
         "MONGODB_PASSWORD": "146372",
         "MONGODB_USERNAME": "test_developer",
         "ASPNETCORE_ENVIRONMENT": "Production"

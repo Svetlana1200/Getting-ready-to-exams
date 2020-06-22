@@ -10,7 +10,7 @@ namespace EnglishTest.DownloadingToDB
     {
         static void Main(string[] args)
         {
-            var sentensesTasks = new ParsingSentencesTaskB1().GetTasks();
+            //var sentensesTasks = new ParsingSentencesTaskB1().GetTasks();
             //var imageTasks = new ParsingImageTask().GetTasks();
             //var textTaskB2 = new ParsingTextTaskB2().GetTasks();
 
@@ -19,8 +19,8 @@ namespace EnglishTest.DownloadingToDB
 
             var user = Environment.GetEnvironmentVariable("MONGODB_USERNAME");
             var password = Environment.GetEnvironmentVariable("MONGODB_PASSWORD");
-            var connectionString = $"mongodb+srv://{user}:{password}@englishtasks-n4smy.gcp.mongodb.net/" +
-                "englishTest?retryWrites=true&w=majority";
+            var cluster = Environment.GetEnvironmentVariable("MONGODB_CLUSTER");
+            var connectionString = $"mongodb+srv://{user}:{password}@{cluster}/englishTest?retryWrites=true&w=majority";
             var connection = new MongoUrlBuilder(connectionString);
             var client = new MongoClient(connectionString);
             var database = client.GetDatabase(connection.DatabaseName);
@@ -29,7 +29,7 @@ namespace EnglishTest.DownloadingToDB
             //AddTextsDocsToDB(database, "texts2", textTaskB2).GetAwaiter().GetResult();
             //AddTextsDocsToDB(database, "texts", textTasksB1).GetAwaiter().GetResult();
             //AddSentencesDocsToDB(database, "sentences2", sentensesTasks).GetAwaiter().GetResult();
-            AddSentencesDocsToDB(database, "sentences", sentensesTasks).GetAwaiter().GetResult();
+            //AddSentencesDocsToDB(database, "sentences", sentensesTasks).GetAwaiter().GetResult();
         }
 
         private static async Task AddSImagesDocsToDB(IMongoDatabase db, string collectionName,

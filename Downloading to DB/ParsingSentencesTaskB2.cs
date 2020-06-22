@@ -9,28 +9,27 @@ namespace EnglishTest.DownloadingToDB
 {
     public class ParsingSentencesTaskB2 : IParsingTasks<FormatSentencesTask>
     {
-        public static string FirstPart = "https://englishapple.ru/index.php/%D1%83%D1%87%D0%B8%D0%BC-%D0%B0%D0%BD%D0%B3%D0%BB%D0%B8%D0%B9%D1%81%D0%BA%D0%B8%D0%B9/%D0%B0%D1%83%D0%B4%D0%B8%D0%BE/";
-        public static string SecondPart = "-cambridge - english - advanced - cae - use - of - english - key - word - transformations - test -";
-        
+        private readonly static string firstPart = "https://englishapple.ru/index.php/%D1%83%D1%87%D0%B8%D0%BC-%D0%B0%D0%BD%D0%B3%D0%BB%D0%B8%D0%B9%D1%81%D0%BA%D0%B8%D0%B9/%D0%B0%D1%83%D0%B4%D0%B8%D0%BE/";
+        private readonly static string secondPart = "-cambridge - english - advanced - cae - use - of - english - key - word - transformations - test -";
+        private readonly static Regex regex = new Regex(@"first="" ([\w\W]*?\.)[\w\W]*?word=""(\w*?)"" beginning=""([\w\W]*?)""&nbsp;answer=""([\w\W]*?)(#[\w\W]*?)?"" ending=""([\w\W]*?.)""");
+
         public List<FormatSentencesTask> GetTasks()
         {
             var tasks = new List<FormatSentencesTask>();
             for (var i = 0; i < 20; i++)
             {
-                var uri = FirstPart + (708 + i).ToString() + SecondPart + i.ToString();
+                var uri = firstPart + (708 + i).ToString() + secondPart + i.ToString();
 
                 var html = HTML.GetHTML(uri);
                 var partTasks = GetTasksFromOnePage(html);
                 tasks.AddRange(partTasks);
             }
-            Console.WriteLine(tasks.Count);
             return tasks;
         }
 
         private List<FormatSentencesTask> GetTasksFromOnePage(string html)
         {
             var tasks = new List<FormatSentencesTask>();
-            Regex regex = new Regex(@"first="" ([\w\W]*?\.)[\w\W]*?word=""(\w*?)"" beginning=""([\w\W]*?)""&nbsp;answer=""([\w\W]*?)(#[\w\W]*?)?"" ending=""([\w\W]*?.)""");
             MatchCollection matches = regex.Matches(html);
             if (matches.Count > 0)
             {
