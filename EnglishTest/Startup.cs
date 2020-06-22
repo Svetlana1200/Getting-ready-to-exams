@@ -21,7 +21,7 @@ namespace EnglishTest
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<TaskService>();
-            services.AddSingleton<MongoClient>(s => new MongoClient(GetConnectioString()));
+            services.AddSingleton<MongoClient>(s => new MongoClient(GetConnectionString()));
 
             services.AddDistributedMemoryCache();
             services.AddSession();
@@ -53,7 +53,7 @@ namespace EnglishTest
             });
         }
 
-        private string GetConnectioString()
+        private string GetConnectionString()
         {
             var user = Environment.GetEnvironmentVariable("MONGODB_USERNAME");
             var password = Environment.GetEnvironmentVariable("MONGODB_PASSWORD");
